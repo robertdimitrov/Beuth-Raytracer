@@ -20,9 +20,6 @@ public class ImageOpen {
 		// creating and showing this application's GUI.
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				final JDialog dialog = new JDialog();
-				dialog.setTitle("ooga");
-				final Container container = dialog.getContentPane();
 				final JFileChooser fChooser = new JFileChooser();
 				fChooser.setFileFilter(new FileFilter() {
 
@@ -45,7 +42,7 @@ public class ImageOpen {
 					}
 				});
 
-				int returnVal = fChooser.showOpenDialog(container);
+				int returnVal = fChooser.showOpenDialog(null);
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
 					final JFrame imgframe = new JFrame();
 					final BufferedImage img;
