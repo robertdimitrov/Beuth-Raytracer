@@ -5,9 +5,13 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
-import java.util.Arrays;
-
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class ImagePaint extends JPanel{
 	
@@ -43,13 +47,42 @@ private BufferedImage image;
 	
 	protected void paintComponent( Graphics g ){
 		paintImage();
-	    if ( image != null ){
-	    	g.drawImage( image, 0, 0, this );
-	    }
-
+	    if ( image != null )
+	      g.drawImage( image, 0, 0, this );
 	}
-
-	public BufferedImage getImage() {
-		return image;
-	}	
+	
+	protected BufferedImage getImage(){
+		return this.image;
+	}
+	
+	protected void save(){
+		
+		JFileChooser chooser = new JFileChooser();
+		FileFilter filter = new FileNameExtensionFilter("Bilder", "png", "jpg");
+		chooser.addChoosableFileFilter(filter);
+		int returnVal = chooser.showSaveDialog(null);
+		if(returnVal == JFileChooser.APPROVE_OPTION){
+			
+			final BufferedImage img = getImage();
+			File file = null;
+			String path = chooser.getSelectedFile().getPath();
+			if(!path.toLowerCase().endsWith(".png")|| !path.toLowerCase().endsWith(".jpg") ){
+				path=path+".jpg";
+			}
+			file = new File(path);
+			try {				
+				ImageIO.write(img, "png", file);
+			}
+			catch(IOException e){
+				System.out.println("Could not write image to");
+			}			
+		}
+		
+		
+		
+	
+		
+		
+		
+	}
 }
