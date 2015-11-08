@@ -2,6 +2,7 @@ package b_vorbereitung;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
@@ -38,4 +39,7 @@ private BufferedImage image;
 	      g.drawImage( image, 0, 0, this );
 	  }
 	
+	public BufferedImage getImage(){
+		return image;
+	}
 }

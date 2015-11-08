@@ -70,7 +70,6 @@ public class ImageOpen {
 						System.err.println(file + " could not be opened");
 					}
 				}
-				System.out.println("done");
 			}
 		});
 	}
