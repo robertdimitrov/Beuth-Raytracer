@@ -42,7 +42,7 @@ public class Vector3 {
 	 * @param v der zu addierende Vector3
 	 * @return die Summe beider Vektoren
 	 */
-	public Vector3 add(Vector3 v){
+	public Vector3 add(final Vector3 v){
 		return new Vector3(x+v.x, y+v.y, z+v.z);
 	}
 	
@@ -51,7 +51,7 @@ public class Vector3 {
 	 * @param n die zu addierende Normale
 	 * @return die Summe des Vektors und der Normalen
 	 */
-	public Vector3 add(Normal3 n){
+	public Vector3 add(final Normal3 n){
 		return new Vector3(x+n.x, y+n.y, z+n.z);
 	}
 	
@@ -60,7 +60,7 @@ public class Vector3 {
 	 * @param n die zu subtrahierende Normale
 	 * @return die Differenz zwischen dem Vektor und der Normalen
 	 */
-	public Vector3 sub(Normal3 n){
+	public Vector3 sub(final Normal3 n){
 		return new Vector3(x-n.x, y-n.y, z-n.z);
 	}
 	
@@ -69,7 +69,7 @@ public class Vector3 {
 	 * @param c der Multiplikator
 	 * @return das Produkt des Vektors und der Zahl
 	 */
-	public Vector3 mul(double c){
+	public Vector3 mul(final double c){
 		return new Vector3(x*c, y*c, z*c);
 	}
 	
@@ -78,7 +78,7 @@ public class Vector3 {
 	 * @param v der zweite Vector3
 	 * @return das Skalarprodukt beider Vektoren
 	 */
-	public double dot(Vector3 v){
+	public double dot(final Vector3 v){
 		return x*v.x + y*v.y + z*v.z;
 	}
 	
@@ -87,7 +87,7 @@ public class Vector3 {
 	 * @param n die Normale
 	 * @return das Skalarprodukt des Vektors und der Normalen.
 	 */
-	public double dot(Normal3 n){
+	public double dot(final Normal3 n){
 		return x*n.x + y*n.y + z*n.z;
 	}
 	
@@ -118,7 +118,7 @@ public class Vector3 {
 	 * @param n die Normale
 	 * @return der reflektierte Vektor
 	 */
-	public Vector3 reflectedOn(Normal3 n){
+	public Vector3 reflectedOn(final Normal3 n){
 		Normal3 m = n.mul(this.dot(n)*2);
 		Vector3 v = new Vector3(-x, -y, -z);
 		return v.add(m);
@@ -129,7 +129,7 @@ public class Vector3 {
 	 * @param v der zweite Vektor
 	 * @return das Kreuzprodukt beider Vektoren
 	 */
-	public Vector3 x(Vector3 v){
+	public Vector3 x(final Vector3 v){
 		return new Vector3(y*v.z - z*v.y, z*v.x - x*v.z, x*v.y - y*v.x);
 	}
 
@@ -172,9 +172,7 @@ public class Vector3 {
 
 	@Override
 	public String toString() {
-		return "Vector3 [x=" + x + ", y=" + y + ", z=" + z + ", magnitude="
-				+ magnitude + "]";
+		return "Vector3: " + String.format("(%5.2f, %5.2f, %5.2f )", x, y, z);
 	}
-
 	
 }
