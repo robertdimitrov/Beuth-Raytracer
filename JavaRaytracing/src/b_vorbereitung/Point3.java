@@ -40,7 +40,7 @@ public class Point3 {
 	 * @param p der Subtrahend
 	 * @return die Differenz zwischen den beiden Punkten
 	 */
-	public Vector3 sub(Point3 p){
+	public Vector3 sub(final Point3 p){
 		return new Vector3(x - p.x, y - p.y, z - p.z);
 	}
 	
@@ -49,7 +49,7 @@ public class Point3 {
 	 * @param v der Subtrahend
 	 * @return die Differenz zwischen dem Punkt und dem Vektor
 	 */
-	public Point3 sub(Vector3 v){
+	public Point3 sub(final Vector3 v){
 		return new Point3(x - v.x, y - v.y, z - v.z);
 	}
 	
@@ -58,7 +58,7 @@ public class Point3 {
 	 * @param v der Vektor
 	 * @return die Summe des Punktes und des Vektors
 	 */
-	public Point3 add(Vector3 v){
+	public Point3 add(final Vector3 v){
 		return new Point3(x + v.x, y + v.y, z + v.z);
 	}
 
@@ -96,10 +96,8 @@ public class Point3 {
 
 	@Override
 	public String toString() {
-		return "Point3 [x=" + x + ", y=" + y + ", z=" + z + "]";
+		return "Point3: " + String.format("(%5.2f, %5.2f, %5.2f )", x, y, z);
 	}
-	
-	
 
 }
 
