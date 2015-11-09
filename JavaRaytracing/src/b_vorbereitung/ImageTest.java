@@ -10,29 +10,36 @@ import javax.swing.JMenuItem;
 
 
 
+/**
+ * @author Clemens
+ * 
+ * Klasse zum Test der Klasse ImagePainter
+ *
+ */
 public class ImageTest {
 
+	/**
+	 * @param args Kommandozeilenparameter
+	 */
 	public static void main(String[] args) {
 		
-		JFrame frame = new JFrame("Imageviewer");		
+		JFrame frame = new JFrame("Imageviewer");
+		frame.setSize(640,480);
 		frame.setLayout( new BorderLayout() );	
 		JMenuBar menu = new JMenuBar();				
 		frame.setJMenuBar(menu);
-		ImagePaint imagePainter = new ImagePaint();
+		ImagePaint imagePainter = new ImagePaint();	
 		ActionListener listener = new ActionListener(){
 			@Override
-			public void actionPerformed(ActionEvent e){
-				System.out.println("hallo");
+			public void actionPerformed(ActionEvent e){			
 				 imagePainter.save();
 			}
 		};
 		JMenuItem save = new JMenuItem("save");
 		save.addActionListener(listener);
 		menu.add(save);
-		frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-	    frame.setSize( 640, 480 );
-	    frame.setVisible( true );
-	    frame.add(imagePainter);
-	   
+		frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );	   	   	  
+	    frame.add(imagePainter);	 
+	    frame.setVisible( true );	   
 	}
 }
