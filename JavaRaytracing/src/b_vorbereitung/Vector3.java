@@ -8,27 +8,27 @@ package b_vorbereitung;
 public class Vector3 {
 
 	/**
-	 * x-Wert des Vektors
+	 * Der x-Wert des Vektors
 	 */
 	public final double x;
 	/**
-	 * y-Wert des Vektors
+	 * Der y-Wert des Vektors
 	 */
 	public final double y;
 	/**
-	 * z-Wert des Vektors
+	 * Der z-Wert des Vektors
 	 */
 	public final double z;
 	/**
-	 * Länge des Vektors
+	 * Die Länge des Vektors
 	 */
 	public final double magnitude;
 	
 	/**
-	 * Dieser Konstruktor erzeugt ein neues Vector3-Objekt
-	 * @param x		x-Wert des Vektors
-	 * @param y		y-Wert des Vektors
-	 * @param z		z-Wert des Vektors
+	 * Dieser Konstruktor erzeugt ein neues Vector3-Objekt.
+	 * @param x Der x-Wert des Vektors
+	 * @param y	Der y-Wert des Vektors
+	 * @param z	Der z-Wert des Vektors
 	 */
 	public Vector3(final double x, final double y, final double z){
 		this.x = x;
@@ -43,6 +43,9 @@ public class Vector3 {
 	 * @return die Summe beider Vektoren
 	 */
 	public Vector3 add(final Vector3 v){
+		if(v==null){
+			throw new IllegalArgumentException("v darf nicht null sein");
+		}
 		return new Vector3(x+v.x, y+v.y, z+v.z);
 	}
 	
@@ -52,15 +55,21 @@ public class Vector3 {
 	 * @return die Summe des Vektors und der Normalen
 	 */
 	public Vector3 add(final Normal3 n){
+		if(n==null){
+			throw new IllegalArgumentException("n darf nicht null sein");
+		}
 		return new Vector3(x+n.x, y+n.y, z+n.z);
 	}
 	
 	/**
 	 * Subtrahiert eine Normal3 von diesem Vector3.
-	 * @param n die zu subtrahierende Normale
+	 * @param n der Subtrahend
 	 * @return die Differenz zwischen dem Vektor und der Normalen
 	 */
 	public Vector3 sub(final Normal3 n){
+		if(n==null){
+			throw new IllegalArgumentException("n darf nicht null sein");
+		}
 		return new Vector3(x-n.x, y-n.y, z-n.z);
 	}
 	
@@ -79,25 +88,31 @@ public class Vector3 {
 	 * @return das Skalarprodukt beider Vektoren
 	 */
 	public double dot(final Vector3 v){
+		if(v==null){
+			throw new IllegalArgumentException("v darf nicht null sein");
+		}
 		return x*v.x + y*v.y + z*v.z;
 	}
 	
 	/**
 	 * Berechnet das Skalarprodukt dieses Vector3 mit einer Normal3.
 	 * @param n die Normale
-	 * @return das Skalarprodukt des Vektors und der Normalen.
+	 * @return das Skalarprodukt des Vektors und der Normalen
 	 */
 	public double dot(final Normal3 n){
+		if(n==null){
+			throw new IllegalArgumentException("n darf nicht null sein");
+		}
 		return x*n.x + y*n.y + z*n.z;
 	}
 	
 	/** 
-	 * Normiert diesen Vector3
+	 * Normiert diesen Vector3.
 	 * @return der normierte Vector3
 	 */
 	public Vector3 normalized(){
 		if(magnitude==0){
-			throw new IllegalArgumentException("The magnitude of the Vector can not be 0");
+			throw new IllegalArgumentException("Die Länge des Vektors darf bei dieser Operation nicht 0 sein.");
 		}
 		return new Vector3(x/magnitude, y/magnitude, z/magnitude);
 	}
@@ -108,28 +123,34 @@ public class Vector3 {
 	 */
 	public Normal3 asNormal(){
 		if(magnitude==0){
-			throw new IllegalArgumentException("The magnitude of the Vector can not be 0");
+			throw new IllegalArgumentException("Die Länge des Vektors darf bei dieser Operation nicht 0 sein.");
 		}
 		return new Normal3(x/magnitude, y/magnitude, z/magnitude);
 	}
 	
 	/**
-	 * Reflektiert diesen Vector3 an einer Normalen
+	 * Reflektiert diesen Vector3 an einer Normalen.
 	 * @param n die Normale
 	 * @return der reflektierte Vektor
 	 */
 	public Vector3 reflectedOn(final Normal3 n){
+		if(n==null){
+			throw new IllegalArgumentException("n darf nicht null sein");
+		}
 		Normal3 m = n.mul(this.dot(n)*2);
 		Vector3 v = new Vector3(-x, -y, -z);
 		return v.add(m);
 	}
 	
 	/**
-	 * Berechnet das Kreuzprodukt dieses Vektor3 und eines anderen Vector3
+	 * Berechnet das Kreuzprodukt dieses Vektor3 und eines anderen Vector3.
 	 * @param v der zweite Vektor
 	 * @return das Kreuzprodukt beider Vektoren
 	 */
 	public Vector3 x(final Vector3 v){
+		if(v==null){
+			throw new IllegalArgumentException("v darf nicht null sein");
+		}
 		return new Vector3(y*v.z - z*v.y, z*v.x - x*v.z, x*v.y - y*v.x);
 	}
 

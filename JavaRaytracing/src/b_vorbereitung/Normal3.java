@@ -8,25 +8,25 @@ package b_vorbereitung;
 public class Normal3 {
 	
 	/**
-	 * Der x-Wert der Normalen.
+	 * Der x-Wert der Normalen
 	 */
 	public final double x;
 	
 	/**
-	 * Der y-Wert der Normalen.
+	 * Der y-Wert der Normalen
 	 */
 	public final double y;
 	
 	/**
-	 * Der z-Wert der Normalen.
+	 * Der z-Wert der Normalen
 	 */
 	public final double z;
 	
 	/**
-	 * Dieser Konstruktor erzeugt ein neues Normal3-Objekt
-	 * @param x der x-Wert der Normalen
-	 * @param y der y-Wert der Normalen
-	 * @param z der z-Wert der Normalen
+	 * Dieser Konstruktor erzeugt ein neues Normal3-Objekt.
+	 * @param x Der x-Wert der Normalen
+	 * @param y Der y-Wert der Normalen
+	 * @param z Der z-Wert der Normalen
 	 */
 	public Normal3(final double x, final double y, final double z){
 		this.x = x;
@@ -49,6 +49,9 @@ public class Normal3 {
 	 * @return die Summe beider Normalen
 	 */
 	public Normal3 add(final Normal3 n){
+		if(n==null){
+			throw new IllegalArgumentException("n darf nicht null sein");
+		}
 		return new Normal3(x + n.x, y + n.y, z + n.z);
 	}
 	
@@ -58,6 +61,9 @@ public class Normal3 {
 	 * @return das Skalarprodukt der Normalen und des Vektors
 	 */
 	public double dot(final Vector3 v){
+		if(v==null){
+			throw new IllegalArgumentException("n darf nicht null sein");
+		}
 		return x*v.x + y*v.y + z*v.z;
 	}
 
