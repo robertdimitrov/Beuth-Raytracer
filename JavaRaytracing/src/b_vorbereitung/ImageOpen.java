@@ -13,7 +13,11 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileFilter;
-
+/**
+ * Diese Klasse ermöglicht es, Bilder von der Festplatte zu oeffnen.
+ * @author Kosmonaut
+ *
+ */
 public class ImageOpen {
 	public static void main(String[] args) {
 		final JFileChooser fChooser = new JFileChooser();
