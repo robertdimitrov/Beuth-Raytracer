@@ -99,8 +99,7 @@ public class Mat3x3 {
 	/**
 	 * Multipliziert diese Mat3x3 mit einer anderen Mat3x3.
 	 * 
-	 * @param m
-	 *            die zweite Matrix
+	 * @param m die zweite Matrix
 	 * @return das Produkt der beiden Matrizen
 	 */
 	public Mat3x3 mul(final Mat3x3 m) {
@@ -116,8 +115,7 @@ public class Mat3x3 {
 	/**
 	 * Multipliziert diese Mat3x3 mit einem Vector3.
 	 * 
-	 * @param v
-	 *            der Vektor
+	 * @param v der Vektor
 	 * @return das Produkt der Matrix und des Vektors
 	 */
 	public Vector3 mul(final Vector3 v) {
@@ -128,8 +126,7 @@ public class Mat3x3 {
 	/**
 	 * Multipliziert diese Mat3x3 mit einem Point3.
 	 * 
-	 * @param p
-	 *            der Punkt
+	 * @param p der Punkt
 	 * @return das Produkt der Matrix und des Punktes
 	 */
 	public Point3 mul(final Point3 p) {
@@ -140,8 +137,7 @@ public class Mat3x3 {
 	/**
 	 * Tauscht die erste Spalte dieser Mat3x3 mit einem Vector3.
 	 * 
-	 * @param v
-	 *            der Vektor
+	 * @param v der Vektor
 	 * @return die veränderte Matrix
 	 */
 	public Mat3x3 changeCol1(final Vector3 v) {
@@ -151,8 +147,7 @@ public class Mat3x3 {
 	/**
 	 * Tauscht die zweite Spalte dieser Mat3x3 mit einem Vector3.
 	 * 
-	 * @param v
-	 *            der Vektor
+	 * @param v der Vektor
 	 * @return die veränderte Matrix
 	 */
 	public Mat3x3 changeCol2(final Vector3 v) {
@@ -162,8 +157,7 @@ public class Mat3x3 {
 	/**
 	 * Tauscht die dritte Spalte dieser Mat3x3 mit einem Vector3.
 	 * 
-	 * @param v
-	 *            der Vektor
+	 * @param v der Vektor
 	 * @return die veränderte Matrix
 	 */
 	public Mat3x3 changeCol3(final Vector3 v) {
@@ -235,7 +229,7 @@ public class Mat3x3 {
 	public String toString() {
 		return "Mat3x3: \n"
 				+ String.format(
-						"|%6.2f %6.2f %6.2f |\n|%6.2f %6.2f %6.2f |\n|%6.2f %6.2f %6.2f |\n",
+						"|%6.2f %6.2f %6.2f  |\n|%6.2f %6.2f %6.2f  |\n|%6.2f %6.2f %6.2f  |",
 						m11, m12, m13, m21, m22, m23, m31, m32, m33);
 	}
 
