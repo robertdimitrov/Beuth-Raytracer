@@ -21,13 +21,14 @@ public class ImageOpen {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				final JFileChooser fChooser = new JFileChooser();
+				//hinzufuegen eines FileFilters, der nur Bilder als öffnenbare Dateien anzeigt
 				fChooser.setFileFilter(new FileFilter() {
 
 					@Override
 					public String getDescription() {
 						return "images( jpg, bmp, gif, png, jpeg, wbmp)";
 					}
-
+					
 					@Override
 					public boolean accept(File f) {
 						if (f.isDirectory()) {
@@ -44,31 +45,39 @@ public class ImageOpen {
 
 				int returnVal = fChooser.showOpenDialog(null);
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
-					final JFrame imgframe = new JFrame();
-					final BufferedImage img;
-					File file = fChooser.getSelectedFile();
-					try {
-						img = ImageIO.read(file);
-						imgframe.getContentPane().add(new JPanel() {
-							/**
-							 * 
-							 */
-							private static final long serialVersionUID = 1L;
+					showImageFile(fChooser.getSelectedFile());
+				}
+			}
 
-							@Override
-							public void paintComponent(Graphics g) {
-								BufferedImage image = img;
-								Graphics2D graphics2d = (Graphics2D) g;
-								graphics2d.drawImage(image, 0, 0, null);
-								super.paintComponents(g);
-							}	
-						});
-						imgframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-						imgframe.setSize(img.getWidth(), img.getHeight());
-						imgframe.setVisible(true);
-					} catch (IOException e) {
-						System.err.println(file + " could not be opened");
-					}
+			/**
+			 * Zeigt eine als Bild in einem eigenen Fenster an
+			 * 
+			 * @param file die Datei die angezeigt werden soll
+			 */
+			private void showImageFile(final File file ) {
+				final JFrame imgframe = new JFrame();
+				//try-catch-Block für den Fall das ImageIO file nicht lesen kann
+				try {
+					final BufferedImage img = ImageIO.read(file);
+					imgframe.getContentPane().add(new JPanel() {
+						/**
+						 * 
+						 */
+						private static final long serialVersionUID = 1L;
+
+						@Override
+						public void paintComponent(Graphics g) {
+							BufferedImage image = img;
+							Graphics2D graphics2d = (Graphics2D) g;
+							graphics2d.drawImage(image, 0, 0, null);
+							super.paintComponents(g);
+						}	
+					});
+					imgframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					imgframe.setSize(img.getWidth(), img.getHeight());
+					imgframe.setVisible(true);
+				} catch (IOException e) {
+					System.err.println("IOException ist aufgetreten: "+file + " konnte nicht gelesen werden");
 				}
 			}
 		});
