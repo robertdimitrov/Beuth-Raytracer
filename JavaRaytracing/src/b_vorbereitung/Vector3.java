@@ -54,7 +54,8 @@ public class Vector3 {
 	
 	public Vector3 reflectedOn(Normal3 n){
 		Normal3 m = n.mul(this.dot(n)*2);
-		return new Vector3(m.x - x, m.y - y, m.z - z);
+		Vector3 v = new Vector3(-x, -y, -z);
+		return v.add(m);
 	}
 	
 	public Vector3 x(Vector3 v){
