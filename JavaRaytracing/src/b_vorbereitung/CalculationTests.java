@@ -2,6 +2,12 @@ package b_vorbereitung;
 
 import java.io.PrintWriter;
 
+/**
+ * In dieser Klasse werden Berechnungen mit Mat3x3, Vector3, Point3 und Normal3 vorgeführt 
+ * @author Kosmonaut
+ *
+ */
+
 public class CalculationTests {
 
 	public static void main(String[] args) {
