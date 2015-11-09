@@ -39,7 +39,7 @@ public class Normal3 {
 	 * @param n der Multiplikator
 	 * @return das Produkt der Normalen und der Zahl
 	 */
-	public Normal3 mul(double n){
+	public Normal3 mul(final double n){
 		return new Normal3(n*x, n*y, n*z);
 	}
 	
@@ -48,7 +48,7 @@ public class Normal3 {
 	 * @param n die zweite Normale
 	 * @return die Summe beider Normalen
 	 */
-	public Normal3 add(Normal3 n){
+	public Normal3 add(final Normal3 n){
 		return new Normal3(x + n.x, y + n.y, z + n.z);
 	}
 	
@@ -57,7 +57,7 @@ public class Normal3 {
 	 * @param v der Vektor
 	 * @return das Skalarprodukt der Normalen und des Vektors
 	 */
-	public double dot(Vector3 v){
+	public double dot(final Vector3 v){
 		return x*v.x + y*v.y + z*v.z;
 	}
 
@@ -97,7 +97,8 @@ public class Normal3 {
 
 	@Override
 	public String toString() {
-		return "Normal3 [x=" + x + ", y=" + y + ", z=" + z + "]";
+		return "Normal3: " + String.format("(%5.2f, %5.2f, %5.2f )", x, y, z);
 	}
+	
 	
 }
