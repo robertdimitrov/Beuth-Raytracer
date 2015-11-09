@@ -8,26 +8,26 @@ package b_vorbereitung;
 public class Point3 {
 	
 	/**
-	 * Der x-Wert des Punktes.
+	 * Der x-Wert des Punktes
 	 */
 	public final double x;
 	
 	/**
-	 * Der y-Wert des Punktes.
+	 * Der y-Wert des Punktes
 	 */
 	public final double y;
 	
 	/**
-	 * Der z-Wert des Punktes.
+	 * Der z-Wert des Punktes
 	 */
 	public final double z;
 	
 	
 	/**
 	 * Dieser Konstruktor erzeugt ein neues Point3-Objekt.
-	 * @param x Der x-Wert des Punktes.
-	 * @param y Der y-Wert des Punktes.
-	 * @param z Der z-Wert des Punktes.
+	 * @param x Der x-Wert des Punktes
+	 * @param y Der y-Wert des Punktes
+	 * @param z Der z-Wert des Punktes
 	 */
 	public Point3(final double x, final double y, final double z){
 		this.x = x;
@@ -41,6 +41,9 @@ public class Point3 {
 	 * @return die Differenz zwischen den beiden Punkten
 	 */
 	public Vector3 sub(final Point3 p){
+		if(p==null){
+			throw new IllegalArgumentException("p darf nicht null sein");
+		}
 		return new Vector3(x - p.x, y - p.y, z - p.z);
 	}
 	
@@ -50,6 +53,9 @@ public class Point3 {
 	 * @return die Differenz zwischen dem Punkt und dem Vektor
 	 */
 	public Point3 sub(final Vector3 v){
+		if(v==null){
+			throw new IllegalArgumentException("v darf nicht null sein");
+		}
 		return new Point3(x - v.x, y - v.y, z - v.z);
 	}
 	
@@ -59,6 +65,9 @@ public class Point3 {
 	 * @return die Summe des Punktes und des Vektors
 	 */
 	public Point3 add(final Vector3 v){
+		if(v==null){
+			throw new IllegalArgumentException("v darf nicht null sein");
+		}
 		return new Point3(x + v.x, y + v.y, z + v.z);
 	}
 
