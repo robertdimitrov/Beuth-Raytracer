@@ -46,9 +46,9 @@ public class ImagePaint extends JPanel{
 		final ColorModel model = image.getColorModel();
 		final Object r = model.getDataElements(red, null);
 		final int pixel[]= new int[w*h];		
-		for(int i=0; i<pixel.length;i++){
-			pixel[i]=black;
-		}
+//		for(int i=0; i<pixel.length;i++){
+//			pixel[i]=black;
+//		}
 		raster.setDataElements(raster.getMinX(), raster.getMinY(), raster.getWidth(), raster.getHeight(), pixel);		
 		for(int i = 0; i<w; i++){
 			
