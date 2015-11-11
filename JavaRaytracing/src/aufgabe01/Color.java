@@ -58,9 +58,18 @@ public class Color {
 	 * @return die berechnete Farbe
 	 */
 	public Color add(Color c) {
-		final double nR = this.r + c.getR();
-		final double nG = this.g + c.getG();
-		final double nB = this.b + c.getB();
+		double nR = this.r + c.getR();
+		double nG = this.g + c.getG();
+		double nB = this.b + c.getB();
+		if(nR>1){
+			nR = 1;
+		}
+		if(nG>1){
+			nR = 1;
+		}
+		if(nB>1){
+			nR = 1;
+		}
 		return new Color(nR, nG, nB);
 	}
 
@@ -72,9 +81,18 @@ public class Color {
 	 * @return die berechnete Farbe
 	 */
 	public Color sub(Color c) {
-		final double nR = this.r - c.getR();
-		final double nG = this.g - c.getG();
-		final double nB = this.b - c.getB();
+		double nR = this.r - c.getR();
+		double nG = this.g - c.getG();
+		double nB = this.b - c.getB();
+		if(nR<0){
+			nR = 0;
+		}
+		if(nG<0){
+			nR = 0;
+		}
+		if(nB<0){
+			nR = 0;
+		}
 		return new Color(nR, nG, nB);
 	}
 
@@ -100,6 +118,9 @@ public class Color {
 	 * @return die berechnete Farbe
 	 */
 	public Color mul(double v) {
+		if(!akzeptierbar(v)){
+			throw new IllegalArgumentException("v ist groesser als 1 oder kleiner als 0");
+		}
 		final double nR = this.r * v;
 		final double nG = this.g * v;
 		final double nB = this.b * v;
