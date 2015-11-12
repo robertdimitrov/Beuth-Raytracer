@@ -9,14 +9,32 @@ import b_vorbereitung.Vector3;
 
 /**
  * Eine Ebene
+ * 
  * @author Kosmaonaut
  *
  */
 public class Plane extends Geometry {
-	private final Point3 a;
-	private final Normal3 n;
-	
-	public Plane(final Point3 a, final Normal3 n, final Color color){
+	/**
+	 * Ursprung a dieser Ebene
+	 */
+	public final Point3 a;
+	/**
+	 * Stuetzvektor n dieser Ebene
+	 */
+	public final Normal3 n;
+
+
+	/**
+	 * Erzeugt eine Ebene
+	 * 
+	 * @param a
+	 *            der Ursprung dieser Ebene
+	 * @param n
+	 *            der Stuetzvektor dieser Ebene
+	 * @param color
+	 *            die Farbe dieser Ebene
+	 */
+	public Plane(final Point3 a, final Normal3 n, final Color color) {
 		super(color);
 		this.a = a;
 		this.n = n;
@@ -24,11 +42,12 @@ public class Plane extends Geometry {
 
 	@Override
 	public Hit hit(Ray r) {
-		if(n.dot(r.getD() != 0)){
-			final double t = a.sub(r.getO()).dot(n) / r.getD().dot(n);
+		if (n.dot(r.d) != 0) {
+			final double t = a.sub(r.o).dot(n) / r.d.dot(n);
 			return new Hit(t, r, this);
-		}else{
+		} else {
 			return null;
 		}
 	}
+
 }

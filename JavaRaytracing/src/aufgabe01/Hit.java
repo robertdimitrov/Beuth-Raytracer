@@ -12,9 +12,9 @@ import java.io.File;
  *
  */
 class Hit {
-	private final double t;
-	private final Ray ray;
-	private final Geometry geo;
+	public final double t;
+	public final Ray ray;
+	public final Geometry geo;
 	
 	/**
 	 * Der Schnittpunkt zwischen dem Ray und der Geometry
@@ -30,16 +30,5 @@ class Hit {
 		this.ray = ray;
 		this.geo = geo;
 	}
-	public double getT() {
-		return t;
-	}
-
-	public Ray getRay() {
-		return ray;
-	}
-
-	public Geometry getGeo() {
-		return geo;
-	}
-
+	
 }

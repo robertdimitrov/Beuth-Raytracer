@@ -1,7 +1,7 @@
 package aufgabe01;
 
 /**
- * Diese Klasse erstellt Geometrische Gestalten
+ * Diese Klasse ist eine abstrakte Oberklasse fuer Geometrische Gestalten
  * 
  * @author Kosmonaut
  *
@@ -16,8 +16,8 @@ public abstract class Geometry {
 	/**
 	 * 
 	 * @param r
-	 *            der Ray, für den geprueft wird , ob er die Geometry schneidet
-	 * @return einen Hit, falls er die Geometry schneidet oder null falls nicht
+	 *            der Ray, für den geprueft wird , ob er diese Geometry schneidet
+	 * @return einen Hit, falls er diese Geometry schneidet oder null falls nicht
 	 */
 	public abstract Hit hit(Ray r);
 	
