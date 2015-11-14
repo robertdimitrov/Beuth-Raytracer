@@ -1,5 +1,6 @@
 package aufgabe01;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 
 import b_vorbereitung.Normal3;
@@ -7,18 +8,18 @@ import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
 
 /**
- * ein am Koordinatensystem ausgerichteter Wuerfel
+ * ein am Koordinatensystem ausgerichteter Quader
  * 
  * @author Kosmonaut
  *
  */
 public class AxisAlignedBox extends Geometry {
 	/**
-	 * Ecke des Wuerfels die in im Koordinatensystem am niedrigsten ist
+	 * Ecke des Quaders die in im Koordinatensystem am niedrigsten ist
 	 */
 	public final Point3 lbf;
 	/**
-	 * Ecke des Wuerfels die in im Koordinatensystem am hoechsten ist
+	 * Ecke des Quaders die in im Koordinatensystem am hoechsten ist
 	 */
 	public final Point3 run;
 	/**
@@ -35,15 +36,19 @@ public class AxisAlignedBox extends Geometry {
 	public AxisAlignedBox(final Point3 lbf, final Point3 run, final Color color) {
 		super(color);
 		this.lbf = lbf;
-		this.run = run;
+		if(lbf.x <= run.x && lbf.y <= run.y && lbf.z <= run.z){
+			this.run = run;
+		}else{
+			throw new InvalidParameterException("run has to have higher x, y and z values than lbf");
+		}
 
 		// Seiten festlegen
 		allSides[0] = new Plane(lbf, new Normal3(-1, 0, 0), color);
 		allSides[1] = new Plane(lbf, new Normal3(0, -1, 0), color);
 		allSides[2] = new Plane(lbf, new Normal3(0, 0, -1), color);
-		allSides[3] = new Plane(lbf, new Normal3(1, 0, 0), color);
-		allSides[4] = new Plane(lbf, new Normal3(0, 1, 0), color);
-		allSides[5] = new Plane(lbf, new Normal3(0, 0, 1), color);
+		allSides[3] = new Plane(run, new Normal3(1, 0, 0), color);
+		allSides[4] = new Plane(run, new Normal3(0, 1, 0), color);
+		allSides[5] = new Plane(run, new Normal3(0, 0, 1), color);
 	}
 
 	@Override
@@ -72,10 +77,10 @@ public class AxisAlignedBox extends Geometry {
 			}
 		}
 		// schau, ob der Schnittpunkt, den furthestHit beschreibt ueberhaupt im
-		// Wuerfel liegt
+		// Quader liegt
 		Point3 hitP = r.at(furthestHit.t);
-		if (lbf.x < hitP.x && hitP.x < run.x && lbf.y < hitP.y
-				&& hitP.y < run.y && lbf.z < hitP.z && hitP.z < run.z) {
+		if (lbf.x <= hitP.x && hitP.x <= run.x && lbf.y <= hitP.y
+				&& hitP.y <= run.y && lbf.z <= hitP.z && hitP.z <= run.z) {
 			return furthestHit;
 		}
 		return null;
