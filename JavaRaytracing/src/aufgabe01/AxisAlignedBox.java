@@ -26,7 +26,7 @@ public class AxisAlignedBox extends Geometry {
 	 * alle Seiten dieses Würfels
 	 */
 	private final Plane[] allSides = new Plane[6];
-
+	//TODO kommentare einfuegen
 	/**
 	 * 
 	 * @param lbf
@@ -81,7 +81,7 @@ public class AxisAlignedBox extends Geometry {
 		Point3 hitP = r.at(furthestHit.t);
 		if (lbf.x <= hitP.x && hitP.x <= run.x && lbf.y <= hitP.y
 				&& hitP.y <= run.y && lbf.z <= hitP.z && hitP.z <= run.z) {
-			return furthestHit;
+			return new Hit(furthestHit.t, r, this);
 		}
 		return null;
 	}
