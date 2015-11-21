@@ -20,7 +20,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author Clemens
  *
  */
-public class ImagePaint extends JPanel{
+	class ImagePaint extends JPanel{
 	
 /** BufferedImage, wird in der Methode paintImage initialisiert */
 	
