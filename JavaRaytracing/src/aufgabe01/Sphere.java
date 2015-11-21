@@ -4,25 +4,46 @@
 package aufgabe01;
 
 import b_vorbereitung.Point3;
+import b_vorbereitung.Vector3;
 
-/**
+//TODO kommantare und was ist die nicht-hit-bedingung
+/**	Diese Klasse erstellt einen Kreis
  * @author Kosmonaut
  *
  */
 public class Sphere extends Geometry {
+	/**
+	 * Der Mittelpunkt des Kreis 
+	 */
 	public final Point3 c;
-	public final double r;
-	
-	public Sphere(final Point3 c, final double r, final Color color){
+	/**
+	 *  Der Radius des Kreis
+	 */
+	public final double radius;
+
+	/**
+	 * Ein Kreis
+	 * @param c Der Mittelpunkt des Kreis
+	 * @param r Der Radius des Kreis
+	 * @param color Die Farbe des Kreises
+	 */
+	public Sphere(final Point3 c, final double r, final Color color) {
 		super(color);
 		this.c = c;
 		this.r = r;
 	}
-	
+
 	public Hit hit(Ray r) {
-		if(){
-			double t;
-			return new Hit(t, r, this);
-		}
+
+		final Vector3 oMinusC = r.o.sub(c);
+		final double a = r.d.dot(r.d);
+		final double b = r.d.dot((oMinusC).mul(2));
+		final double c = (oMinusC).dot(oMinusC) - r * r;
+
+		final double t1 = (-b + Math.sqrt(b * b - 4 * a * c)) / 2 * a;
+//		final double t2 = (-b - Math.sqrt(b*b -4*a*c))/ 2*a;
+
+		return new Hit(t1, r, this);
+
 	}
 }
