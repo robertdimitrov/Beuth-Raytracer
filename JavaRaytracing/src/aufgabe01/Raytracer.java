@@ -35,9 +35,11 @@ public class Raytracer extends JPanel{
 		/*
 		 * Jedes Pixel wird in einer geschachtelten Schleife durchlaufen und ein neuer Strahl erzeugt mit der übergebenen kamera
 		 */
+		int count=0;
 		for(int i=0; i<w;i++){			
 			for(int j=0;j<h;j++){				
-				Ray r=kamera.rayFor(w, h, i, j);				
+				Ray r=kamera.rayFor(w, h, i, j);
+//				System.out.println(r.o);				
 				Hit hit=welt.hit(r);
 				if(hit!=null){
 					// Aus dem zurückgegeben Hit-Objekt wird die Farbe ausgelesen und konvertiert, da die Methode setRGB() von BufferedImage 

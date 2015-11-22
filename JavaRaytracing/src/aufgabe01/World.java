@@ -31,35 +31,25 @@ public class World {
 	public Hit hit(Ray r){
 		
 		Set<Hit> helpSet = new HashSet<Hit>();
-		Hit hit = null;
+	
 		Hit minT = null;
-		Iterator<Geometry> it = welt.iterator();
-		while(it.hasNext()){
-			Geometry geo = it.next();		
-			hit=geo.hit(r);
-			if(hit!=null){
+
+		for(Geometry g : welt){
+			Hit hit = g.hit(r);
+			if(hit!=null && hit.t > 0){				
 				helpSet.add(hit);
-				System.out.println(helpSet.size()); // Test, um zu sehen, ob es einen hit gab
 			}
 		}
-		
 		if(helpSet.size()!=0){
-			Iterator<Hit> iterator = helpSet.iterator();
-			minT=iterator.next();
-			while(iterator.hasNext()){
-				Hit h=iterator.next();
-				if(h.t<minT.t){
-					minT=h;
+			Iterator<Hit> it = helpSet.iterator();
+			minT=it.next();
+			while(it.hasNext()){
+				Hit help = it.next();
+				if(minT.t>help.t){
+					minT=help;
 				}
-			}
-			
-		}else {return null;}
-		
-		
-		
-		
-		
-		return minT;
+			}	
+		}
+		return minT;						
 	}
-
 }

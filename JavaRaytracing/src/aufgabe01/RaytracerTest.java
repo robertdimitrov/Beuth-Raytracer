@@ -5,8 +5,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.swing.JFrame;
-import javax.swing.JMenuBar;
-
 import b_vorbereitung.Normal3;
 import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
@@ -18,7 +16,7 @@ public class RaytracerTest {
 	public static void main(String[] args) {
 		// Werte für die Kamera
 		Point3 e = new Point3(0,0,0);
-		Vector3 g = new Vector3(0,0,1);
+		Vector3 g = new Vector3(0,0,-1);
 		Vector3 t = new Vector3(0,1,0);
 		double angle = Math.PI/4;
 		// Werte für die Fläche
