@@ -6,7 +6,7 @@ package aufgabe01;
 import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
 
-//TODO kommentare und was ist die nicht-hit-bedingung
+//TODO was ist die nicht-hit-bedingung
 /**
  * Diese Klasse erstellt einen Kreis
  * 
@@ -44,20 +44,39 @@ public class Sphere extends Geometry {
 		final Vector3 oMinusC = r.o.sub(c);
 		final double a = r.d.dot(r.d);
 		final double b = r.d.dot((oMinusC).mul(2));
-		final double c = (oMinusC).dot(oMinusC) - r * r;
+		final double c = (oMinusC).dot(oMinusC) - radius * radius;
 
 		final double t1 = (-b + Math.sqrt(b * b - 4 * a * c)) / 2 * a;
-		final double t2 = (-b - Math.sqrt(b*b -4*a*c))/ 2*a;
-		final double smallestPositiveT ;
-		if(t1 <= t2 && t1 >= 0){
-			smallestPositiveT = t1 ;
-		}else{
-			if(t2<=0){
-				smallestPositiveT = t2;
+		final double t2 = (-b - Math.sqrt(b * b - 4 * a * c)) / 2 * a;
+		double smallestPositiveT;
+		smallestPositiveT = smallestPositive(t1, t2);
+		
+		if (smallestPositiveT != -1) {
+			return new Hit(smallestPositiveT, r, this);
+		} else {
+			return null;
+		}
+
+	}
+
+	/**Eine Funktion, die die kleinere nicht-negative Zahl aus den Parametern zurückgibt 
+	 * @param x
+	 *            Die erste zu vergleichende Zahl
+	 * @param y
+	 *            Die erste zu vergleichende Zahl
+	 *
+	 * @return kleinere nicht-negative Zahl von t1 und t2 oder '-1', falls t1
+	 *         und t2 negative Zahlen sind
+	 */
+	public double smallestPositive(final double x, final double y) {
+		if (x <= y && x >= 0) {
+			return x;
+		} else {
+			if (y >= 0) {
+				return y;
 			}
 		}
-		
-		return new Hit(smallestPositiveT, r, this);
 
+		return -1;
 	}
 }
