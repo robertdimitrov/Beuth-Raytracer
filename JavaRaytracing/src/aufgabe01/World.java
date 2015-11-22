@@ -30,7 +30,7 @@ public class World {
 	
 	public Hit hit(Ray r){
 		
-<<<<<<< HEAD
+
 		Set<Hit> helpSet = new HashSet<Hit>();
 	
 		Hit minT = null;
@@ -53,7 +53,7 @@ public class World {
 		}
 		return minT;						
 	}
-=======
+
 //		Set<Hit> helpSet = new HashSet<Hit>();
 //		Hit hit = null;
 //		Hit minT = null;
@@ -81,23 +81,6 @@ public class World {
 //		}
 //		else return null;
 		
-		Hit hit = null;
-		double minT = 1000000;
 		
-		for(Geometry g : welt){
-			Hit h = g.hit(r);
-			if(h==null) continue;
-			if(h.t > 0 && h.t < minT){
-				minT = h.t;
-				hit = h;
-			}
-		}
-		return hit;
-
-	}
-	
-
-		
->>>>>>> 74b6b47e5d62fa0130d8e1ec57d4d9bc54d34193
 }
 
