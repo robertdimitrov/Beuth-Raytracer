@@ -16,21 +16,30 @@ import b_vorbereitung.Vector3;
 public class RaytracerTest {
 
 	public static void main(String[] args) {
-		// Werte für die Kamera
+		
 		Point3 e = new Point3(0,0,0);
-		Vector3 g = new Vector3(0,0,1);
+		e = new Point3(3,3,3);
+		Vector3 g = new Vector3(0,0,-1);
+		g = new Vector3(-3,-3,-3);
 		Vector3 t = new Vector3(0,1,0);
 		double angle = Math.PI/4;
-		// Werte für die Fläche
+	
 		Point3 a = new Point3(0,-1,0);
 		Normal3 n = new Normal3(0,1,0);
 		Color color = new Color(0,1,0);
-		// Farbe für den Hintergrund, wenn es keinen Hit gab
+		
 		Color backgroundColor = new Color(0,0,0);
-		// Fläche wird dem Set hinzugefügt
+	
 		Set<Geometry> set = new HashSet<Geometry>();
+		
 		Geometry plane = new Plane(a,n,color);
-		set.add(plane);	
+		Sphere sphere = new Sphere(new Point3(0,0,-3), angle, new Color(1,0,0));
+		AxisAlignedBox box = new AxisAlignedBox(new Point3(-0.5, 0, -0.5), new Point3(0.5,1,0.5), new Color(0,0,1));
+		
+//		set.add(plane);
+//		set.add(sphere);
+		set.add(box);
+		
 		
 		Camera kamera = new PerspectiveCamera(e,g,t,angle);
 		
@@ -43,5 +52,4 @@ public class RaytracerTest {
 	    frame.setVisible( true );	   
 	}
 }
-
 
