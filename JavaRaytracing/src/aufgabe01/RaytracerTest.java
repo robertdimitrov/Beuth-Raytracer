@@ -3,7 +3,6 @@ package aufgabe01;
 import java.awt.BorderLayout;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.swing.JFrame;
 import b_vorbereitung.Normal3;
 import b_vorbereitung.Point3;
@@ -11,61 +10,78 @@ import b_vorbereitung.Vector3;
 
 
 
+/**
+ * Klasse zum Testen eines Raytracers
+ * 
+ * @author Clemens
+ *
+ */
 public class RaytracerTest {
 
+	/**
+	 * @param args ‹bergabeparameter
+	 */
 	public static void main(String[] args) {
 		
 		Point3 e = new Point3(0,0,0);
-		e = new Point3(3, 3, 3);
 
 		Vector3 g = new Vector3(0,0,-1);
-		g = new Vector3(-3, -3, -3);
 		
 		Vector3 t = new Vector3(0,1,0);
 		
 		double angle = Math.PI/4;
-	
-		Point3 a = new Point3(0,-1,0);
-		Normal3 n = new Normal3(0,1,0);
-		Color color = new Color(0,1,0);
 		
 		Color backgroundColor = new Color(0,0,0);
 	
 		Set<Geometry> set = new HashSet<Geometry>();
 		
-		Geometry plane = new Plane(a,n,color);
-		Sphere sphere = new Sphere(new Point3(-1,0,-3),0.5, new Color(1,0,0));
-		AxisAlignedBox box = new AxisAlignedBox(new Point3(-0.5, 0, -0.5), new Point3(0.5,1,0.5), new Color(0,0,1));
-		Sphere sphere2 = new Sphere(new Point3(1,0,-6),0.5, new Color(1,0,0));
+		
+		Camera kamera_Plane_Sphere_Triangle = new PerspectiveCamera(e,g,t,angle);
+		Camera kamera_Box = new PerspectiveCamera(new Point3(3,3,3),new Vector3(-3,-3,-3),new Vector3(0,1,0),angle);
+		Camera kamera_Kugeln_groﬂ = new OrthographicCamera(new Point3(0, 0, 0), new Vector3(0, 0, -1), new Vector3(0, 1, 0), 3);
+		
+		Geometry plane = new Plane(new Point3(0,-1,0),new Normal3(0,1,0),new Color(0,1,0));
+		Sphere sphere = new Sphere(new Point3(0,0,-3),0.5, new Color(1,0,0));
+		AxisAlignedBox box = new AxisAlignedBox(new Point3(-0.5, 0, -0.5), new Point3(0.5,1,0.5), new Color(0,0,1));	
 		Triangle tri = new Triangle(new Point3(-0.5,0.5,-3), new Point3(0.5,0.5,-3),new Point3(0.5,-0.5,-3), new Color(1,0,1));
-//		set.add(plane);
+		Sphere sphere_klein = new Sphere(new Point3(1,0,-6),0.5, new Color(1,0,0));
+		Sphere sphere_groﬂ = new Sphere(new Point3(-1,0,-3),0.5, new Color(1,0,0));
+		
+		Sphere sphere_Paarlinks = new Sphere(new Point3(-1,0,-3),0.5, new Color(1,0,0));
+		Sphere sphere_Paarrechts = new Sphere(new Point3(1,0,-6),0.5, new Color(1,0,0));
+		
+		set.add(plane);
+		Raytracer raytracer= new Raytracer(640,480,backgroundColor,kamera_Plane_Sphere_Triangle,set);		
+		
 //		set.add(sphere);
-//		set.add(sphere2);		
+//		Raytracer raytracer= new Raytracer(640,480,backgroundColor,kamera_Plane_Sphere_Triangle,set);	
+		
 //		set.add(box);
+//		Raytracer raytracer= new Raytracer(640,480,backgroundColor,kamera_Box,set);	
+		
 //		set.add(tri);
+//		Raytracer raytracer= new Raytracer(640,480,backgroundColor,kamera_Plane_Sphere_Triangle,set);	
+		
+//		set.add(sphere_klein);	
+//		set.add(sphere_groﬂ);
+//		Raytracer raytracer= new Raytracer(640,480,backgroundColor,kamera_Plane_Sphere_Triangle,set);
+//		
+//		set.add(sphere_Paarlinks);
+//		set.add(sphere_Paarrechts);
+//		Raytracer raytracer= new Raytracer(640,480,backgroundColor,kamera_Kugeln_groﬂ,set);
+		
+
 
 		
-		Point3 nullV3 = new Point3(0, 0, 0);
-		Geometry planeOverYZ = new Plane(nullV3,new Normal3(1, 0, 0),new Color(1, 0, 0));
-		Geometry planeOverXZ = new Plane(nullV3,new Normal3(0, 1, 0),new Color(0, 1, 0));
-		Geometry planeOverXY = new Plane(nullV3,new Normal3(0, 0, 1),new Color(0, 0, 1));
-
-		set.add(planeOverYZ);
-		set.add(planeOverXZ);
-		set.add(planeOverXY);
-		
-		Camera kamera = new PerspectiveCamera(e,g,t,angle);
-		
-		System.out.println("uvw " +kamera.u.toString()+" "+kamera.w.toString()+" "+kamera.w.toString());
-		
+	
 		
 		JFrame frame = new JFrame("WindowedRayTracer");
 		frame.setSize(640,480);
-		frame.setLayout( new BorderLayout() );							
-		Raytracer raytracer= new Raytracer(640,480,backgroundColor,kamera,set);		
+		frame.setLayout( new BorderLayout() );									
 		frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );	   	   	  
 	    frame.add(raytracer);	 
 	    frame.setVisible( true );	   
 	}
+	
 }
 

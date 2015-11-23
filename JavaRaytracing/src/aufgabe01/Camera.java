@@ -44,13 +44,17 @@ public abstract class Camera {
 	 * @param t Der Up-Vektor der Kamera
 	 */
 	public Camera(final Point3 e, final Vector3 g, final Vector3 t){
+		if(e==null) throw new IllegalArgumentException("Der Punkt 'e' darf nicht null sein.");
+		if(g==null) throw new IllegalArgumentException("Der Vektor 'g' darf nicht null sein.");
+		if(t==null) throw new IllegalArgumentException("Der Vektor 't' darf nicht null sein.");
+		
 		this.e = e;
 		this.g = g;
 		this.t = t;
 		
-		w = g.mul(-1).normalized();
-		u = (t.x(g)).normalized();
-		v = w.x(u);
+		this.w = g.normalized().mul(-1);
+		this.u = t.x(w).normalized();
+		this.v = w.x(u).mul(-1);
 	}
 	
 	/**
