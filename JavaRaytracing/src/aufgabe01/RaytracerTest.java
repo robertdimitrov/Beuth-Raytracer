@@ -35,10 +35,12 @@ public class RaytracerTest {
 		Sphere sphere = new Sphere(new Point3(-1,0,-3),0.5, new Color(1,0,0));
 		AxisAlignedBox box = new AxisAlignedBox(new Point3(-0.5, 0, -0.5), new Point3(0.5,1,0.5), new Color(0,0,1));
 		Sphere sphere2 = new Sphere(new Point3(1,0,-6),0.5, new Color(1,0,0));
+		Triangle tri = new Triangle(new Point3(-0.5,0.5,-3), new Point3(0.5,0.5,-3),new Point3(0.5,-0.5,-3), new Color(1.0,0.0,1.0));
 //		set.add(plane);
-		set.add(sphere);
-		set.add(sphere2);		
+//		set.add(sphere);
+//		set.add(sphere2);		
 //		set.add(box);
+		set.add(tri);
 		
 		
 		Camera kamera = new PerspectiveCamera(e,g,t,angle);
