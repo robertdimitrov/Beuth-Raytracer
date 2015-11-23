@@ -86,5 +86,10 @@ public class Triangle extends Geometry {
 	protected boolean groessergleich0UndKleinergleich1(double x) {
 		return 0 <= x && x <= 1;
 	}
+	
+	@Override
+	public String toString() {
+		return "Triangle from "+a+" to "+b+" and to "+c+super.toString();
+	}
 
 }

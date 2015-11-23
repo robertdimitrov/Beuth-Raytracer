@@ -49,5 +49,10 @@ public class Plane extends Geometry {
 			return null;
 		}
 	}
+	
+	@Override
+	public String toString() {
+		return "Plane at "+a+" with a perpendicular Vektor3 "+n+super.toString();
+	}
 
 }

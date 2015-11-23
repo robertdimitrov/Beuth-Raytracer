@@ -85,4 +85,9 @@ public class AxisAlignedBox extends Geometry {
 		return null;
 	}
 
+	@Override
+	public String toString() {
+		return "AxisAlignedBox from "+lbf+" to "+run+super.toString();
+	}
+
 }

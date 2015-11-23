@@ -16,7 +16,7 @@ public class Sphere extends Geometry {
 	/**
 	 * Der Mittelpunkt des Kreis
 	 */
-	public final Point3 c;
+	public final Point3 center;
 	/**
 	 * Der Radius des Kreis
 	 */
@@ -34,13 +34,13 @@ public class Sphere extends Geometry {
 	 */
 	public Sphere(final Point3 c, final double r, final Color color) {
 		super(color);
-		this.c = c;
+		this.center = c;
 		this.radius = r;
 	}
 
 	public Hit hit(Ray r) {
 
-		final Vector3 oMinusC = r.o.sub(c);
+		final Vector3 oMinusC = r.o.sub(center);
 		final double a = r.d.dot(r.d);
 		final double b = r.d.dot((oMinusC).mul(2));
 		final double c = (oMinusC).dot(oMinusC) - radius * radius;
@@ -77,5 +77,10 @@ public class Sphere extends Geometry {
 		}
 
 		return -1;
+	}
+	
+	@Override
+	public String toString() {
+		return "Sphere at "+center.toString()+" with the radius "+radius+super.toString();
 	}
 }

@@ -28,4 +28,9 @@ public abstract class Geometry {
 	 */
 	public abstract Hit hit(Ray r);
 	
+	@Override
+	public String toString() {
+		return " and the Color "+color;
+	}
+
 }
