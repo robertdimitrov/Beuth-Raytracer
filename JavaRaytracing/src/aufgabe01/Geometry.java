@@ -7,8 +7,15 @@ package aufgabe01;
  *
  */
 public abstract class Geometry {
+	/**
+	 * Die Farbe dieser Geometrischen Gestalt
+	 */
 	protected final Color color;
-
+	
+	/**
+	 * Eine Geometrische Gestalt
+	 * @param color Die Farbe dieser Geometrischen Gestalt
+	 */
 	protected Geometry(final Color color) {
 		this.color = color;
 	}

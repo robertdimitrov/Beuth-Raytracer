@@ -6,7 +6,6 @@ package aufgabe01;
 import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
 
-//TODO was ist die nicht-hit-bedingung
 /**
  * Diese Klasse erstellt einen Kreis
  * 

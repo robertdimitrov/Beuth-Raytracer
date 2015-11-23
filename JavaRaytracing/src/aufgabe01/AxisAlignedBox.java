@@ -1,6 +1,5 @@
 package aufgabe01;
 
-import java.security.InvalidParameterException;
 import java.util.ArrayList;
 
 import b_vorbereitung.Normal3;
@@ -8,7 +7,7 @@ import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
 
 /**
- * ein am Koordinatensystem ausgerichteter Quader
+ * Ein am Koordinatensystem ausgerichteter Quader
  * 
  * @author Kosmonaut
  *
@@ -26,12 +25,12 @@ public class AxisAlignedBox extends Geometry {
 	 * alle Seiten dieses Würfels
 	 */
 	private final Plane[] allSides = new Plane[6];
-	//TODO kommentare einfuegen
 	/**
+	 * Ein am Koordinatensystem ausgerichteter Quader 
 	 * 
-	 * @param lbf
-	 * @param run
-	 * @param color
+	 * @param lbf Ecke des Quaders die in im Koordinatensystem am niedrigsten ist
+	 * @param run Ecke des Quaders die in im Koordinatensystem am hoechsten ist
+	 * @param color Die Farbe des Quaders
 	 */
 	public AxisAlignedBox(final Point3 lbf, final Point3 run, final Color color) {
 		super(color);
@@ -39,7 +38,7 @@ public class AxisAlignedBox extends Geometry {
 		if(lbf.x <= run.x && lbf.y <= run.y && lbf.z <= run.z){
 			this.run = run;
 		}else{
-			throw new InvalidParameterException("run has to have higher x, y and z values than lbf");
+			throw new IllegalArgumentException("run has to have higher x, y and z values than lbf");
 		}
 
 		// Seiten festlegen
@@ -76,7 +75,7 @@ public class AxisAlignedBox extends Geometry {
 				furthestHit = newHit;
 			}
 		}
-		// schau, ob der Schnittpunkt, den furthestHit beschreibt ueberhaupt im
+		// schau, ob der Schnittpunkt, den furthestHit beschreibt im
 		// Quader liegt
 		Point3 hitP = r.at(furthestHit.t);
 		if (lbf.x <= hitP.x && hitP.x <= run.x && lbf.y <= hitP.y

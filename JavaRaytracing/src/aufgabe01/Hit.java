@@ -12,8 +12,17 @@ import java.io.File;
  *
  */
 class Hit {
+	/**
+	 * Faktor, um den ray multipliziert werden muss, um geo zu schneiden
+	 */
 	public final double t;
+	/**
+	 * Ein Strahl, der auf eine Ebene trifft
+	 */
 	public final Ray ray;
+	/**
+	 * Die Geometrische Form, auf die ray trifft 
+	 */
 	public final Geometry geo;
 	
 	/**
