@@ -22,7 +22,7 @@ public class OrthographicCamera extends Camera {
 	 * @param t Der Up-Vektor der Kamera
 	 * @param s Der Skalierungsfaktor der Bildebene
 	 */
-	public OrthographicCamera(Point3 e, Vector3 g, Vector3 t, double s) {
+	public OrthographicCamera(final Point3 e,final Vector3 g,final Vector3 t,final double s) {
 		super(e, g, t);
 		this.s = s;
 	}
