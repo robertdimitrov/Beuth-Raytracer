@@ -22,7 +22,7 @@ public class OrthographicCamera extends Camera {
 	 * @param t Der Up-Vektor der Kamera
 	 * @param s Der Skalierungsfaktor der Bildebene
 	 */
-	public OrthographicCamera(final Point3 e,final Vector3 g,final Vector3 t,final double s) {
+	public OrthographicCamera(Point3 e, Vector3 g, Vector3 t, double s) {
 		super(e, g, t);
 		this.s = s;
 	}
@@ -41,6 +41,30 @@ public class OrthographicCamera extends Camera {
 	@Override
 	public String toString() {
 		return "OrthographicCamera [s=" + s + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		long temp;
+		temp = Double.doubleToLongBits(s);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		OrthographicCamera other = (OrthographicCamera) obj;
+		if (Double.doubleToLongBits(s) != Double.doubleToLongBits(other.s))
+			return false;
+		return true;
 	}
 
 	
