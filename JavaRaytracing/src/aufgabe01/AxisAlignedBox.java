@@ -85,9 +85,24 @@ public class AxisAlignedBox extends Geometry {
 		// schau, ob der Schnittpunkt, den furthestHit beschreibt im
 		// Quader liegt
 		Point3 hitP = r.at(furthestHit.t);
-		if (lbf.x <= hitP.x && hitP.x <= run.x && lbf.y <= hitP.y
-				&& hitP.y <= run.y && lbf.z <= hitP.z && hitP.z <= run.z) {
-			return new Hit(furthestHit.t, r, this);
+		//mithilfe von diesen kann ich unnoetige hitP-tests weglassen
+		if (Math.abs(((Plane) furthestHit.geo).n.x) == 1) {
+			if (lbf.y <= hitP.y && hitP.y <= run.y && lbf.z <= hitP.z
+					&& hitP.z <= run.z) {
+				return new Hit(furthestHit.t, r, this);
+			}
+		}
+		if (Math.abs(((Plane) furthestHit.geo).n.y) == 1) {
+			if (lbf.x <= hitP.x && hitP.x <= run.x && lbf.z <= hitP.z
+					&& hitP.z <= run.z) {
+				return new Hit(furthestHit.t, r, this);
+			}
+		}
+		if (Math.abs(((Plane) furthestHit.geo).n.z) == 1) {
+			if (lbf.x <= hitP.x && hitP.x <= run.x && lbf.y <= hitP.y
+					&& hitP.y <= run.y) {
+				return new Hit(furthestHit.t, r, this);
+			}
 		}
 		return null;
 	}

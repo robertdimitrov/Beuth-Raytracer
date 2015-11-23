@@ -1,6 +1,3 @@
-/**
- * 
- */
 package aufgabe01;
 
 import b_vorbereitung.Normal3;
