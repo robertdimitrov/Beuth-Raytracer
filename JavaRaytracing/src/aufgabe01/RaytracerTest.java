@@ -16,8 +16,10 @@ public class RaytracerTest {
 	public static void main(String[] args) {
 		
 		Point3 e = new Point3(0,0,0);
+		e = new Point3(3, 3, 3);
 
 		Vector3 g = new Vector3(0,0,-1);
+		g = new Vector3(-3, -3, -3);
 		
 		Vector3 t = new Vector3(0,1,0);
 		
@@ -41,9 +43,21 @@ public class RaytracerTest {
 //		set.add(sphere2);		
 //		set.add(box);
 //		set.add(tri);
+
 		
+		Point3 nullV3 = new Point3(0, 0, 0);
+		Geometry planeOverYZ = new Plane(nullV3,new Normal3(1, 0, 0),new Color(1, 0, 0));
+		Geometry planeOverXZ = new Plane(nullV3,new Normal3(0, 1, 0),new Color(0, 1, 0));
+		Geometry planeOverXY = new Plane(nullV3,new Normal3(0, 0, 1),new Color(0, 0, 1));
+
+		set.add(planeOverYZ);
+		set.add(planeOverXZ);
+		set.add(planeOverXY);
 		
 		Camera kamera = new PerspectiveCamera(e,g,t,angle);
+		
+		System.out.println("uvw " +kamera.u.toString()+" "+kamera.w.toString()+" "+kamera.w.toString());
+		
 		
 		JFrame frame = new JFrame("WindowedRayTracer");
 		frame.setSize(640,480);
