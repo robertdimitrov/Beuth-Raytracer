@@ -7,6 +7,13 @@ import java.util.Set;
 import javax.swing.JPanel;
 
 
+/**
+ * Klasse zum erzeugen eines Raytracers
+ * 
+ * @author Clemens
+ *
+ */
+
 public class Raytracer extends JPanel{
 	
 	public final World welt;
@@ -15,31 +22,34 @@ public class Raytracer extends JPanel{
 	final int h;
 	public BufferedImage image;
 	
+	/**
+	 * @param w Höhe des Bildes
+	 * @param h Breite des Bildes
+	 * @param backgroundColor Hintergrundfarbe
+	 * @param kamera Kamera, die einen Strahl für jedes Pixel erzeugt
+	 * @param set Menge mit Geometry-objekten
+	 */
 	public Raytracer(int w, int h,Color backgroundColor, Camera kamera,Set<Geometry> set){
 		//neue Welt
-		welt=new World(set,backgroundColor);
-		//neue Kamera
-		this.kamera=kamera;
-		//Breite und Höhe des Bildes
+		welt=new World(set,backgroundColor);		
+		this.kamera=kamera;	
 		this.w=w;
-		this.h=h;
-		//Die Fläche wird erzeugt
-		this.image = new BufferedImage(w,h,BufferedImage.TYPE_INT_RGB);	
-		//Größe des Panels setzen
-		this.setSize(w, h);
-		//Fläche wird gezeichnet je nachdem, welche Geometrien im Set sind.
+		this.h=h;		
+		this.image = new BufferedImage(w,h,BufferedImage.TYPE_INT_RGB);		
+		this.setSize(w, h);		
 		createImage();
 	}
 	
+	/**
+	 * Jedes Pixel wird in einer geschachtelten Schleife durchlaufen und ein neuer Strahl erzeugt mit der übergebenen kamera
+	 * @return image
+	 */
 	public BufferedImage createImage(){
-		/*
-		 * Jedes Pixel wird in einer geschachtelten Schleife durchlaufen und ein neuer Strahl erzeugt mit der übergebenen kamera
-		 */
+	
 		int count=0;
 		for(int i=0; i<w;i++){			
 			for(int j=0;j<h;j++){				
-				Ray r=kamera.rayFor(w, h, i, j);
-//				System.out.println(r.o);				
+				Ray r=kamera.rayFor(w, h, i, j);			
 				Hit hit=welt.hit(r);
 				if(hit!=null){
 					// Aus dem zurückgegeben Hit-Objekt wird die Farbe ausgelesen und konvertiert, da die Methode setRGB() von BufferedImage 
@@ -56,10 +66,16 @@ public class Raytracer extends JPanel{
 		return image;
 	}
 	
+	/**
+	 * 
+	 *Werte werden nach Float gecastet, da Java.awt.Color float-Werte benötigt um ein Color-Objekt zu erzeugen
+	 *und die setRGB()-Methode einen int-Wert benötigt für die Farbinformation
+	 * 
+	 * @param c color-Objekt
+	 * @return int 
+	 */
 	public int convertColor(aufgabe01.Color c){
 		
-		// Werte werden nach Float gecastet, da Java.awt.Color float-Werte benötigt um ein Color-Objekt zu erzeugen
-		// und die setRGB()-Methode einen int-Wert benötigt für die farbinformation
 		
 		float red=(float)c.getR();
 		float green=(float)(c.getG());
@@ -70,9 +86,58 @@ public class Raytracer extends JPanel{
 		return col;
 	}
 	
+	@Override	
 	protected void paintComponent( Graphics g ){
 		super.paintComponent(g);				
 	    if ( image != null )
 	      g.drawImage(image,0, 0, this );	  
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + h;
+		result = prime * result + ((image == null) ? 0 : image.hashCode());
+		result = prime * result + ((kamera == null) ? 0 : kamera.hashCode());
+		result = prime * result + w;
+		result = prime * result + ((welt == null) ? 0 : welt.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Raytracer other = (Raytracer) obj;
+		if (h != other.h)
+			return false;
+		if (image == null) {
+			if (other.image != null)
+				return false;
+		} else if (!image.equals(other.image))
+			return false;
+		if (kamera == null) {
+			if (other.kamera != null)
+				return false;
+		} else if (!kamera.equals(other.kamera))
+			return false;
+		if (w != other.w)
+			return false;
+		if (welt == null) {
+			if (other.welt != null)
+				return false;
+		} else if (!welt.equals(other.welt))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Raytracer [welt=" + welt + ", kamera=" + kamera + ", w=" + w + ", h=" + h + ", image=" + image + "]";
+	}		
 }
