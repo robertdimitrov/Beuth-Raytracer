@@ -23,12 +23,11 @@ public class Plane extends Geometry {
 	 */
 	public final Normal3 n;
 
-
 	/**
 	 * Erzeugt eine Ebene
 	 * 
 	 * @param a
-	 *            der Ursprung dieser Ebene
+	 *            der Ursprung dieser Ebene als Point3
 	 * @param n
 	 *            der Stuetzvektor dieser Ebene
 	 * @param color
@@ -49,10 +48,11 @@ public class Plane extends Geometry {
 			return null;
 		}
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Plane at "+a+" with a perpendicular Vektor3 "+n+super.toString();
+		return "Plane at " + a + " with a perpendicular Vektor3 " + n
+				+ super.toString();
 	}
 
 }

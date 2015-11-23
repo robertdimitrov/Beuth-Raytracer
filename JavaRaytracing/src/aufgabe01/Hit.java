@@ -21,12 +21,13 @@ class Hit {
 	 */
 	public final Ray ray;
 	/**
-	 * Die Geometrische Form, auf die ray trifft 
+	 * Die Geometrische Form, auf die ray trifft
 	 */
 	public final Geometry geo;
-	
+
 	/**
 	 * Der Schnittpunkt zwischen dem Ray und der Geometry
+	 * 
 	 * @param t
 	 *            der Skalar mit dem ray multipliziert wurde um geo zu schneiden
 	 * @param ray
@@ -39,5 +40,5 @@ class Hit {
 		this.ray = ray;
 		this.geo = geo;
 	}
-	
+
 }

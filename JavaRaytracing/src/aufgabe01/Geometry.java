@@ -11,10 +11,12 @@ public abstract class Geometry {
 	 * Die Farbe dieser Geometrischen Gestalt
 	 */
 	protected final Color color;
-	
+
 	/**
 	 * Eine Geometrische Gestalt
-	 * @param color Die Farbe dieser Geometrischen Gestalt
+	 * 
+	 * @param color
+	 *            Die Farbe dieser Geometrischen Gestalt
 	 */
 	protected Geometry(final Color color) {
 		this.color = color;
@@ -23,14 +25,16 @@ public abstract class Geometry {
 	/**
 	 * 
 	 * @param r
-	 *            der Ray, für den geprueft wird , ob er diese Geometry schneidet
-	 * @return einen Hit, falls er diese Geometry schneidet oder null falls nicht
+	 *            der Ray, für den geprueft wird , ob er diese Geometry
+	 *            schneidet
+	 * @return einen Hit, falls er diese Geometry schneidet oder null falls
+	 *         nicht
 	 */
 	public abstract Hit hit(Ray r);
-	
+
 	@Override
 	public String toString() {
-		return " and the Color "+color;
+		return " and the Color " + color;
 	}
 
 }

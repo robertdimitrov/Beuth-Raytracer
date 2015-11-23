@@ -49,7 +49,7 @@ public class Sphere extends Geometry {
 		final double t2 = (-b - Math.sqrt(b * b - 4 * a * c)) / 2 * a;
 		double smallestPositiveT;
 		smallestPositiveT = smallestPositive(t1, t2);
-		
+
 		if (smallestPositiveT != -1) {
 			return new Hit(smallestPositiveT, r, this);
 		} else {
@@ -58,7 +58,10 @@ public class Sphere extends Geometry {
 
 	}
 
-	/**Eine Funktion, die die kleinere nicht-negative Zahl aus den Parametern zurückgibt 
+	/**
+	 * Eine Funktion, die die kleinere nicht-negative Zahl aus den Parametern
+	 * zurückgibt
+	 * 
 	 * @param x
 	 *            Die erste zu vergleichende Zahl
 	 * @param y
@@ -78,9 +81,10 @@ public class Sphere extends Geometry {
 
 		return -1;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Sphere at "+center.toString()+" with the radius "+radius+super.toString();
+		return "Sphere at " + center.toString() + " with the radius " + radius
+				+ super.toString();
 	}
 }

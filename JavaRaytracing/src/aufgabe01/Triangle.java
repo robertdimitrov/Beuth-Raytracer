@@ -54,13 +54,18 @@ public class Triangle extends Geometry {
 		// hit die vollkommene, erstellt, spart man Ressourcen
 		Vector3 ab = a.sub(b);
 		Vector3 ac = a.sub(c);
-		hilfsMat3 = new Mat3x3(ab.x, ac.y, 0, ab.y, ac.y, 0, ab.z, ac.z, 0);
+		hilfsMat3 = new Mat3x3(ab.x, ac.x, 0, ab.y, ac.y, 0, ab.z, ac.z, 0);
 
 	}
 
 	@Override
 	public Hit hit(Ray r) {
+		// mithilfe des Baryzentrische Koordinatensystems erkennen wir ob der
+		// Ray das Triangle schneidet
+
+		// aus der hilsMat3 die richtige Mat3 fuer das Triangle ableiten
 		final Mat3x3 matA = hilfsMat3.changeCol3(r.d);
+
 		final Vector3 vecErg = new Vector3(a.x - r.o.x, a.y - r.o.y, a.z
 				- r.o.z);
 		final Mat3x3 matA1 = matA.changeCol1(vecErg);
@@ -86,10 +91,11 @@ public class Triangle extends Geometry {
 	protected boolean groessergleich0UndKleinergleich1(double x) {
 		return 0 <= x && x <= 1;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Triangle from "+a+" to "+b+" and to "+c+super.toString();
+		return "Triangle from " + a + " to " + b + " and to " + c
+				+ super.toString();
 	}
 
 }

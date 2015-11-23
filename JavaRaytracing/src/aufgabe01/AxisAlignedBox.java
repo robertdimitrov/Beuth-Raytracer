@@ -1,6 +1,7 @@
 package aufgabe01;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import b_vorbereitung.Normal3;
 import b_vorbereitung.Point3;
@@ -25,20 +26,26 @@ public class AxisAlignedBox extends Geometry {
 	 * alle Seiten dieses Würfels
 	 */
 	private final Plane[] allSides = new Plane[6];
+
 	/**
-	 * Ein am Koordinatensystem ausgerichteter Quader 
+	 * Ein am Koordinatensystem ausgerichteter Quader
 	 * 
-	 * @param lbf Ecke des Quaders die in im Koordinatensystem am niedrigsten ist
-	 * @param run Ecke des Quaders die in im Koordinatensystem am hoechsten ist
-	 * @param color Die Farbe des Quaders
+	 * @param lbf
+	 *            Ecke des Quaders die in im Koordinatensystem am niedrigsten
+	 *            ist
+	 * @param run
+	 *            Ecke des Quaders die in im Koordinatensystem am hoechsten ist
+	 * @param color
+	 *            Die Farbe des Quaders
 	 */
 	public AxisAlignedBox(final Point3 lbf, final Point3 run, final Color color) {
 		super(color);
 		this.lbf = lbf;
-		if(lbf.x <= run.x && lbf.y <= run.y && lbf.z <= run.z){
+		if (lbf.x <= run.x && lbf.y <= run.y && lbf.z <= run.z) {
 			this.run = run;
-		}else{
-			throw new IllegalArgumentException("run has to have higher x, y and z values than lbf");
+		} else {
+			throw new IllegalArgumentException(
+					"run has to have higher x, y and z values than lbf");
 		}
 
 		// Seiten festlegen
@@ -54,7 +61,7 @@ public class AxisAlignedBox extends Geometry {
 	public Hit hit(Ray r) {
 		// schreibe in facingSides alle Planes, die man vom Ursprung des Rays
 		// sieht
-		final ArrayList<Plane> facingSides = new ArrayList<Plane>();
+		final List<Plane> facingSides = new ArrayList<Plane>();
 		Vector3 oSubA = r.o.sub(lbf);
 		for (int i = 0; i < allSides.length; i++) {
 			if (allSides[i].n.dot(oSubA) > 0) {
@@ -87,7 +94,7 @@ public class AxisAlignedBox extends Geometry {
 
 	@Override
 	public String toString() {
-		return "AxisAlignedBox from "+lbf+" to "+run+super.toString();
+		return "AxisAlignedBox from " + lbf + " to " + run + super.toString();
 	}
 
 }
