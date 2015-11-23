@@ -61,10 +61,10 @@ public class Triangle extends Geometry {
 	@Override
 	public Hit hit(Ray r) {
 		final Mat3x3 matA = hilfsMat3.changeCol3(r.d);
-		final Vector3 vecErg = new Vector3(a.x - r.o.x, a.y - r.o.y, a.y
-				- r.o.y);
-		final Mat3x3 matA1 = matA.changeCol3(vecErg);
-		final Mat3x3 matA2 = matA.changeCol3(vecErg);
+		final Vector3 vecErg = new Vector3(a.x - r.o.x, a.y - r.o.y, a.z
+				- r.o.z);
+		final Mat3x3 matA1 = matA.changeCol1(vecErg);
+		final Mat3x3 matA2 = matA.changeCol2(vecErg);
 		final Mat3x3 matA3 = matA.changeCol3(vecErg);
 
 		final double beta = matA1.determinant / matA.determinant;
