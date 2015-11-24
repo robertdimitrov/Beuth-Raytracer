@@ -32,8 +32,8 @@ public class Sphere extends Geometry {
 	 * @param color
 	 *            Die Farbe des Kreises
 	 */
-	public Sphere(final Point3 c, final double r, final Color color) {
-		super(color);
+	public Sphere(final Point3 c, final double r, final Material material) {
+		super(material);
 		this.center = c;
 		this.radius = r;
 	}
@@ -51,7 +51,7 @@ public class Sphere extends Geometry {
 		smallestPositiveT = smallestPositive(t1, t2);
 
 		if (smallestPositiveT != -1) {
-			return new Hit(smallestPositiveT, r, this);
+			return new Hit(smallestPositiveT, r, r.at(smallestPositiveT).sub(center).asNormal(), this);
 		} else {
 			return null;
 		}

@@ -38,8 +38,8 @@ public class AxisAlignedBox extends Geometry {
 	 * @param color
 	 *            Die Farbe des Quaders
 	 */
-	public AxisAlignedBox(final Point3 lbf, final Point3 run, final Color color) {
-		super(color);
+	public AxisAlignedBox(final Point3 lbf, final Point3 run, final Material material) {
+		super(material);
 		this.lbf = lbf;
 		if (lbf.x <= run.x && lbf.y <= run.y && lbf.z <= run.z) {
 			this.run = run;
@@ -49,12 +49,12 @@ public class AxisAlignedBox extends Geometry {
 		}
 
 		// Seiten festlegen
-		allSides[0] = new Plane(lbf, new Normal3(-1, 0, 0), color);
-		allSides[1] = new Plane(lbf, new Normal3(0, -1, 0), color);
-		allSides[2] = new Plane(lbf, new Normal3(0, 0, -1), color);
-		allSides[3] = new Plane(run, new Normal3(1, 0, 0), color);
-		allSides[4] = new Plane(run, new Normal3(0, 1, 0), color);
-		allSides[5] = new Plane(run, new Normal3(0, 0, 1), color);
+		allSides[0] = new Plane(lbf, new Normal3(-1, 0, 0), material);
+		allSides[1] = new Plane(lbf, new Normal3(0, -1, 0), material);
+		allSides[2] = new Plane(lbf, new Normal3(0, 0, -1), material);
+		allSides[3] = new Plane(run, new Normal3(1, 0, 0), material);
+		allSides[4] = new Plane(run, new Normal3(0, 1, 0), material);
+		allSides[5] = new Plane(run, new Normal3(0, 0, 1), material);
 	}
 
 	@Override
@@ -89,19 +89,19 @@ public class AxisAlignedBox extends Geometry {
 		if (Math.abs(((Plane) furthestHit.geo).n.x) == 1) {
 			if (lbf.y <= hitP.y && hitP.y <= run.y && lbf.z <= hitP.z
 					&& hitP.z <= run.z) {
-				return new Hit(furthestHit.t, r, this);
+				return new Hit(furthestHit.t, r, furthestHit.n, this);
 			}
 		}
 		if (Math.abs(((Plane) furthestHit.geo).n.y) == 1) {
 			if (lbf.x <= hitP.x && hitP.x <= run.x && lbf.z <= hitP.z
 					&& hitP.z <= run.z) {
-				return new Hit(furthestHit.t, r, this);
+				return new Hit(furthestHit.t, r, furthestHit.n, this);
 			}
 		}
 		if (Math.abs(((Plane) furthestHit.geo).n.z) == 1) {
 			if (lbf.x <= hitP.x && hitP.x <= run.x && lbf.y <= hitP.y
 					&& hitP.y <= run.y) {
-				return new Hit(furthestHit.t, r, this);
+				return new Hit(furthestHit.t, r, furthestHit.n, this);
 			}
 		}
 		return null;

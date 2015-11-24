@@ -30,8 +30,8 @@ public class Plane extends Geometry {
 	 * @param color
 	 *            die Farbe dieser Ebene
 	 */
-	public Plane(final Point3 a, final Normal3 n, final Color color) {
-		super(color);
+	public Plane(final Point3 a, final Normal3 n, final Material material) {
+		super(material);
 		this.a = a;
 		this.n = n;
 	}
@@ -40,7 +40,7 @@ public class Plane extends Geometry {
 	public Hit hit(Ray r) {
 		if (n.dot(r.d) != 0) {
 			final double t = a.sub(r.o).dot(n) / r.d.dot(n);
-			return new Hit(t, r, this);
+			return new Hit(t, r, n, this);
 		} else {
 			return null;
 		}

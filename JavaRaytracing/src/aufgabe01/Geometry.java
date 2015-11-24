@@ -8,9 +8,9 @@ package aufgabe01;
  */
 public abstract class Geometry {
 	/**
-	 * Die Farbe dieser Geometrischen Gestalt
+	 * Das Material dieser Geometrischen Gestalt
 	 */
-	protected final Color color;
+	protected final Material material;
 
 	/**
 	 * Eine Geometrische Gestalt
@@ -18,12 +18,12 @@ public abstract class Geometry {
 	 * @param color
 	 *            Die Farbe dieser Geometrischen Gestalt
 	 */
-	protected Geometry(final Color color) {
-		this.color = color;
+	protected Geometry(final Material material) {
+		this.material = material;
 	}
 
 	/**
-	 * 
+	 * Rechnet einen Schnittpunkt von r und dieser Geometry aus 
 	 * @param r
 	 *            der Ray, für den geprueft wird , ob er diese Geometry
 	 *            schneidet
@@ -34,7 +34,7 @@ public abstract class Geometry {
 
 	@Override
 	public String toString() {
-		return " and the Color " + color;
+		return " and the Material " + material;
 	}
 
 }
