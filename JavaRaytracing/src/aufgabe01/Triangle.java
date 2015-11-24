@@ -55,7 +55,6 @@ public class Triangle extends Geometry {
 		Vector3 ab = a.sub(b);
 		Vector3 ac = a.sub(c);
 		hilfsMat3 = new Mat3x3(ab.x, ac.x, 0, ab.y, ac.y, 0, ab.z, ac.z, 0);
-
 	}
 
 	@Override
@@ -71,20 +70,45 @@ public class Triangle extends Geometry {
 		final Mat3x3 matA1 = matA.changeCol1(vecErg);
 		final Mat3x3 matA2 = matA.changeCol2(vecErg);
 		final Mat3x3 matA3 = matA.changeCol3(vecErg);
-
+		
 		final double beta = matA1.determinant / matA.determinant;
 		final double gamma = matA2.determinant / matA.determinant;
 
 		if (groessergleich0UndKleinergleich1(beta)
 				&& groessergleich0UndKleinergleich1(gamma)
-				&& groessergleich0UndKleinergleich1(beta + gamma)) {
+				&& groessergleich0UndKleinergleich1(beta + gamma)
+				) {
 			final double t = matA3.determinant / matA.determinant;
 			return new Hit(t, r, this);
 		}
 
 		return null;
 	}
-
+	
+//    @Override
+//    public Hit hit(Ray ray) {
+//        final Vector3 erg = new Vector3(a.x-ray.o.x, a.y-ray.o.y, a.z-ray.o.z);
+//        final Mat3x3 A = new Mat3x3(
+//                a.x-b.x, a.x-c.x, ray.d.x,
+//                a.y-b.y, a.y-c.y, ray.d.y,
+//                a.z-b.z, a.z-c.z, ray.d.z
+//                );
+//        final Mat3x3 A1 = A.changeCol1(erg);
+//        final Mat3x3 A2 = A.changeCol2(erg);
+//        final Mat3x3 A3 = A.changeCol3(erg);
+//
+//        final double detA = A.determinant;
+//        if(detA == 0){
+//            return null;
+//        }
+//        final double beta = A1.determinant/detA;
+//        final double gamma = A2.determinant/detA;
+//        final double t = A3.determinant/detA;
+//        if(beta < 0 || beta > 1 || gamma < 0 || gamma > 1 || beta+gamma > 1 || beta+gamma<0){
+//            return null;
+//        }
+//        return new Hit(t, ray, this);
+//    }
 	/**
 	 * prueft ob x grosser-gleich 0 UND kleiner-gleich 1 ist
 	 */
