@@ -25,6 +25,9 @@ public class Ray {
 	 * @param d Die Richtung des Strahls
 	 */
 	public Ray(final Point3 o, final Vector3 d){
+		if(o==null) throw new IllegalArgumentException("Der Punkt 'o' darf nicht null sein.");
+		if(d==null) throw new IllegalArgumentException("Der Vektor 'd' darf nicht null sein.");
+		
 		this.o = o;
 		this.d = d;
 	}
@@ -44,6 +47,7 @@ public class Ray {
 	 * @return Der entsprechende Abstand
 	 */
 	public double tOf(final Point3 p){
+		if(p==null) throw new IllegalArgumentException("Der Punkt 'p' darf nicht null sein.");
 		return (p.x - o.x) / d.x;
 	}
 
