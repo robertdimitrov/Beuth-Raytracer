@@ -17,23 +17,35 @@ public abstract class Light {
 	/**
 	 * die Farbe des Lichts
 	 */
-	protected final Color color;
+	public final Color color;
+
 	/**
 	 * eine Lichtquelle
-	 * @param color die Farbe des Lichts
+	 * 
+	 * @param color
+	 *            die Farbe des Lichts
 	 */
-	Light(final Color color){
+	protected Light(final Color color) {
 		this.color = color;
 	}
+
 	/**
 	 * prueft ob point beleuchtet wird
-	 * @param point ein Point3
+	 * 
+	 * @param point
+	 *            ein Point3
 	 * @return
 	 */
-	abstract boolean illuminates(Point3 point);
+	public abstract boolean illuminates(Point3 point);
+
 	/**
+	 * gibt de normaliesierten Vektor der von point aus auf die Lichtquelle
+	 * zeigt
 	 * 
+	 * @param point
+	 *            ein Point3
+	 * @return
 	 */
-	abstract Vector3 directionFrom(final Point3 point );
-	
+	public abstract Vector3 directionFrom(final Point3 point);
+
 }
