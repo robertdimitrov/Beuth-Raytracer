@@ -153,6 +153,16 @@ public class Vector3 {
 		}
 		return new Vector3(y*v.z - z*v.y, z*v.x - x*v.z, x*v.y - y*v.x);
 	}
+	
+	/**
+	 * Berechnet den Winkel zwischen diesem Vektor und einem anderen Vector.
+	 * @param v der zweite Vektor
+	 * @return der Winkel zwischen diesen beiden Vektoren
+	 */
+	public double angleTo( final Vector3 v){
+		return Math.acos(this.dot(v)/(this.magnitude * v.magnitude));
+	}
+
 
 	@Override
 	public int hashCode() {
