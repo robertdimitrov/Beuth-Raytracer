@@ -50,8 +50,8 @@ public class RaytracerTest {
 		Sphere sphere_Paarlinks = new Sphere(new Point3(-1,0,-3),0.5, new Color(1,0,0));
 		Sphere sphere_Paarrechts = new Sphere(new Point3(1,0,-6),0.5, new Color(1,0,0));
 		
-		set.add(plane);
-		Raytracer raytracer= new Raytracer(640,480,backgroundColor,kamera_Plane_Sphere_Triangle,set);		
+//		set.add(plane);
+//		Raytracer raytracer= new Raytracer(640,480,backgroundColor,kamera_Plane_Sphere_Triangle,set);		
 		
 //		set.add(sphere);
 //		Raytracer raytracer= new Raytracer(640,480,backgroundColor,kamera_Plane_Sphere_Triangle,set);	
@@ -59,8 +59,8 @@ public class RaytracerTest {
 //		set.add(box);
 //		Raytracer raytracer= new Raytracer(640,480,backgroundColor,kamera_Box,set);	
 		
-//		set.add(tri);
-//		Raytracer raytracer= new Raytracer(640,480,backgroundColor,kamera_Plane_Sphere_Triangle,set);	
+		set.add(tri);
+		Raytracer raytracer= new Raytracer(640,480,backgroundColor,kamera_Plane_Sphere_Triangle,set);	
 		
 //		set.add(sphere_klein);	
 //		set.add(sphere_groﬂ);

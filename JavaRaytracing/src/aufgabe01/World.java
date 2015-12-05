@@ -1,8 +1,11 @@
 package aufgabe01;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+
+import beleuchtung_I.Light;
 
 /**
  * @author Clemens
@@ -20,15 +23,19 @@ public class World {
 	 * In diesem Set werden die Geometrien gespeichert, die abgebildet werden sollen 
 	 */
 	public final Set<Geometry> welt;
+	public final ArrayList<Light> lights;
+	public final Color ambientLight;
 	
 	/**
 	 * @param set Eine Sammlung von Geometry-Objekten
 	 * @param color Farbe für die backgroundColor
 	 */
-	public World(Set<Geometry> set, Color color){
+	public World(Set<Geometry> set, ArrayList<Light>lights, Color color,Color ambientLight ){
 		
 		welt = set;	
+		this.lights=lights;
 		backgroundColor=color;
+		this.ambientLight=ambientLight;
 	}
 	
 
