@@ -39,8 +39,8 @@ public abstract class Light {
 	public abstract boolean illuminates(Point3 point);
 
 	/**
-	 * gibt de normaliesierten Vektor der von point aus auf die Lichtquelle
-	 * zeigt
+	 * gibt den Vektor der von point aus auf die Lichtquelle zeigt (oft Vektor l
+	 * genannt)
 	 * 
 	 * @param point
 	 *            ein Point3
