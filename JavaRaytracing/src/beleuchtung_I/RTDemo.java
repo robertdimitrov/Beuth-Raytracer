@@ -71,8 +71,8 @@ public class RTDemo {
         Plane plane2 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new LambertMaterial(new Color(0,0.35,0.25)));
         Triangle triangle2 = new Triangle(new Point3(-1,0,-1), new Point3(3,0,-1), new Point3(1,4,-1),
                 new Normal3(1,0,0), new Normal3(0,1,0), new Normal3(0,0,1), new PhongMaterial(new Color(0.5,0.2,0.3), new Color(1,1,1), 16));
-        AxisAlignedBox box2 = new AxisAlignedBox(new Point3(-1.5, 0.5, 0.5), new Point3(-0.5, 1.5, 1.5),
-                new PhongMaterial(new Color(0,0,1), new Color(1,1,1), 16));
+        AxisAlignedBox box2 = new AxisAlignedBox(new Point3(-1.0, 0.5, 0.5), new Point3(0, 1.5, 1.5),
+                new PhongMaterial(new Color(0.15,0.4,0.61), new Color(0,0,0), 16));
         Set<Geometry> geometries2 = new HashSet<Geometry>();
         geometries2.add(sphere2);
         geometries2.add(plane2);
