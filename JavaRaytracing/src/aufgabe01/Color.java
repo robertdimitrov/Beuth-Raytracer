@@ -46,7 +46,7 @@ public class Color {
 	 * prueft ob die Zahl einen Wert zwischen 0 und 1 hat
 	 * 
 	 * @param x
-	 *            zu prüfende Zahl
+	 *            zu prï¿½fende Zahl
 	 * @return Ergebnis
 	 */
 	private boolean akzeptierbar(double x) {
@@ -61,18 +61,10 @@ public class Color {
 	 * @return die berechnete Farbe
 	 */
 	public Color add(Color c) {
-		double nR = this.r + c.getR();
-		double nG = this.g + c.getG();
-		double nB = this.b + c.getB();
-		if (nR > 1) {
-			nR = 1;
-		}
-		if (nG > 1) {
-			nR = 1;
-		}
-		if (nB > 1) {
-			nR = 1;
-		}
+		double nR = change(this.r + c.getR());
+		double nG = change(this.g + c.getG());
+		double nB = change(this.b + c.getB());
+
 		return new Color(nR, nG, nB);
 	}
 
@@ -121,14 +113,23 @@ public class Color {
 	 * @return die berechnete Farbe
 	 */
 	public Color mul(double v) {
-		if (!akzeptierbar(v)) {
-			throw new IllegalArgumentException(
-					"v ist groesser als 1 oder kleiner als 0");
-		}
+//		if (!akzeptierbar(v)) {
+//			throw new IllegalArgumentException(
+//					"v ist groesser als 1 oder kleiner als 0");
+//		}
 		final double nR = this.r * v;
 		final double nG = this.g * v;
 		final double nB = this.b * v;
-		return new Color(nR, nG, nB);
+		double r = change(nR);
+		double g = change(nG);
+		double b = change(nB);
+		return new Color(r,g,b);
+	}
+
+	private double change(double d){
+		if(d > 1) d = 0.99;
+		if(d < 0) d = 0.01;
+		return d;
 	}
 
 	public double getR() {

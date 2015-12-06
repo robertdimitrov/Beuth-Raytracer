@@ -7,6 +7,7 @@ import b_vorbereitung.Mat3x3;
 import b_vorbereitung.Normal3;
 import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
+import beleuchtung_I.Material;
 
 /**
  * Ein Dreieck
