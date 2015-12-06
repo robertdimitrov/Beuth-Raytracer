@@ -38,7 +38,7 @@ public class RTDemo {
 
 
         // Panel 1
-        World world = new World(geometries, lights, new Color(1,1,1), new Color(0.3, 0.3, 0.3));
+        World world = new World(geometries, lights, new Color(1,1,1), new Color(0,0,0));
         RTPanel panel1 = new RTPanel(camera, world);
 
         // Panel 2
@@ -66,6 +66,24 @@ public class RTDemo {
         // Panel 6
         RTPanel panel6 = new RTPanel(camera, new World(geometries, lights, new Color(1,1,1), new Color(0.25, 0.25, 0.25)));
 
+        // Panel 7 (eigene Szene)
+        Sphere sphere2 = new Sphere(new Point3(-4,1,1), 0.5, new PhongMaterial(new Color(0.4,0.8,0.72), new Color(1,1,1), 16));
+        Plane plane2 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new LambertMaterial(new Color(0,0.35,0.25)));
+        Triangle triangle2 = new Triangle(new Point3(-1,0,-1), new Point3(3,0,-1), new Point3(1,4,-1),
+                new Normal3(1,0,0), new Normal3(0,1,0), new Normal3(0,0,1), new PhongMaterial(new Color(0.5,0.2,0.3), new Color(1,1,1), 16));
+        AxisAlignedBox box2 = new AxisAlignedBox(new Point3(-1.5, 0.5, 0.5), new Point3(-0.5, 1.5, 1.5),
+                new PhongMaterial(new Color(0,0,1), new Color(1,1,1), 16));
+        Set<Geometry> geometries2 = new HashSet<Geometry>();
+        geometries2.add(sphere2);
+        geometries2.add(plane2);
+        geometries2.add(triangle2);
+        geometries2.add(box2);
+        ArrayList<Light> lights2 = new ArrayList<Light>();
+        lights2.add(directionalLight);
+        lights2.add(spotLight);
+        World welt = new World(geometries2, lights2, new Color(1,1,1), new Color(0.2, 0.2, 0.2));
+        RTPanel panel7 = new RTPanel(camera, welt);
+
         JTabbedPane pane = new JTabbedPane();
         pane.addTab("Abb.3", panel1);
         pane.addTab("Abb.4", panel2);
@@ -73,6 +91,7 @@ public class RTDemo {
         pane.addTab("Abb.6", panel4);
         pane.addTab("Abb.7", panel5);
         pane.addTab("Abb.8", panel6);
+        pane.addTab("Eig. Szene", panel7);
 
         JFrame frame = new JFrame("Aufgabe 3");
         Container container = frame.getContentPane();
