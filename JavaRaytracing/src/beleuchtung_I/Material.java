@@ -6,6 +6,7 @@ import aufgabe01.World;
 
 public abstract class Material {
 	
+	
 	public abstract Color colorFor(final Hit hit, final World world);
 
 }
