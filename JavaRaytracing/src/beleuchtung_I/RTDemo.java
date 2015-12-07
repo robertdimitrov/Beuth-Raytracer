@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * Test-Klasse mit Demo-Szenen
  * @author Kosmonaut
  */
 public class RTDemo {

@@ -7,49 +7,34 @@ import b_vorbereitung.Normal3;
 import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
 
+/**
+ * Diese Klasse stellt das Material für einen perfekt diffus reflektierenden Körper dar.
+ * @author Kosmonaut
+ */
 public class LambertMaterial extends Material {
 
-	public Color color;
-	
-	LambertMaterial(Color color){
-		
+	/**
+	 * Die Farbe des Körpers
+	 */
+	final public Color color;
+
+	/**
+	 * Erstellt ein neues LambertMaterial-Objekt
+	 * @param color die Farbe des geometrischen Körpers
+     */
+	LambertMaterial(final Color color){
+		if(color==null) throw new IllegalArgumentException("color darf nicht null sein");
 		this.color=color;
 	}
-	
-	public Color colorFor(Hit hit,World world){
-		
-//		Color c=null;
-//		//L�nge des des Licht_Arrays der Welt
-//		int length=world.lights.size();
-//		//Farbe, die sich aus der Multiplikation von Materialfarbe und Lichtfarbe ergibt
-//		Color dl;
-//		//Lichtfarbe
-//		Color cl;
-//		//Normale des Hit-Objekts
-//		Normal3 n=hit.n;
-//		//Richtungsvektor der Lichtquelle
-//		Vector3 l;
-//		//Schnittpunkt des strahls mit Geometrie
-//		Point3 p=hit.ray.at(hit.t);
-//		//F�r jede Lichtquelle wird Berechnung durchgef�hrt
-//		 for(int i=1;i<length-1;i++){
-//
-//			cl=world.lights.get(i).color;
-//			dl=color.mul(cl);
-//			l=world.lights.get(i).directionFrom(p);
-//			c=dl.mul(Math.max(0, n.dot(l)));
-//
-//		 }
-////		 Produkt aus color und ambientLight wird zu c addiert
-//		return c.add(color.mul(world.ambientLight));
-//		return new Color(0,1,1);
-//
 
+	@Override
+	public Color colorFor(final Hit hit, final World world){
+		if(hit==null) throw new IllegalArgumentException("hit darf nicht null sein");
+		if(world==null) throw new IllegalArgumentException("world darf nicht null sein");
 		Color ca = world.ambientLight;
 		Color cd = this.color.mul(ca);
 		Normal3 n = hit.n;
 		Point3 p = hit.ray.at(hit.t);
-
 
 		for(Light light : world.lights){
 			if(light.illuminates(p)) {
@@ -60,7 +45,7 @@ public class LambertMaterial extends Material {
 		}
 
 		return cd;
-
-
 	}
+
+
 }

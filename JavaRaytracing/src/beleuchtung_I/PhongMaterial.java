@@ -3,62 +3,49 @@ package beleuchtung_I;
 import aufgabe01.Color;
 import aufgabe01.Hit;
 import aufgabe01.World;
-<<<<<<< HEAD
-import b_vorbereitung.Vector3;
-
-public class PhongMaterial extends Material{
-	
-	final Color diffuse;
-	final Color specular;
-	final int exponent;
-	
-	public PhongMaterial(Color diffuse, Color specular, int exponent){
-		
-		this.diffuse=diffuse;
-		this.specular=specular;
-		this.exponent=exponent;
-	}
-	
-	public Color colorFor(Hit hit,World world{
-		
-		Color c;
-		Color ca=world.ambientLight;
-		int length=world.lightArray.size;
-		Vector3 r;
-		Vector3 l;
-		Color cl;
-		
-		for(int i=0; i<length;i++){
-			
-			cl=world.lightArray.get(i).color;
-			l=world.lightArray.get(i).directionFrom();
-			r=
-		}
-	}
-=======
 import b_vorbereitung.Normal3;
 import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
->>>>>>> ff864bacb019247ff6f35e54a3799ab9a5328156
 
 /**
+ * Diese Klasse stellt das Material für einen perfekt
+ * diffus reflektierenden Körper mit einem Glanzpunkt dar.
  * @author Kosmonaut
  */
 
 public class PhongMaterial extends Material {
 
-    public Color diffuse;
-    public Color specular;
-    public int exponent;
+    /**
+     * Die Farbe für die diffuse Reflektion
+     */
+    final public Color diffuse;
+    /**
+     * Die Farbe für die spekulare Reflektion
+     */
+    final public Color specular;
+    /**
+     * Der Phong-Exponent
+     */
+    final public int exponent;
 
-    public PhongMaterial(Color diffuse, Color specular, int exponent) {
+    /**
+     * Erstellt ein neues PhongMaterial-Objekt
+     * @param diffuse die Fabre für die diffuse Reflektion
+     * @param specular die Farbe für die spekulare Reflektion
+     * @param exponent der Phong-Exponent
+     */
+    public PhongMaterial(final Color diffuse, final Color specular, final int exponent) {
+        if(diffuse==null) throw new IllegalArgumentException("diffuse darf nicht null sein");
+        if(specular==null) throw new IllegalArgumentException("specular darf nicht null sein");
         this.diffuse = diffuse;
         this.specular = specular;
         this.exponent = exponent;
     }
 
     @Override
-    public Color colorFor(Hit hit, World world) {
+    public Color colorFor(final Hit hit, final World world) {
+        if(hit==null) throw new IllegalArgumentException("hit darf nicht null sein");
+        if(world==null) throw new IllegalArgumentException("world darf nicht null sein");
         Color ambient = world.ambientLight;
         Color cdca = this.diffuse.mul(ambient);
         Color color = cdca;
@@ -79,33 +66,4 @@ public class PhongMaterial extends Material {
         return color;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        PhongMaterial that = (PhongMaterial) o;
-
-        if (exponent != that.exponent) return false;
-        if (diffuse != null ? !diffuse.equals(that.diffuse) : that.diffuse != null) return false;
-        return !(specular != null ? !specular.equals(that.specular) : that.specular != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = diffuse != null ? diffuse.hashCode() : 0;
-        result = 31 * result + (specular != null ? specular.hashCode() : 0);
-        result = 31 * result + exponent;
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "PhongMaterial{" +
-                "diffuse=" + diffuse +
-                ", specular=" + specular +
-                ", exponent=" + exponent +
-                '}';
-    }
 }
