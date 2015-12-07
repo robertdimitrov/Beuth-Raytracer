@@ -6,6 +6,7 @@ import java.util.List;
 import b_vorbereitung.Normal3;
 import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
+import beleuchtung_I.Material;
 
 /**
  * Ein am Koordinatensystem ausgerichteter Quader
@@ -23,7 +24,7 @@ public class AxisAlignedBox extends Geometry {
 	 */
 	public final Point3 run;
 	/**
-	 * alle Seiten dieses Würfels
+	 * alle Seiten dieses Wï¿½rfels
 	 */
 	private final Plane[] allSides = new Plane[6];
 

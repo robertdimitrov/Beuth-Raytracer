@@ -7,9 +7,9 @@ import b_vorbereitung.Normal3;
 import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
 
-public class LambertMaterial {
+public class LambertMaterial extends Material {
 
-	Color color;
+	public Color color;
 	
 	LambertMaterial(Color color){
 		
@@ -18,29 +18,49 @@ public class LambertMaterial {
 	
 	public Color colorFor(Hit hit,World world){
 		
-		Color c=null;
-		//Länge des des Licht_Arrays der Welt
-		int length=world.lights.size();	
-		//Farbe, die sich aus der Multiplikation von Materialfarbe und Lichtfarbe ergibt
-		Color dl;
-		//Lichtfarbe
-		Color cl;
-		//Normale des Hit-Objekts
-		Normal3 n=hit.n;
-		//Richtungsvektor der Lichtquelle
-		Vector3 l;
-		//Schnittpunkt des strahls mit Geometrie
-		Point3 p=hit.ray.at(hit.t);
-		//Für jede Lichtquelle wird Berechnung durchgeführt
-		 for(int i=0;i<length;i++){
-			 
-			cl=world.lights.get(i).color;
-			dl=color.mul(cl);			
-			l=world.lights.get(i).directionFrom(p);
-			c=dl.mul(Math.max(0, n.dot(l)));
-			 
-		 }
-		 //Produkt aus color und ambientLight wird zu c addiert
-		return c.add(color.mul(world.ambientLight));
+//		Color c=null;
+//		//Lï¿½nge des des Licht_Arrays der Welt
+//		int length=world.lights.size();
+//		//Farbe, die sich aus der Multiplikation von Materialfarbe und Lichtfarbe ergibt
+//		Color dl;
+//		//Lichtfarbe
+//		Color cl;
+//		//Normale des Hit-Objekts
+//		Normal3 n=hit.n;
+//		//Richtungsvektor der Lichtquelle
+//		Vector3 l;
+//		//Schnittpunkt des strahls mit Geometrie
+//		Point3 p=hit.ray.at(hit.t);
+//		//Fï¿½r jede Lichtquelle wird Berechnung durchgefï¿½hrt
+//		 for(int i=1;i<length-1;i++){
+//
+//			cl=world.lights.get(i).color;
+//			dl=color.mul(cl);
+//			l=world.lights.get(i).directionFrom(p);
+//			c=dl.mul(Math.max(0, n.dot(l)));
+//
+//		 }
+////		 Produkt aus color und ambientLight wird zu c addiert
+//		return c.add(color.mul(world.ambientLight));
+//		return new Color(0,1,1);
+//
+
+		Color ca = world.ambientLight;
+		Color cd = this.color.mul(ca);
+		Normal3 n = hit.n;
+		Point3 p = hit.ray.at(hit.t);
+
+
+		for(Light light : world.lights){
+			if(light.illuminates(p)) {
+				Color cl = light.color;
+				Vector3 l = light.directionFrom(p).normalized();
+				cd = cd.add(color.mul(cl).mul(Math.max(0, n.dot(l))));
+			}
+		}
+
+		return cd;
+
+
 	}
 }

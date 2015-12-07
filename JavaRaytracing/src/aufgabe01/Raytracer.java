@@ -23,15 +23,15 @@ public class Raytracer extends JPanel{
 	public BufferedImage image;
 	
 	/**
-	 * @param w Höhe des Bildes
+	 * @param w Hï¿½he des Bildes
 	 * @param h Breite des Bildes
 	 * @param backgroundColor Hintergrundfarbe
-	 * @param kamera Kamera, die einen Strahl für jedes Pixel erzeugt
+	 * @param kamera Kamera, die einen Strahl fï¿½r jedes Pixel erzeugt
 	 * @param set Menge mit Geometry-objekten
 	 */
 	public Raytracer(int w, int h,Color backgroundColor, Camera kamera,Set<Geometry> set){
 		//neue Welt
-		welt=new World(set,backgroundColor);		
+		welt=new World(set, null, backgroundColor, backgroundColor);
 		this.kamera=kamera;	
 		this.w=w;
 		this.h=h;		
@@ -41,7 +41,7 @@ public class Raytracer extends JPanel{
 	}
 	
 	/**
-	 * Jedes Pixel wird in einer geschachtelten Schleife durchlaufen und ein neuer Strahl erzeugt mit der übergebenen kamera
+	 * Jedes Pixel wird in einer geschachtelten Schleife durchlaufen und ein neuer Strahl erzeugt mit der ï¿½bergebenen kamera
 	 * @return image
 	 */
 	public BufferedImage createImage(){
@@ -52,9 +52,9 @@ public class Raytracer extends JPanel{
 				Ray r=kamera.rayFor(w, h, i, j);			
 				Hit hit=welt.hit(r);
 				if(hit!=null){
-					// Aus dem zurückgegeben Hit-Objekt wird die Farbe ausgelesen und konvertiert, da die Methode setRGB() von BufferedImage 
-					// einen int-Wert benötigt, um die Farbe zu setzen
-					int color=convertColor(hit.geo.color);
+					// Aus dem zurï¿½ckgegeben Hit-Objekt wird die Farbe ausgelesen und konvertiert, da die Methode setRGB() von BufferedImage 
+					// einen int-Wert benï¿½tigt, um die Farbe zu setzen
+					int color=convertColor(hit.geo.material.colorFor(hit, welt));
 					image.setRGB(i, j,color);
 				}
 				else{int color = convertColor(welt.backgroundColor);
@@ -68,8 +68,8 @@ public class Raytracer extends JPanel{
 	
 	/**
 	 * 
-	 *Werte werden nach Float gecastet, da Java.awt.Color float-Werte benötigt um ein Color-Objekt zu erzeugen
-	 *und die setRGB()-Methode einen int-Wert benötigt für die Farbinformation
+	 *Werte werden nach Float gecastet, da Java.awt.Color float-Werte benï¿½tigt um ein Color-Objekt zu erzeugen
+	 *und die setRGB()-Methode einen int-Wert benï¿½tigt fï¿½r die Farbinformation
 	 * 
 	 * @param c color-Objekt
 	 * @return int 

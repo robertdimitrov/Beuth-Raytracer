@@ -5,6 +5,7 @@ package aufgabe01;
 
 import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
+import beleuchtung_I.Material;
 
 /**
  * Diese Klasse erstellt einen Kreis
@@ -60,7 +61,7 @@ public class Sphere extends Geometry {
 
 	/**
 	 * Eine Funktion, die die kleinere nicht-negative Zahl aus den Parametern
-	 * zurückgibt
+	 * zurï¿½ckgibt
 	 * 
 	 * @param x
 	 *            Die erste zu vergleichende Zahl

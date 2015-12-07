@@ -1,5 +1,7 @@
 package aufgabe01;
 
+import beleuchtung_I.Material;
+
 /**
  * Diese Klasse ist eine abstrakte Oberklasse fuer Geometrische Gestalten
  * 
@@ -10,7 +12,7 @@ public abstract class Geometry {
 	/**
 	 * Das Material dieser Geometrischen Gestalt
 	 */
-	protected final Material material;
+	public Material material;
 
 	/**
 	 * Eine Geometrische Gestalt
@@ -18,14 +20,14 @@ public abstract class Geometry {
 	 * @param color
 	 *            Die Farbe dieser Geometrischen Gestalt
 	 */
-	protected Geometry(final Material material) {
+	protected Geometry(Material material) {
 		this.material = material;
 	}
 
 	/**
 	 * Rechnet einen Schnittpunkt von r und dieser Geometry aus 
 	 * @param r
-	 *            der Ray, für den geprueft wird , ob er diese Geometry
+	 *            der Ray, fï¿½r den geprueft wird , ob er diese Geometry
 	 *            schneidet
 	 * @return einen Hit, falls er diese Geometry schneidet oder null falls
 	 *         nicht
