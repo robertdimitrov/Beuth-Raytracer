@@ -28,10 +28,10 @@ public class SpotLight extends Light {
 	/**
 	 * Ein Licht, das von einem Punkt aus in eine Richtung unter einem Winkel
 	 * Licht austrahlt
-	 * 
+	 *
 	 * @param color
 	 *            Die Farbe des Lichts
-	 * @param point
+	 * @param position
 	 *            Die Position des Punkts, von dem das Licht ausgeht
 	 * @param direction
 	 *            Die Richtung, aus der das Licht kommt
