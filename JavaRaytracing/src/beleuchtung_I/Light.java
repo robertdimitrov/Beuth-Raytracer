@@ -4,6 +4,7 @@
 package beleuchtung_I;
 
 import aufgabe01.Color;
+import aufgabe01.World;
 import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
 
@@ -18,6 +19,10 @@ public abstract class Light {
 	 * die Farbe des Lichts
 	 */
 	public final Color color;
+	/**
+	 * ob das Licht einen Schatten auf eine Geometry wirft
+	 */
+	public boolean castsShadow ;
 
 	/**
 	 * eine Lichtquelle
@@ -25,8 +30,9 @@ public abstract class Light {
 	 * @param color
 	 *            die Farbe des Lichts
 	 */
-	protected Light(final Color color) {
+	protected Light(final Color color, final boolean castsShadow) {
 		this.color = color;
+		this.castsShadow = castsShadow;
 	}
 
 	/**
@@ -36,7 +42,7 @@ public abstract class Light {
 	 *            ein Point3
 	 * @return
 	 */
-	public abstract boolean illuminates(Point3 point);
+	public abstract boolean illuminates(Point3 point, final World world);
 
 	/**
 	 * gibt den Vektor der von point aus auf die Lichtquelle zeigt (oft Vektor l
