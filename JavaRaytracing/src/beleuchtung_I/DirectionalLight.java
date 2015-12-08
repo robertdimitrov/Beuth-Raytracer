@@ -1,6 +1,9 @@
 package beleuchtung_I;
 
 import aufgabe01.Color;
+import aufgabe01.Geometry;
+import aufgabe01.Hit;
+import aufgabe01.Ray;
 import aufgabe01.World;
 import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
@@ -34,10 +37,15 @@ public class DirectionalLight extends Light {
 	@Override
 	public boolean illuminates(Point3 point, World world) {
 		if(castsShadow){
-			return true;
-		}else{
-			return false;
+			Ray shadowRay = new Ray(point, directionFrom(point));
+			for(Geometry g : world.welt){
+				Hit hit = g.hit(shadowRay);
+				if(hit!=null){
+					return false;
+				}
+			}
 		}
+		return true;
 	}
 
 	@Override

@@ -40,11 +40,11 @@ public class PointLight extends Light {
 
 	@Override
 	public boolean illuminates(Point3 point, World world) {
-		if(!castsShadow){
-			Ray lRay = new Ray(point, directionFrom(point));
+		if(castsShadow){
+			Ray shadowRay = new Ray(point, directionFrom(point));
 			double distance = position.sub(point).magnitude; 
 			for(Geometry g : world.welt){
-				Hit hit = g.hit(lRay);
+				Hit hit = g.hit(shadowRay);
 				if(hit!=null && hit.t < distance){
 					return false;
 				}

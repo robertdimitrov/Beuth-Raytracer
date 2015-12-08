@@ -1,6 +1,9 @@
 package beleuchtung_I;
 
 import aufgabe01.Color;
+import aufgabe01.Geometry;
+import aufgabe01.Hit;
+import aufgabe01.Ray;
 import aufgabe01.World;
 import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
@@ -49,8 +52,15 @@ public class SpotLight extends Light {
 
 	@Override
 	public boolean illuminates(Point3 point, World world) {
-		if(!castsShadow){
-			return point.sub(position).angleTo(direction) <= halfAngle;
+		if(castsShadow){
+			Ray shadowRay = new Ray(point, directionFrom(point));
+			double distance = position.sub(point).magnitude; 
+			for(Geometry g : world.welt){
+				Hit hit = g.hit(shadowRay);
+				if(hit!=null && hit.t < distance){
+					return false;
+				}
+			}
 		}
 		return point.sub(position).angleTo(direction) <= halfAngle;
 	}
