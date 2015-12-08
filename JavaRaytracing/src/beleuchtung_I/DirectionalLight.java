@@ -1,6 +1,7 @@
 package beleuchtung_I;
 
 import aufgabe01.Color;
+import aufgabe01.World;
 import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
 
@@ -25,19 +26,23 @@ public class DirectionalLight extends Light {
 	 * @param direction
 	 *            Die Richtung, aus der das Licht kommt
 	 */
-	public DirectionalLight(final Color color, final Vector3 direction) {
-		super(color);
+	public DirectionalLight(final Color color, final Vector3 direction, final boolean castsShadow) {
+		super(color, castsShadow);
 		this.direction = direction;
 	}
 
 	@Override
-	public boolean illuminates(Point3 point) {
-		return true;
+	public boolean illuminates(Point3 point, World world) {
+		if(castsShadow){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	@Override
 	public Vector3 directionFrom(Point3 point) {
-		return direction.mul(-1);
+		return direction.mul(-1).normalized();
 	}
 
 }
