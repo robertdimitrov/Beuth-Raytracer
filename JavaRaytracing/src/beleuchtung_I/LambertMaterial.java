@@ -7,44 +7,29 @@ import b_vorbereitung.Normal3;
 import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
 
+/**
+ * @author Robert
+ * 
+ * Klasse repräsentiert diffus-reflektierendes Material
+ *
+ */
 public class LambertMaterial extends Material {
 
 	public Color color;
 	
+	/**
+	 * @param color Farbe des Materials
+	 */
 	LambertMaterial(Color color){
 		
 		this.color=color;
 	}
 	
+	/* (non-Javadoc)
+	 * @see beleuchtung_I.Material#colorFor(aufgabe01.Hit, aufgabe01.World)
+	 */
 	public Color colorFor(Hit hit,World world){
 		
-//		Color c=null;
-//		//Lï¿½nge des des Licht_Arrays der Welt
-//		int length=world.lights.size();
-//		//Farbe, die sich aus der Multiplikation von Materialfarbe und Lichtfarbe ergibt
-//		Color dl;
-//		//Lichtfarbe
-//		Color cl;
-//		//Normale des Hit-Objekts
-//		Normal3 n=hit.n;
-//		//Richtungsvektor der Lichtquelle
-//		Vector3 l;
-//		//Schnittpunkt des strahls mit Geometrie
-//		Point3 p=hit.ray.at(hit.t);
-//		//Fï¿½r jede Lichtquelle wird Berechnung durchgefï¿½hrt
-//		 for(int i=1;i<length-1;i++){
-//
-//			cl=world.lights.get(i).color;
-//			dl=color.mul(cl);
-//			l=world.lights.get(i).directionFrom(p);
-//			c=dl.mul(Math.max(0, n.dot(l)));
-//
-//		 }
-////		 Produkt aus color und ambientLight wird zu c addiert
-//		return c.add(color.mul(world.ambientLight));
-//		return new Color(0,1,1);
-//
-
 		Color ca = world.ambientLight;
 		Color cd = this.color.mul(ca);
 		Normal3 n = hit.n;
@@ -60,7 +45,37 @@ public class LambertMaterial extends Material {
 		}
 
 		return cd;
-
-
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((color == null) ? 0 : color.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		LambertMaterial other = (LambertMaterial) obj;
+		if (color == null) {
+			if (other.color != null)
+				return false;
+		} else if (!color.equals(other.color))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "LambertMaterial [color=" + color + "]";
+	}
+	
+	
 }
