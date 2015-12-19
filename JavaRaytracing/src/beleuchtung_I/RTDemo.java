@@ -20,7 +20,7 @@ public class RTDemo {
 
     public static void main(String[] args) {
 
-        // Geometrien
+//         Geometrien
 //        Plane plane = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new SingleColorMaterial(new Color(1,0,0)));
 //        Sphere sphere = new Sphere(new Point3(1,1,1), 0.5, new SingleColorMaterial(new Color(0,1,0)));
 //        AxisAlignedBox box = new AxisAlignedBox(new Point3(-1.5, 0.5, 0.5), new Point3(-0.5, 1.5, 1.5),

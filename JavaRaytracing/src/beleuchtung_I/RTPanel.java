@@ -54,7 +54,7 @@ public class RTPanel extends JPanel {
     }
 
     /**
-     * Erstellt das entsprechende Bild für diesen Raytracer
+     * Erstellt das entsprechende Bild fuer diesen Raytracer
      * @return das entstandene Bild
      */
     public BufferedImage createImage(){
