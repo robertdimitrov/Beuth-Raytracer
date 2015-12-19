@@ -9,14 +9,10 @@ import aufgabe01.World;
  * Klasse repr�sentiert einfarbiges Material ohne Reflektion
  * @author Clemens
  *
-<<<<<<< HEAD
-=======
+
  * Diese Klasse stellt das Material für einen Körper dar,
  * der unabhängig von der Lichtquelle in einer Farbe gezeigt wird.
  * @author Kosmonaut
-
-=======
->>>>>>> 9e601891a521688fb0a7ff691b597635bb0d1b3b
  */
 public class SingleColorMaterial extends Material{
 
@@ -33,21 +29,17 @@ public class SingleColorMaterial extends Material{
 		
 		this.color=color;
 	}
-<<<<<<< HEAD
+
+
+	
+	
 
 	
 	/* (non-Javadoc)
 	 * @see beleuchtung_I.Material#colorFor(aufgabe01.Hit, aufgabe01.World)
-	 */		
-	@Override
-	public Color colorFor(final Hit hit, final World world){
-=======
-	
-	/* (non-Javadoc)
-	 * @see beleuchtung_I.Material#colorFor(aufgabe01.Hit, aufgabe01.World)
 	 */
-	public Color colorFor(Hit hit, World world){
->>>>>>> 9e601891a521688fb0a7ff691b597635bb0d1b3b
+	public Color colorFor(Hit hit, World world, Tracer tracer){
+
 		if(hit==null) throw new IllegalArgumentException("hit darf nicht null sein");
 		if(world==null) throw new IllegalArgumentException("world darf nicht null sein");
 		return this.color;

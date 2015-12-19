@@ -15,16 +15,7 @@ import aufgabe01.World;
  *
  */
 public abstract class Material {
-<<<<<<< HEAD
-	/**
-	 * Liefert die Farbe fuer ein Hit-Objekt zurueck
-	 * @param hit das Hit-Objekt
-	 * @param world das fuer die Ermittlung der Lichter benoetigte World-Objekt
-     * @return die entsprechende Farbe
-     */
 
-	public abstract Color colorFor(final Hit hit, final World world);		
-=======
 	
 	
 	/**
@@ -34,6 +25,6 @@ public abstract class Material {
 	 * @param world Welt in der Geometrien und Lichtquellen gespeichert werden
 	 * @return Farbe des Materials
 	 */
-	public abstract Color colorFor(final Hit hit, final World world);
->>>>>>> 9e601891a521688fb0a7ff691b597635bb0d1b3b
+	public abstract Color colorFor(final Hit hit, final World world, Tracer tracer);
+
 }

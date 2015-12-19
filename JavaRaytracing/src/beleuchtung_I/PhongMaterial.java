@@ -49,7 +49,7 @@ public class PhongMaterial extends Material {
     }
 
     @Override
-    public Color colorFor(final Hit hit, final World world) {
+    public Color colorFor(final Hit hit, final World world, Tracer tracer) {
 
         if(hit==null) throw new IllegalArgumentException("hit darf nicht null sein");
         if(world==null) throw new IllegalArgumentException("world darf nicht null sein");

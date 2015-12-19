@@ -7,29 +7,9 @@ import b_vorbereitung.Normal3;
 import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
 
-<<<<<<< HEAD
+
 	
-public class LambertMaterial extends Material {
 
-	/**
-	 * Die Farbe des Körpers
-	 */
-	final public Color color;
-
-	/**
-	 * Erstellt ein neues LambertMaterial-Objekt
-	 * @param color die Farbe des geometrischen Körpers
-     */
-	LambertMaterial(final Color color){
-		if(color==null) throw new IllegalArgumentException("color darf nicht null sein");
-		this.color=color;
-	}
-
-	@Override
-	public Color colorFor(final Hit hit, final World world){
-		if(hit==null) throw new IllegalArgumentException("hit darf nicht null sein");
-		if(world==null) throw new IllegalArgumentException("world darf nicht null sein");
-=======
 /**
  * @author Robert
  * 
@@ -51,9 +31,9 @@ public class LambertMaterial extends Material {
 	/* (non-Javadoc)
 	 * @see beleuchtung_I.Material#colorFor(aufgabe01.Hit, aufgabe01.World)
 	 */
-	public Color colorFor(Hit hit,World world){
+	public Color colorFor(Hit hit,World world, Tracer tracer){
 		
->>>>>>> 9e601891a521688fb0a7ff691b597635bb0d1b3b
+
 		Color ca = world.ambientLight;
 		Color cd = this.color.mul(ca);
 		Normal3 n = hit.n;
@@ -98,9 +78,6 @@ public class LambertMaterial extends Material {
 	@Override
 	public String toString() {
 		return "LambertMaterial [color=" + color + "]";
-<<<<<<< HEAD
+
 	}
-=======
-	}	
->>>>>>> 9e601891a521688fb0a7ff691b597635bb0d1b3b
 }
