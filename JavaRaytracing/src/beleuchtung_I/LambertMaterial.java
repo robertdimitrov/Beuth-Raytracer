@@ -8,7 +8,6 @@ import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
 
 /**
-<<<<<<< HEAD
  * @author Robert
  * 
  * Klasse repr�sentiert diffus-reflektierendes Material
@@ -31,31 +30,6 @@ public class LambertMaterial extends Material {
 	 */
 	public Color colorFor(Hit hit,World world){
 		
-=======
- * Diese Klasse stellt das Material für einen perfekt diffus reflektierenden Körper dar.
- * @author Kosmonaut
- */
-public class LambertMaterial extends Material {
-
-	/**
-	 * Die Farbe des Körpers
-	 */
-	final public Color color;
-
-	/**
-	 * Erstellt ein neues LambertMaterial-Objekt
-	 * @param color die Farbe des geometrischen Körpers
-     */
-	LambertMaterial(final Color color){
-		if(color==null) throw new IllegalArgumentException("color darf nicht null sein");
-		this.color=color;
-	}
-
-	@Override
-	public Color colorFor(final Hit hit, final World world){
-		if(hit==null) throw new IllegalArgumentException("hit darf nicht null sein");
-		if(world==null) throw new IllegalArgumentException("world darf nicht null sein");
->>>>>>> refs/remotes/origin/master
 		Color ca = world.ambientLight;
 		Color cd = this.color.mul(ca);
 		Normal3 n = hit.n;
@@ -80,7 +54,6 @@ public class LambertMaterial extends Material {
 		return result;
 	}
 
-<<<<<<< HEAD
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -101,9 +74,5 @@ public class LambertMaterial extends Material {
 	@Override
 	public String toString() {
 		return "LambertMaterial [color=" + color + "]";
-	}
-	
-	
-=======
->>>>>>> refs/remotes/origin/master
+	}	
 }
