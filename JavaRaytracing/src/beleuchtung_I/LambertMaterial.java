@@ -7,6 +7,7 @@ import b_vorbereitung.Normal3;
 import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
 
+<<<<<<< HEAD
 	
 public class LambertMaterial extends Material {
 
@@ -28,6 +29,31 @@ public class LambertMaterial extends Material {
 	public Color colorFor(final Hit hit, final World world){
 		if(hit==null) throw new IllegalArgumentException("hit darf nicht null sein");
 		if(world==null) throw new IllegalArgumentException("world darf nicht null sein");
+=======
+/**
+ * @author Robert
+ * 
+ * Klasse repräsentiert diffus-reflektierendes Material
+ *
+ */
+public class LambertMaterial extends Material {
+
+	public Color color;
+	
+	/**
+	 * @param color Farbe des Materials
+	 */
+	LambertMaterial(Color color){
+		
+		this.color=color;
+	}
+	
+	/* (non-Javadoc)
+	 * @see beleuchtung_I.Material#colorFor(aufgabe01.Hit, aufgabe01.World)
+	 */
+	public Color colorFor(Hit hit,World world){
+		
+>>>>>>> 9e601891a521688fb0a7ff691b597635bb0d1b3b
 		Color ca = world.ambientLight;
 		Color cd = this.color.mul(ca);
 		Normal3 n = hit.n;
@@ -72,5 +98,9 @@ public class LambertMaterial extends Material {
 	@Override
 	public String toString() {
 		return "LambertMaterial [color=" + color + "]";
+<<<<<<< HEAD
 	}
+=======
+	}	
+>>>>>>> 9e601891a521688fb0a7ff691b597635bb0d1b3b
 }

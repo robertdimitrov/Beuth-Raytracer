@@ -41,13 +41,15 @@ public class PointLight extends Light {
 	@Override
 	public boolean illuminates(Point3 point, World world) {
 		if(castsShadow){
-			Ray shadowRay = new Ray(point, directionFrom(point));
-			double distance = point.sub(position).magnitude; 
-			for(Geometry g : world.welt){
-				Hit hit = g.hit(shadowRay);
-				if(hit!=null && !shadowRay.at(hit.t).equals(point) && hit.t < distance){
+			final Ray shadowRay = new Ray(point, directionFrom(point));
+			final double distance = point.sub(position).magnitude; 
+			for(final Geometry g : world.welt){
+				final Hit hit = g.hit(shadowRay);
+				if(hit!=null && hit.t>0 && hit.t < distance){
+					System.out.println("aaa "+hit.t+" ggg "+Math.IEEEremainder(hit.t, distance)+" walking "+distance+ " with "+hit.geo.getClass());
 					return false;
 				}
+//				if(hit!=null)System.out.println("bbb "+hit.t+" ggg "+Math.IEEEremainder(hit.t, distance));
 			}
 		}
 		return true;
