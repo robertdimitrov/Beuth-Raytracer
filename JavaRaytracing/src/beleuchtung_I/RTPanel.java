@@ -10,19 +10,40 @@ import java.util.Set;
 
 /**
  * Klasse zum Erzeugen eines Raytracer-Panels
- *
  * @author Kosmonaut
  */
 
 public class RTPanel extends JPanel {
 
+    /**
+     * Das World-Objekt, das in diesem Raytracer zu benutzen ist
+     */
     final public World welt;
+    /**
+     * Die Kamera für diesen Raytracer
+     */
     final public Camera camera;
+    /**
+     * Die Bildbreite dieses RTPanels
+     */
     final private int w;
+    /**
+     * Die Bildhöhe dieses RTPanels
+     */
     final private int h;
+    /**
+     * Das zu erzeugende Bild
+     */
     private BufferedImage image;
 
-    public RTPanel(Camera camera, World welt) {
+    /**
+     * Erstellt einen neuen RTPanel
+     * @param camera die Kamera für diesen RTPanel
+     * @param welt die Welt für diesen RTPanel
+     */
+    public RTPanel(final Camera camera, final World welt) {
+        if(camera==null) throw new IllegalArgumentException("camera darf nicht null sein");
+        if(welt==null) throw new IllegalArgumentException("welt darf nicht null sein");
         this.camera = camera;
         this.welt = welt;
         this.w = 640;
@@ -32,12 +53,16 @@ public class RTPanel extends JPanel {
         createImage();
     }
 
+    /**
+     * Erstellt das entsprechende Bild für diesen Raytracer
+     * @return das entstandene Bild
+     */
     public BufferedImage createImage(){
 
         int count=0;
         for(int i=0; i<w;i++){
             for(int j=0;j<h;j++){
-                Ray r=camera.rayFor(w, h, i, j);
+                Ray r=camera.rayFor(w, h, i, h-j);
                 Hit hit=welt.hit(r);
                 if(hit!=null){
                     int color=convertColor(hit.geo.material.colorFor(hit, welt));
@@ -52,6 +77,11 @@ public class RTPanel extends JPanel {
         return image;
     }
 
+    /**
+     * Konvertiert eine aufgabe01.Color-Farbe in eine java.awt.Color-Farbe
+     * @param c die aufgabe01-Farbe
+     * @return
+     */
     public int convertColor(aufgabe01.Color c){
         float red=(float)c.getR();
         float green=(float)(c.getG());

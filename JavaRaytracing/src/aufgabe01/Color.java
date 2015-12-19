@@ -11,6 +11,13 @@ public class Color {
 	private final double g;
 	private final double b;
 
+	public static final Color RED = new Color(1,0,0);
+	public static final Color GREEN = new Color(0,1,0);
+	public static final Color BLUE = new Color(0,0,1);
+	public static final Color BLACK = new Color(0,0,0);
+	public static final Color WHITE = new Color(1,1,1);
+
+
 	/**
 	 * erzeugt eine Farbe im RGB-Farbraum
 	 * 
@@ -61,9 +68,9 @@ public class Color {
 	 * @return die berechnete Farbe
 	 */
 	public Color add(Color c) {
-		double nR = change(this.r + c.getR());
-		double nG = change(this.g + c.getG());
-		double nB = change(this.b + c.getB());
+		double nR = adjust(this.r + c.getR());
+		double nG = adjust(this.g + c.getG());
+		double nB = adjust(this.b + c.getB());
 
 		return new Color(nR, nG, nB);
 	}
@@ -120,13 +127,19 @@ public class Color {
 		final double nR = this.r * v;
 		final double nG = this.g * v;
 		final double nB = this.b * v;
-		double r = change(nR);
-		double g = change(nG);
-		double b = change(nB);
+		double r = adjust(nR);
+		double g = adjust(nG);
+		double b = adjust(nB);
 		return new Color(r,g,b);
 	}
 
-	private double change(double d){
+	/**
+	 * Hilfsmethode, die einen Color-Wert überprüft und ihn verändert,
+	 * falls dieser den Wertebereich überschreitet.
+	 * @param d
+	 * @return
+     */
+	private double adjust(double d){
 		if(d > 1) d = 0.99;
 		if(d < 0) d = 0.01;
 		return d;
