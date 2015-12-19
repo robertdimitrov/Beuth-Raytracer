@@ -13,6 +13,12 @@ import b_vorbereitung.Vector3;
  * @author Kosmonaut
  */
 
+/**
+ * 
+ * Klasse repräsentiert Phong-Beleuchtung
+ * @author Robert
+ *
+ */
 public class PhongMaterial extends Material {
 
     /**

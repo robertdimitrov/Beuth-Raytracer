@@ -5,6 +5,23 @@ import aufgabe01.Hit;
 import aufgabe01.World;
 
 /**
+<<<<<<< HEAD
+ * @author Clemens
+ * 
+ * Klasse repräsentiert ein Material
+ *
+ */
+public abstract class Material {
+	
+	
+	/**
+	 * Diese Methode berechnet die Farbe eines Pixels, abhängig davon, von welchen Lichtquellen es beleuchtet wird
+	 * 
+	 * @param hit Schnittpunkt mit einem Objekt
+	 * @param world Welt in der Geometrien und Lichtquellen gespeichert werden
+	 * @return Farbe des Materials
+	 */
+=======
  * Diese Klasse ist die abstrakte Superklasse fÃ¼r alle Material-Klassen
  * @author Kosmonaut
  */
@@ -16,6 +33,9 @@ public abstract class Material {
 	 * @param world das fÃ¼r die Ermittlung der Lichter benÃ¶tigte World-Objekt
      * @return die entsprechende Farbe
      */
+>>>>>>> refs/remotes/origin/master
 	public abstract Color colorFor(final Hit hit, final World world);
+	
+	
 
 }
