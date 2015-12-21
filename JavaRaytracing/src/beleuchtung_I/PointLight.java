@@ -42,14 +42,17 @@ public class PointLight extends Light {
 	public boolean illuminates(Point3 point, World world) {
 		if(castsShadow){
 			Ray shadowRay = new Ray(point, directionFrom(point));
-			double distance = position.sub(point).magnitude; 
+			double distance = position.sub(point).magnitude;
 			for(Geometry g : world.welt){
 				Hit hit = g.hit(shadowRay);
 				if(hit!=null && hit.t < distance){
+					System.out.println(hit.t);
+					System.out.println(distance);
 					return false;
 				}
 			}
 		}
+		System.out.println("True");
 		return true;
 	}
 

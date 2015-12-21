@@ -31,19 +31,24 @@ public class LambertMaterial extends Material {
 	public Color colorFor(final Hit hit, final World world){
 		if(hit==null) throw new IllegalArgumentException("hit darf nicht null sein");
 		if(world==null) throw new IllegalArgumentException("world darf nicht null sein");
+
 		Color ca = world.ambientLight;
 		Color cd = this.color.mul(ca);
 		Normal3 n = hit.n;
 		Point3 p = hit.ray.at(hit.t);
 
+		boolean b = false;
+
 		for(Light light : world.lights){
 			if(light.illuminates(p, world)) {
+				b = true;
 				Color cl = light.color;
 				Vector3 l = light.directionFrom(p).normalized();
 				cd = cd.add(color.mul(cl).mul(Math.max(0, n.dot(l))));
 			}
 		}
 
+//		if(!b) return Color.BLACK;
 		return cd;
 	}
 

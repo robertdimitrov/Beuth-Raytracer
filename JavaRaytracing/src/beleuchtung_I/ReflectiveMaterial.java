@@ -5,7 +5,7 @@ import aufgabe01.Hit;
 import aufgabe01.World;
 
 /**
- * Created by Robert on 12/8/15.
+ * @author Kosmonaut
  */
 public class ReflectiveMaterial extends Material {
 
