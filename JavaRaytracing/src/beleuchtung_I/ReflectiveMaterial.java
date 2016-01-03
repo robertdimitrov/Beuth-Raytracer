@@ -29,6 +29,7 @@ public class ReflectiveMaterial extends Material {
     	
     	if(hit==null) throw new IllegalArgumentException("hit darf nicht null sein");
         if(world==null) throw new IllegalArgumentException("world darf nicht null sein");
+        if(tracer==null) throw new IllegalArgumentException("tracer darf nicht null sein");
 
         Color ambient = world.ambientLight;
         Color cdca = this.diffuse.mul(ambient);
@@ -44,7 +45,9 @@ public class ReflectiveMaterial extends Material {
                 Vector3 r = l.reflectedOn(n);
                 Color c1 = this.diffuse.mul(cl).mul(Math.max(0, n.dot(l)));
                 Color c2 = this.specular.mul(cl).mul(Math.pow(Math.max(0, e.dot(r)), exponent));
-                color = color.add(c1.add(c2));
+
+                Color c3 = reflection.mul(tracer.reflektion(p, hit.ray.d.reflectedOn(hit.n).mul(-1)));
+                color = color.add(c1.add(c2).add(c3));
             }
         }
         return color;

@@ -61,7 +61,8 @@ public class RTDemo_2 {
 
 
         JTabbedPane pane = new JTabbedPane();
-        pane.addTab("Szene 1", panel2);
+        pane.addTab("Szene 1", panel1);
+        pane.addTab("Szene 2", panel2);
 
 
         container.add(pane);

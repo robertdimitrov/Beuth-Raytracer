@@ -52,6 +52,7 @@ public class RTPanel extends JPanel {
         this.h = 480;
         setSize(w, h);
         this.image = new BufferedImage(w,h,BufferedImage.TYPE_INT_RGB);
+        tracer = new Tracer(welt, 5);
         createImage();
     }
 
