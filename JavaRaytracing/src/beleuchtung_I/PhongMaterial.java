@@ -12,13 +12,6 @@ import b_vorbereitung.Vector3;
  * diffus reflektierenden KÃ¶rper mit einem Glanzpunkt dar.
  * @author Kosmonaut
  */
-
-/**
- * 
- * Klasse repräsentiert Phong-Beleuchtung
- * @author Robert
- *
- */
 public class PhongMaterial extends Material {
 
     /**

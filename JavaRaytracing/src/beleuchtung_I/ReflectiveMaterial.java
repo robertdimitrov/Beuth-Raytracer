@@ -2,21 +2,44 @@ package beleuchtung_I;
 
 import aufgabe01.Color;
 import aufgabe01.Hit;
+import aufgabe01.Ray;
 import aufgabe01.World;
 import b_vorbereitung.Normal3;
 import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
 
 /**
+ * Diese Klasse stellt das Material für einen perfekt
+ * diffus reflektierenden Körper mit einem Glanzpunkt
+ * und Reflektion dar.
  * @author Kosmonaut
  */
 public class ReflectiveMaterial extends Material {
 
+    /**
+     * Die Farbe für die diffuse Reflektion
+     */
     public Color diffuse;
+    /**
+     * Die Farbe für die spekulare Reflektion
+     */
     public Color specular;
+    /**
+     * Die Farbe für die spiegelnde Reflektion
+     */
     public Color reflection;
+    /**
+     * Der Phong-Exponent
+     */
     public int exponent;
 
+    /**
+     * Erstellt ein neues ReflectiveMaterial-Objekt
+     * @param diffuse die Farbe für die diffuse Reflektion
+     * @param specular die Farbe für die spekulare Reflektion
+     * @param exponent der Phong-Exponent
+     * @param reflection die Farbe für die spiegelnde Reflektion
+     */
     public ReflectiveMaterial(Color diffuse, Color specular, int exponent, Color reflection) {
         this.diffuse = diffuse;
         this.specular = specular;
@@ -46,7 +69,7 @@ public class ReflectiveMaterial extends Material {
                 Color c1 = this.diffuse.mul(cl).mul(Math.max(0, l.dot(n)));
                 Color c2 = this.specular.mul(cl).mul(Math.pow(Math.max(0, e.dot(r)), exponent));
 
-                Color c3 = reflection.mul(tracer.reflektion(p, hit.ray.d.reflectedOn(hit.n).mul(-1)));
+                Color c3 = reflection.mul(tracer.reflektion(new Ray(p, hit.ray.d.reflectedOn(hit.n).mul(-1))));
                 color = color.add(c1.add(c2).add(c3));
             }
         }

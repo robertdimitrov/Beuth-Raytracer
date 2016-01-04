@@ -13,7 +13,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @author Kosmonautr
+ * @author Kosmonaut
  */
 public class RTDemo_2 {
 
