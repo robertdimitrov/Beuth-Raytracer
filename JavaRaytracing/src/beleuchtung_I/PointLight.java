@@ -28,7 +28,8 @@ public class PointLight extends Light {
 	 * @param position
 	 *            Die Position des Punkts, von dem das Licht ausgeht
 	 */
-	public PointLight(final Color color, final Point3 position, final boolean castsShadow) {
+	public PointLight(final Color color, final Point3 position,
+			final boolean castsShadow) {
 		super(color, castsShadow);
 		this.position = position;
 	}
@@ -40,16 +41,15 @@ public class PointLight extends Light {
 
 	@Override
 	public boolean illuminates(Point3 point, World world) {
-		if(castsShadow){
-			final Ray shadowRay = new Ray(point, directionFrom(point));
-			final double distance = point.sub(position).magnitude; 
-			for(final Geometry g : world.welt){
-				final Hit hit = g.hit(shadowRay);
-				if(hit!=null && hit.t>0 && hit.t < distance){
-					System.out.println("aaa "+hit.t+" ggg "+Math.IEEEremainder(hit.t, distance)+" walking "+distance+ " with "+hit.geo.getClass());
+		if (castsShadow) {
+			final Ray l = new Ray(point, directionFrom(point));
+			final double distance = point.sub(position).magnitude;
+			Hit hit ;
+			for(Geometry geo: world.welt){
+				hit = geo.hit(l);
+				if (hit != null && hit.t < distance && hit.t>0) {
 					return false;
 				}
-//				if(hit!=null)System.out.println("bbb "+hit.t+" ggg "+Math.IEEEremainder(hit.t, distance));
 			}
 		}
 		return true;

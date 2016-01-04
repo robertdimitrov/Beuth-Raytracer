@@ -63,10 +63,10 @@ public class AxisAlignedBox extends Geometry {
 		// schreibe in facingSides alle Planes, die man vom Ursprung des Rays
 		// sieht
 		final List<Plane> facingSides = new ArrayList<Plane>();
-		Vector3 oSubA = r.o.sub(lbf);
 		for (int i = 0; i < allSides.length; i++) {
-			if (allSides[i].n.dot(oSubA) > 0) {
-				facingSides.add(allSides[i]);
+			final Plane side = allSides[i];
+			if (allSides[i].n.dot(r.o.sub(side.a)) > 0) {
+				facingSides.add(side);
 			}
 		}
 
@@ -79,10 +79,14 @@ public class AxisAlignedBox extends Geometry {
 				furthestHit = newHit;
 				continue;
 			}
-			if (newHit.t > furthestHit.t) {
+			if (newHit != null && newHit.t > furthestHit.t) {
 				furthestHit = newHit;
 			}
 		}
+		if(furthestHit == null){
+			return null;
+		}
+		
 		// schau, ob der Schnittpunkt, den furthestHit beschreibt im
 		// Quader liegt
 		Point3 hitP = r.at(furthestHit.t);
