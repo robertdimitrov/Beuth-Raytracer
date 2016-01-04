@@ -60,9 +60,9 @@ public class RTDemo_2 {
         RTPanel panel2 = new RTPanel(camera, welt2);
 
 
-
         JTabbedPane pane = new JTabbedPane();
-        pane.addTab("Szene 1", panel2);
+        pane.addTab("Szene 1", panel1);
+        pane.addTab("Szene 2", panel2);
 
 
         container.add(pane);
@@ -71,5 +71,7 @@ public class RTDemo_2 {
         frame.setSize(640,480);
         frame.setResizable(false);
         frame.setVisible(true);
+
+
     }
 }

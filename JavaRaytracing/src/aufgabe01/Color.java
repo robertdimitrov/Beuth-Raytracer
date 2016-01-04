@@ -156,4 +156,13 @@ public class Color {
 	public double getB() {
 		return b;
 	}
+
+	@Override
+	public String toString() {
+		return "Color{" +
+				"r=" + r +
+				", g=" + g +
+				", b=" + b +
+				'}';
+	}
 }
