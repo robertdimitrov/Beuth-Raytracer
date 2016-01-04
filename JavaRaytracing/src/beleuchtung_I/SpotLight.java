@@ -57,7 +57,7 @@ public class SpotLight extends Light {
 			double distance = position.sub(point).magnitude; 
 			for(Geometry g : world.welt){
 				Hit hit = g.hit(shadowRay);
-				if(hit!=null && hit.t < distance){
+				if(hit!=null && hit.t < distance && hit.t > 0){
 					return false;
 				}
 			}

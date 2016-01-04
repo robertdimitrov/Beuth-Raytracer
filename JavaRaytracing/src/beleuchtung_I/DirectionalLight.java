@@ -40,7 +40,7 @@ public class DirectionalLight extends Light {
 			Ray shadowRay = new Ray(point, directionFrom(point));
 			for(Geometry g : world.welt){
 				Hit hit = g.hit(shadowRay);
-				if(hit!=null){
+				if(hit!=null && hit.t > 0){
 					return false;
 				}
 			}

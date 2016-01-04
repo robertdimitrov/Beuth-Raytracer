@@ -39,8 +39,12 @@ public class Plane extends Geometry {
 
 	@Override
 	public Hit hit(Ray r) {
-		if (n.dot(r.d) != 0) {
-			final double t = a.sub(r.o).dot(n) / r.d.dot(n);
+		final double teiler = r.d.dot(n);
+		if (teiler != 0) {
+			final double t = a.sub(r.o).dot(n) / teiler;
+			if(t < 0.00001){
+				return null;
+			}
 			return new Hit(t, r, n, this);
 		} else {
 			return null;
