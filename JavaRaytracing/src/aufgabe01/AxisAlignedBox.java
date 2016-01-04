@@ -10,7 +10,7 @@ import beleuchtung_I.Material;
 
 /**
  * Ein am Koordinatensystem ausgerichteter Quader
- * 
+ *
  * @author Kosmonaut
  *
  */
@@ -30,7 +30,7 @@ public class AxisAlignedBox extends Geometry {
 
 	/**
 	 * Ein am Koordinatensystem ausgerichteter Quader
-	 * 
+	 *
 	 * @param lbf
 	 *            Ecke des Quaders die in im Koordinatensystem am niedrigsten
 	 *            ist

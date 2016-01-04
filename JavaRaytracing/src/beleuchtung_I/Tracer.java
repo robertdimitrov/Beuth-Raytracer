@@ -10,7 +10,7 @@ import b_vorbereitung.Vector3;
 public class Tracer {
 
     private World world;
-    private int rekursion;
+    public int rekursion;
 
     public Tracer(World world, int rekursion) {
         this.world = world;
