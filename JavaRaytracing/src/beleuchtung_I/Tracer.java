@@ -18,15 +18,20 @@ public class Tracer {
     }
 
     public Color reflektion(Point3 p, Vector3 v){
-        Color fehlerfarbe = new Color(0,0,0);
+        Color fehlerfarbe = world.backgroundColor;
+
         if(rekursion < 1) return fehlerfarbe;
 
+        rekursion--;
         Color reflected = fehlerfarbe;
+
         Ray ray = new Ray(p,v);
         Hit hit = world.hit(ray);
+
         if(!(hit==null)) {
             reflected = hit.geo.material.colorFor(hit, world, this);
         }
+
         return reflected;
     }
 }

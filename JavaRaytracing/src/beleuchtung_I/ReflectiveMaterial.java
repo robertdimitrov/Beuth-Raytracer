@@ -43,7 +43,7 @@ public class ReflectiveMaterial extends Material {
                 Vector3 l = light.directionFrom(p).normalized();
                 Vector3 e = hit.ray.d.mul(-1).normalized();
                 Vector3 r = l.reflectedOn(n);
-                Color c1 = this.diffuse.mul(cl).mul(Math.max(0, n.dot(l)));
+                Color c1 = this.diffuse.mul(cl).mul(Math.max(0, l.dot(n)));
                 Color c2 = this.specular.mul(cl).mul(Math.pow(Math.max(0, e.dot(r)), exponent));
 
                 Color c3 = reflection.mul(tracer.reflektion(p, hit.ray.d.reflectedOn(hit.n).mul(-1)));
@@ -51,6 +51,5 @@ public class ReflectiveMaterial extends Material {
             }
         }
         return color;
-        //return Color.GREEN;
     }
 }

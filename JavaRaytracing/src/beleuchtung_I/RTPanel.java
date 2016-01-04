@@ -35,8 +35,7 @@ public class RTPanel extends JPanel {
      * Das zu erzeugende Bild
      */
     private BufferedImage image;
-    
-    private Tracer tracer;
+
 
     /**
      * Erstellt einen neuen RTPanel
@@ -52,7 +51,6 @@ public class RTPanel extends JPanel {
         this.h = 480;
         setSize(w, h);
         this.image = new BufferedImage(w,h,BufferedImage.TYPE_INT_RGB);
-        tracer = new Tracer(welt, 5);
         createImage();
     }
 
@@ -68,7 +66,7 @@ public class RTPanel extends JPanel {
                 Ray r=camera.rayFor(w, h, i, h-j);
                 Hit hit=welt.hit(r);
                 if(hit!=null){
-                    int color=convertColor(hit.geo.material.colorFor(hit, welt,tracer));
+                    int color=convertColor(hit.geo.material.colorFor(hit, welt,new Tracer(welt, 5)));
                     image.setRGB(i, j,color);
                 }
                 else{int color = convertColor(welt.backgroundColor);
