@@ -18,15 +18,15 @@ public class Node extends Geometry {
     private final Transform transform;
     private final List<Geometry> geometries;
 
-    public Node(Material material, Transform transform, List<Geometry> geometries) {
-        super(material);
+    public Node(Transform transform, List<Geometry> geometries) {
+        super(null);
         this.transform = transform;
         this.geometries = geometries;
     }
 
     @Override
     public Hit hit(Ray r) {
-    	final Ray transformedRay = new Ray(transform.m.mul(r.o), transform.m.mul(r.d));
+    	final Ray transformedRay = transform.mul(r);
 		Set<Hit> helpSet = new HashSet<Hit>();
 		Hit minT = null;
 		for(Geometry g : geometries){
@@ -45,7 +45,6 @@ public class Node extends Geometry {
 				}
 			}	
 		}
-		final Normal3 n = minT.n;
-		return new Hit(minT.t, r, (transform.m.mul(new Vector3(n.x, n.y, n.z))).asNormal(), minT.geo);
+		return new Hit(minT.t, r, transform.mul(minT.n), minT.geo);
     }
 }

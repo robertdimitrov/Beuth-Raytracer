@@ -3,6 +3,7 @@ package aufgabe01;
 import java.util.ArrayList;
 import java.util.List;
 
+import transformation.Transform;
 import b_vorbereitung.Normal3;
 import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
@@ -26,7 +27,7 @@ public class AxisAlignedBox extends Geometry {
 	/**
 	 * alle Seiten dieses W�rfels
 	 */
-	private final Plane[] allSides = new Plane[6];
+	private final Node[] allSides = new Node[6];
 
 	/**
 	 * Ein am Koordinatensystem ausgerichteter Quader
@@ -45,19 +46,21 @@ public class AxisAlignedBox extends Geometry {
 		run = new Point3(0.5, 0.5, 0.5);
 		
 		// Seiten festlegen
-		allSides[0] = new Plane(material);
-		allSides[1] = new Plane(material);
-		allSides[2] = new Plane(material);
-		allSides[3] = new Plane(material);
-		allSides[4] = new Plane(material);
-		allSides[5] = new Plane(material);
+		final List<Geometry> planeList = new ArrayList<Geometry>();
+		planeList.add(new Plane(material));
+		allSides[0] = new Node(new Transform().translation(new Vector3(-1, 0, 0)).rotateX(Math.PI/2), planeList);
+		allSides[1] = new Node(new Transform().translation(new Vector3(0, -1, 0)).rotateY(Math.PI/2), planeList);
+		allSides[2] = new Node(new Transform().translation(new Vector3(0, 0, -1)).rotateZ(Math.PI/2), planeList);
+		allSides[3] = new Node(new Transform().translation(new Vector3(1, 0, 0)).rotateX(Math.PI/2), planeList);
+		allSides[4] = new Node(new Transform().translation(new Vector3(0, 1, 0)).rotateY(Math.PI/2), planeList);
+		allSides[5] = new Node(new Transform().translation(new Vector3(0, 0, 1)).rotateZ(Math.PI/2), planeList);
 	}
 
 	@Override
 	public Hit hit(Ray r) {
 		// schreibe in facingSides alle Planes, die man vom Ursprung des Rays
 		// sieht
-		final List<Plane> facingSides = new ArrayList<Plane>();
+		final List<Node> facingSides = new ArrayList<Node>();
 		for (int i = 0; i < allSides.length; i++) {
 			final Plane side = allSides[i];
 			if (allSides[i].n.dot(r.o.sub(side.a)) > 0) {
