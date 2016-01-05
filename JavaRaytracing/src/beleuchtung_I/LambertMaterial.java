@@ -23,7 +23,7 @@ public class LambertMaterial extends Material {
 	/**
 	 * @param color Farbe des Materials
 	 */
-	LambertMaterial(Color color){
+	public LambertMaterial(Color color){
 		
 		this.color=color;
 	}
