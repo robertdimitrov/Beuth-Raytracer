@@ -48,63 +48,55 @@ public class AxisAlignedBox extends Geometry {
 		// Seiten festlegen
 		final List<Geometry> planeList = new ArrayList<Geometry>();
 		planeList.add(new Plane(material));
-		allSides[0] = new Node(new Transform().translation(new Vector3(-1, 0, 0)).rotateX(Math.PI/2), planeList);
-		allSides[1] = new Node(new Transform().translation(new Vector3(0, -1, 0)).rotateY(Math.PI/2), planeList);
-		allSides[2] = new Node(new Transform().translation(new Vector3(0, 0, -1)).rotateZ(Math.PI/2), planeList);
-		allSides[3] = new Node(new Transform().translation(new Vector3(1, 0, 0)).rotateX(Math.PI/2), planeList);
-		allSides[4] = new Node(new Transform().translation(new Vector3(0, 1, 0)).rotateY(Math.PI/2), planeList);
-		allSides[5] = new Node(new Transform().translation(new Vector3(0, 0, 1)).rotateZ(Math.PI/2), planeList);
+		allSides[0] = new Node(new Transform().rotateX(Math.PI/2).translation(new Vector3(-.5, 0, 0)), planeList);
+		allSides[1] = new Node(new Transform().rotateY(Math.PI/2).translation(new Vector3(0, -.5, 0)), planeList);
+		allSides[2] = new Node(new Transform().rotateZ(Math.PI/2).translation(new Vector3(0, 0, -.5)), planeList);
+		allSides[3] = new Node(new Transform().rotateX(Math.PI/2).translation(new Vector3(.5, 0, 0)), planeList);
+		allSides[4] = new Node(new Transform().rotateY(Math.PI/2).translation(new Vector3(0, .5, 0)), planeList);
+		allSides[5] = new Node(new Transform().rotateZ(Math.PI/2).translation(new Vector3(0, 0, .5)), planeList);
 	}
 
 	@Override
 	public Hit hit(Ray r) {
-		// schreibe in facingSides alle Planes, die man vom Ursprung des Rays
-		// sieht
-		final List<Node> facingSides = new ArrayList<Node>();
-		for (int i = 0; i < allSides.length; i++) {
-			final Plane side = allSides[i];
-			if (allSides[i].n.dot(r.o.sub(side.a)) > 0) {
-				facingSides.add(side);
-			}
-		}
-
-		// lasse furthestHit auf den am weitesten entfernten Hit aller Planes in
+		// lasse closestPositiveHit auf den am naehesten Hit aller Planes in
 		// facingSides zeigen
-		Hit furthestHit = null;
-		for (int j = 0; j < facingSides.size(); j++) {
-			Hit newHit = facingSides.get(j).hit(r);
-			if (furthestHit == null) {
-				furthestHit = newHit;
+		Hit closestPositiveHit = null;
+		for (int j = 0; j < allSides.length; j++) {
+			Hit newHit = allSides[j].hit(r);
+			if (newHit != null && closestPositiveHit == null) {
+				closestPositiveHit = newHit;
 				continue;
 			}
-			if (newHit != null && newHit.t > furthestHit.t) {
-				furthestHit = newHit;
+			if (newHit != null && newHit.t < closestPositiveHit.t) {
+				closestPositiveHit = newHit;
 			}
 		}
-		if (furthestHit == null) {
+		if (closestPositiveHit == null) {
 			return null;
 		}
 
-		// schau, ob der Schnittpunkt, den furthestHit beschreibt im
+		// schau, ob der Schnittpunkt, den closestPositiveHit beschreibt im
 		// Quader liegt
-		Point3 hitP = r.at(furthestHit.t);
-		// mithilfe von diesen kann ich unnoetige hitP-tests weglassen
-		if (Math.abs(((Plane) furthestHit.geo).n.x) == 1) {
+		Point3 hitP = r.at(closestPositiveHit.t);
+		
+		
+//		 mithilfe von diesen kann ich unnoetige hitP-tests weglassen
+		if (Math.abs(((Plane) closestPositiveHit.geo).n.x) == 1) {
 			if (lbf.y <= hitP.y && hitP.y <= run.y && lbf.z <= hitP.z
 					&& hitP.z <= run.z) {
-				return new Hit(furthestHit.t, r, furthestHit.n, this);
+				return new Hit(closestPositiveHit.t, r, closestPositiveHit.n, this);
 			}
 		}
-		if (Math.abs(((Plane) furthestHit.geo).n.y) == 1) {
+		if (Math.abs(((Plane) closestPositiveHit.geo).n.y) == 1) {
 			if (lbf.x <= hitP.x && hitP.x <= run.x && lbf.z <= hitP.z
 					&& hitP.z <= run.z) {
-				return new Hit(furthestHit.t, r, furthestHit.n, this);
+				return new Hit(closestPositiveHit.t, r, closestPositiveHit.n, this);
 			}
 		}
-		if (Math.abs(((Plane) furthestHit.geo).n.z) == 1) {
+		if (Math.abs(((Plane) closestPositiveHit.geo).n.z) == 1) {
 			if (lbf.x <= hitP.x && hitP.x <= run.x && lbf.y <= hitP.y
 					&& hitP.y <= run.y) {
-				return new Hit(furthestHit.t, r, furthestHit.n, this);
+				return new Hit(closestPositiveHit.t, r, closestPositiveHit.n, this);
 			}
 		}
 		return null;
@@ -112,7 +104,7 @@ public class AxisAlignedBox extends Geometry {
 
 	@Override
 	public String toString() {
-		return "AxisAlignedBox from " + lbf + " to " + run + super.toString();
+		return "AxisAlignedBox";
 	}
 
 }
