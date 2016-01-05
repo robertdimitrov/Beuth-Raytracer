@@ -33,10 +33,10 @@ public class Sphere extends Geometry {
 	 * @param color
 	 *            Die Farbe des Kreises
 	 */
-	public Sphere(final Point3 c, final double r, final Material material) {
+	public Sphere(final Material material) {
 		super(material);
-		this.center = c;
-		this.radius = r;
+		this.center = new Point3(0, 0, 0);
+		this.radius = 1;
 	}
 
 	public Hit hit(Ray r) {

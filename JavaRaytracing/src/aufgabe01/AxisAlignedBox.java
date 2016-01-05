@@ -39,23 +39,18 @@ public class AxisAlignedBox extends Geometry {
 	 * @param color
 	 *            Die Farbe des Quaders
 	 */
-	public AxisAlignedBox(final Point3 lbf, final Point3 run, final Material material) {
+	public AxisAlignedBox(final Material material) {
 		super(material);
-		this.lbf = lbf;
-		if (lbf.x <= run.x && lbf.y <= run.y && lbf.z <= run.z) {
-			this.run = run;
-		} else {
-			throw new IllegalArgumentException(
-					"run has to have higher x, y and z values than lbf");
-		}
-
+		lbf = new Point3(-0.5, -0.5, -0.5);
+		run = new Point3(0.5, 0.5, 0.5);
+		
 		// Seiten festlegen
-		allSides[0] = new Plane(lbf, new Normal3(-1, 0, 0), material);
-		allSides[1] = new Plane(lbf, new Normal3(0, -1, 0), material);
-		allSides[2] = new Plane(lbf, new Normal3(0, 0, -1), material);
-		allSides[3] = new Plane(run, new Normal3(1, 0, 0), material);
-		allSides[4] = new Plane(run, new Normal3(0, 1, 0), material);
-		allSides[5] = new Plane(run, new Normal3(0, 0, 1), material);
+		allSides[0] = new Plane(material);
+		allSides[1] = new Plane(material);
+		allSides[2] = new Plane(material);
+		allSides[3] = new Plane(material);
+		allSides[4] = new Plane(material);
+		allSides[5] = new Plane(material);
 	}
 
 	@Override
@@ -83,14 +78,14 @@ public class AxisAlignedBox extends Geometry {
 				furthestHit = newHit;
 			}
 		}
-		if(furthestHit == null){
+		if (furthestHit == null) {
 			return null;
 		}
-		
+
 		// schau, ob der Schnittpunkt, den furthestHit beschreibt im
 		// Quader liegt
 		Point3 hitP = r.at(furthestHit.t);
-		//mithilfe von diesen kann ich unnoetige hitP-tests weglassen
+		// mithilfe von diesen kann ich unnoetige hitP-tests weglassen
 		if (Math.abs(((Plane) furthestHit.geo).n.x) == 1) {
 			if (lbf.y <= hitP.y && hitP.y <= run.y && lbf.z <= hitP.z
 					&& hitP.z <= run.z) {
