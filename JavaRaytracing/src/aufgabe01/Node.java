@@ -44,6 +44,8 @@ public class Node extends Geometry {
 					minT=help;
 				}
 			}	
+		}else{
+			return null;
 		}
 		return new Hit(minT.t, r, transform.mul(minT.n), minT.geo);
     }

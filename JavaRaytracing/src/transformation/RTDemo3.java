@@ -33,22 +33,28 @@ public class RTDemo3 {
 
         // Szene 1
         Color reflective = new Color(0.5, 0.5, 0.5);
-        Color ambient = new Color(0.25, 0.25, 0.25);
+        Color ambient = new Color(0.5, 0.5, 0.5);
         
         final List<Geometry> geomList1 = new ArrayList<Geometry>();
-        final Sphere diskSphere = new Sphere(new LambertMaterial(new Color(1, 0, 0))); 
-        geomList1.add(diskSphere);
+//        final Sphere diskSphere = new Sphere(new LambertMaterial(new Color(1, 0, 0)));
+//        geomList1.add(diskSphere);
+        
+        final AxisAlignedBox aab = new AxisAlignedBox(new LambertMaterial(Color.YELLOW));
+        geomList1.add(aab);
+        
         
         final Transform transformation1 = new Transform();
-        transformation1.rotateZ(-Math.PI/4);
-        transformation1.rotateY(-Math.PI/4);
-        transformation1.scale(new Vector3(4, 4, 1/8));
+//        transformation1.rotateZ(-Math.PI/4);
+//        transformation1.rotateY(-Math.PI/4);
+//        transformation1.scale(new Vector3(4, 1/8, 4));
         
         final Node rootNode1 = new Node(transformation1 ,geomList1);
         Set<Geometry> geometries = new HashSet<Geometry>();
-        PerspectiveCamera camera = new PerspectiveCamera(new Point3(8,8,8), new Vector3(-1, -1, -1), new Vector3(0,1,0), Math.PI/4);
-        PointLight pointLight = new PointLight(Color.WHITE, new Point3(8,8,8), true);
+        geometries.add(rootNode1);
+        
+        PerspectiveCamera camera = new PerspectiveCamera(new Point3(0,5,5), new Vector3(0, 0-1, -1), new Vector3(0,1,0), Math.PI/4);
         ArrayList<Light> lights = new ArrayList<Light>();
+        PointLight pointLight = new PointLight(Color.WHITE, new Point3(8,8,0), true);
         lights.add(pointLight);
         World world = new World(geometries, lights, Color.BLACK, ambient);
         RTPanel panel1 = new RTPanel(camera, world);
