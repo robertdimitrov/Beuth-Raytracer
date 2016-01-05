@@ -24,30 +24,68 @@ public class Transform {
     }
 
     public Transform translation(Vector3 t){
-        return null;
+        Mat4x4 translation = new Mat4x4
+                (1,0,0,t.x,
+                 0,1,0,t.y,
+                 0,0,1,t.z,
+                 0,0,0,1);
+        Mat4x4 inverse = new Mat4x4
+                (1,0,0,-t.x,
+                 0,1,0,-t.y,
+                 0,0,1,-t.z,
+                 0,0,0,1);
+        return new Transform(m.mul(translation), m.mul(inverse));
     }
 
     public Transform scale(Vector3 s){
-        return null;
+        Mat4x4 scale = new Mat4x4
+                (s.x,0,   0,   0,
+                 0,  s.y, 0,   0,
+                 0,  0,   s.z, 0,
+                 0,  0,   0,   1);
+        Mat4x4 inverse = new Mat4x4
+                (1/s.x, 0,      0,     0,
+                 0,     1/s.y,  0,     0,
+                 0,     0,      1/s.z, 0,
+                 0,     0,      0,     1);
+        return new Transform(m.mul(scale), m.mul(inverse));
     }
 
     public Transform rotateX(double a){
-        return null;
+        double cosA = Math.cos(a);
+        double sinA = Math.sin(a);
+
+        Mat4x4 rotateX = new Mat4x4(1,0,0,0,0,cosA,-sinA,0,0,sinA,cosA,0,0,0,0,1);
+        Mat4x4 inverse = new Mat4x4(1,0,0,0,0,cosA,sinA,0,0,-sinA,cosA,0,0,0,0,1);
+
+        return new Transform(m.mul(rotateX), m.mul(inverse));
     }
 
     public Transform rotateY(double a){
-        return null;
+        double cosA = Math.cos(a);
+        double sinA = Math.sin(a);
+
+        Mat4x4 rotateY = new Mat4x4(cosA,0,sinA,0,0,1,0,0,-sinA,0,cosA,0,0,0,0,1);
+        Mat4x4 inverse = new Mat4x4(cosA,0,-sinA,0,0,1,0,0,sinA,0,cosA,0,0,0,0,1);
+
+        return new Transform(m.mul(rotateY), m.mul(inverse));
     }
 
     public Transform rotateZ(double a){
-        return null;
+        double cosA = Math.cos(a);
+        double sinA = Math.sin(a);
+
+        Mat4x4 rotateZ = new Mat4x4(cosA,-sinA,0,0,sinA,cosA,0,0,0,0,1,0,0,0,0,1);
+        Mat4x4 inverse = new Mat4x4(cosA,sinA,0,0,-sinA,cosA,0,0,0,0,1,0,0,0,0,1);
+
+        return new Transform(m.mul(rotateZ), m.mul(inverse));
     }
 
     public Ray mul(Ray ray){
-        return null;
+        return new Ray(i.mul(ray.o), i.mul(ray.d));
     }
 
     public Normal3 mul(Normal3 n){
-        return null;
+        return i.transpose().mul(n);
     }
 }
