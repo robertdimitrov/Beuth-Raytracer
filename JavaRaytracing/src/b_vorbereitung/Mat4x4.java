@@ -144,6 +144,12 @@ public class Mat4x4 {
                 m31*p.x + m32*p.y + m33*p.z + m34*1);
     }
 
+    public Normal3 mul(final Normal3 n){
+        return new Normal3(m11*n.x + m12*n.y + m13*n.z + m14*1,
+                m21*n.x + m22*n.y + m23*n.z + m24*1,
+                m31*n.x + m32*n.y + m33*n.z + m34*1);
+    }
+
     /**
      * Multipliziert diese Mat4x4 mit einer anderen Mat4x4
      * @param mat die zweite 4x4-Matrix
