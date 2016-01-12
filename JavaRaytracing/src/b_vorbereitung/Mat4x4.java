@@ -127,9 +127,9 @@ public class Mat4x4 {
      */
     public Vector3 mul(final Vector3 v){
         if(v==null) throw new IllegalArgumentException("v darf nicht null sein");
-        return new Vector3(m11*v.x + m12*v.y + m13*v.z + m14*0,
-                m21*v.x + m22*v.y + m23*v.z + m24*0,
-                m31*v.x + m32*v.y + m33*v.z + m34*0);
+        return new Vector3(m11*v.x + m12*v.y + m13*v.z,
+                m21*v.x + m22*v.y + m23*v.z,
+                m31*v.x + m32*v.y + m33*v.z);
     }
 
     /**
@@ -145,9 +145,9 @@ public class Mat4x4 {
     }
 
     public Normal3 mul(final Normal3 n){
-        return new Normal3(m11*n.x + m12*n.y + m13*n.z + m14*1,
-                m21*n.x + m22*n.y + m23*n.z + m24*1,
-                m31*n.x + m32*n.y + m33*n.z + m34*1);
+        return new Normal3(m11*n.x + m12*n.y + m13*n.z,
+                m21*n.x + m22*n.y + m23*n.z,
+                m31*n.x + m32*n.y + m33*n.z);
     }
 
     /**

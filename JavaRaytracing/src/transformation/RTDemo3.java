@@ -52,7 +52,7 @@ public class RTDemo3 {
         Set<Geometry> geometries = new HashSet<Geometry>();
         geometries.add(rootNode1);
         
-        PerspectiveCamera camera = new PerspectiveCamera(new Point3(0,5,5), new Vector3(0, 0-1, -1), new Vector3(0,1,0), Math.PI/4);
+        PerspectiveCamera camera = new PerspectiveCamera(new Point3(0,10,5), new Vector3(0, 0-1, -1), new Vector3(0,1,0), Math.PI/4);
         ArrayList<Light> lights = new ArrayList<Light>();
         PointLight pointLight = new PointLight(Color.WHITE, new Point3(8,8,0), true);
         lights.add(pointLight);
