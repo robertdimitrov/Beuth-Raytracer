@@ -24,12 +24,8 @@ public class Plane extends Geometry {
 	/**
 	 * Erzeugt eine Ebene
 	 * 
-	 * @param a
-	 *            der Ursprung dieser Ebene als Point3
-	 * @param n
-	 *            der Stuetzvektor dieser Ebene
-	 * @param color
-	 *            die Farbe dieser Ebene
+	 * @param material
+	 *            das {@link Material} dieser Ebene
 	 */
 	public Plane(final Material material) {
 		super(material);
@@ -40,6 +36,7 @@ public class Plane extends Geometry {
 	@Override
 	public Hit hit(Ray r) {
 		final double teiler = r.d.dot(n);
+//		System.out.println(r.toString());
 		if (teiler != 0) {
 			final double t = a.sub(r.o).dot(n) / teiler;
 			if(t < 0.00001){

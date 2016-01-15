@@ -34,7 +34,7 @@ public class Transform {
                  0,1,0,-t.y,
                  0,0,1,-t.z,
                  0,0,0,1);
-        return new Transform(m.mul(translation), m.mul(inverse));
+        return new Transform(m.mul(translation), inverse.mul(i));
     }
 
     public Transform scale(Vector3 s){
@@ -48,7 +48,7 @@ public class Transform {
                  0,     1/s.y,  0,     0,
                  0,     0,      1/s.z, 0,
                  0,     0,      0,     1);
-        return new Transform(m.mul(scale), m.mul(inverse));
+        return new Transform(m.mul(scale), inverse.mul(i));
     }
 
     public Transform rotateX(double a){
@@ -58,7 +58,7 @@ public class Transform {
         Mat4x4 rotateX = new Mat4x4(1,0,0,0,0,cosA,-sinA,0,0,sinA,cosA,0,0,0,0,1);
         Mat4x4 inverse = new Mat4x4(1,0,0,0,0,cosA,sinA,0,0,-sinA,cosA,0,0,0,0,1);
 
-        return new Transform(m.mul(rotateX), m.mul(inverse));
+        return new Transform(m.mul(rotateX), inverse.mul(i));
     }
 
     public Transform rotateY(double a){
@@ -68,7 +68,7 @@ public class Transform {
         Mat4x4 rotateY = new Mat4x4(cosA,0,sinA,0,0,1,0,0,-sinA,0,cosA,0,0,0,0,1);
         Mat4x4 inverse = new Mat4x4(cosA,0,-sinA,0,0,1,0,0,sinA,0,cosA,0,0,0,0,1);
 
-        return new Transform(m.mul(rotateY), m.mul(inverse));
+        return new Transform(m.mul(rotateY), inverse.mul(i));
     }
 
     public Transform rotateZ(double a){
@@ -78,7 +78,7 @@ public class Transform {
         Mat4x4 rotateZ = new Mat4x4(cosA,-sinA,0,0,sinA,cosA,0,0,0,0,1,0,0,0,0,1);
         Mat4x4 inverse = new Mat4x4(cosA,sinA,0,0,-sinA,cosA,0,0,0,0,1,0,0,0,0,1);
 
-        return new Transform(m.mul(rotateZ), m.mul(inverse));
+        return new Transform(m.mul(rotateZ), inverse.mul(i));
     }
 
     public Ray mul(Ray ray){
