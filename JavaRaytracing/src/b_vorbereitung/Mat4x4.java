@@ -1,6 +1,7 @@
 package b_vorbereitung;
 
 /**
+ * Diese Klasse stellt eine Matrix mit vier Zeilen und vier Spalten dar.
  * @author Kosmonaut
  */
 public class Mat4x4 {
@@ -74,10 +75,10 @@ public class Mat4x4 {
      * Die Einheitsmatrix
      */
     public final static Mat4x4 EINHEITSMATRIX =
-            new Mat4x4( 1,0,0,0,
-                        0,1,0,0,
-                        0,0,1,0,
-                        0,0,0,1);
+            new Mat4x4( 1.0,0,0,0,
+                        0,1.0,0,0,
+                        0,0,1.0,0,
+                        0,0,0,1.0);
 
     /**
      * Erzeugt ein neues Mat4x4-Objekt
@@ -144,7 +145,13 @@ public class Mat4x4 {
                 m31*p.x + m32*p.y + m33*p.z + m34*1);
     }
 
+    /**
+     * Multipliziert diese Mat4x4 mit einer Normale (mit w = 0)
+     * @param n die Normale
+     * @return das Produkt der Matrix und der Normalen
+     */
     public Normal3 mul(final Normal3 n){
+        if(n==null) throw new IllegalArgumentException("n darf nicht null sein");
         return new Normal3(m11*n.x + m12*n.y + m13*n.z,
                 m21*n.x + m22*n.y + m23*n.z,
                 m31*n.x + m32*n.y + m33*n.z);

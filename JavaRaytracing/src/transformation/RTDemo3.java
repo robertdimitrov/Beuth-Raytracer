@@ -20,11 +20,7 @@ import aufgabe01.Sphere;
 import aufgabe01.World;
 import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
-import beleuchtung_I.LambertMaterial;
-import beleuchtung_I.Light;
-import beleuchtung_I.PointLight;
-import beleuchtung_I.RTPanel;
-import beleuchtung_I.ReflectiveMaterial;
+import beleuchtung_I.*;
 
 public class RTDemo3 {
 
@@ -76,8 +72,7 @@ public class RTDemo3 {
 		final Node tests = new Node(transformationBig, geomList2);
 		// geometries.add(tests);
 
-		final Sphere sphere2 = new Sphere(new ReflectiveMaterial(
-				Color.RED, Color.BLACK, 64, reflective));
+		final Sphere sphere2 = new Sphere(new PhongMaterial(Color.RED, reflective, 4));
 		geomList1.add(sphere2);
 
 		// final AxisAlignedBox aab = new AxisAlignedBox(
@@ -93,9 +88,10 @@ public class RTDemo3 {
 		// new SingleColorMaterial(Color.RED));
 
 		Transform transformation1 = new Transform();
+//		transformation1 = transformation1.scale(new Vector3(1.0, 1.0, 2.0));
 		 transformation1 = transformation1.rotateY(-Math.PI / 4);
 		 transformation1 = transformation1.rotateZ(-Math.PI / 4);
-			transformation1 = transformation1.scale(new Vector3( 4, 1, 4 ));
+			transformation1 = transformation1.scale(new Vector3( 4.0,1.0,4.0 ));
 //		 transformation1 = transformation1.rotateZ(-Math.PI / 2);
 		// transformation1 = transformation1.translation(new Vector3( -1, -1, 0
 		// ));
@@ -118,7 +114,7 @@ public class RTDemo3 {
 
 		ArrayList<Light> lights = new ArrayList<Light>();
 		PointLight pointLight = new PointLight(Color.WHITE,
-				new Point3(0, 0, 20), false);
+				new Point3(0, 0, 20), true);
 		lights.add(pointLight);
 
 		World world = new World(geometries, lights, Color.BLACK, ambient);
@@ -131,6 +127,7 @@ public class RTDemo3 {
 		final List<Geometry> geomList11 = new ArrayList<Geometry>(); 
 		geomList11.add(aab);
 		Transform transformation2 = new Transform();
+//		transformation2 = transformation2.scale(new Vector3(4,1,12));
 		 transformation2 = transformation2.rotateY(-Math.PI / 4);
 		 transformation2 = transformation2.rotateZ(-Math.PI / 4);
 			transformation2 = transformation2.scale(new Vector3( 4, 1, 12 ));

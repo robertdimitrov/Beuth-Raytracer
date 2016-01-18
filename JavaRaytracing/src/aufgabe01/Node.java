@@ -15,18 +15,32 @@ import java.util.Set;
  */
 public class Node extends Geometry {
 
+	/**
+	 * Transform-Objekt
+	 */
     public final Transform transform;
+	/**
+	 * Liste von Geometrien
+	 */
     public final List<Geometry> geometries;
 
+	/**
+	 * Erstellt ein neues Node-Objekt
+	 * @param transform das entsprechende Transform-Objekt
+	 * @param geometries Liste der Geometrien
+     */
     public Node(Transform transform, List<Geometry> geometries) {
-        super(null);
-        this.transform = transform;
+		super(null);
+		if(transform==null) throw new IllegalArgumentException("transform darf nicht null sein");
+		if(geometries==null) throw new IllegalArgumentException("geometries darf nicht null sein");
+		this.transform = transform;
         this.geometries = geometries;
     }
 
     @Override
     public Hit hit(Ray r) {
-    	final Ray transformedRay = transform.mul(r);
+    	if(r==null) throw new IllegalArgumentException("r darf nicht null sein");
+		final Ray transformedRay = transform.mul(r);
 		Set<Hit> helpSet = new HashSet<Hit>();
 		Hit minT = null;
 		for(Geometry g : geometries){
