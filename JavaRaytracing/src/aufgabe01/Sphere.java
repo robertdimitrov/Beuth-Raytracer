@@ -26,7 +26,7 @@ public class Sphere extends Geometry {
 	/**
 	 * Ein Kreis
 	 * 
-	 * @param c
+r	 * @param c
 	 *            Der Mittelpunkt des Kreis
 	 * @param r
 	 *            Der Radius des Kreis
@@ -46,41 +46,25 @@ public class Sphere extends Geometry {
 		final double b = r.d.dot((oMinusC).mul(2));
 		final double c = (oMinusC).dot(oMinusC) - radius * radius;
 
-		final double t1 = (-b + Math.sqrt(b * b - 4 * a * c)) / 2 * a;
-		final double t2 = (-b - Math.sqrt(b * b - 4 * a * c)) / 2 * a;
-		double smallestPositiveT;
-		smallestPositiveT = smallestPositive(t1, t2);
+		final double t1 = (-b + Math.sqrt(b * b - 4 * a * c)) / (2 * a);
+		final double t2 = (-b - Math.sqrt(b * b - 4 * a * c)) / (2 * a);
+		
+		if( t2 > 0.0000001 ) {
+			return new Hit( t2, r, r.at( t2 ).sub( this.center ).normalized().asNormal(), this );
+		} else if( t1 > 0.0000001 ) {
+			return new Hit( t1, r, r.at( t1 ).sub( this.center ).normalized().asNormal(), this );
+		}
+		
+		return null;
+		
+		/*final double smallestPositiveT = smallestPositive(t1, t2);
 
 		if (smallestPositiveT != -1) {
 			return new Hit(smallestPositiveT, r, r.at(smallestPositiveT).sub(center).asNormal(), this);
 		} else {
 			return null;
-		}
+		}*/
 
-	}
-
-	/**
-	 * Eine Funktion, die die kleinere nicht-negative Zahl aus den Parametern
-	 * zur�ckgibt
-	 * 
-	 * @param x
-	 *            Die erste zu vergleichende Zahl
-	 * @param y
-	 *            Die erste zu vergleichende Zahl
-	 *
-	 * @return kleinere nicht-negative Zahl von t1 und t2 oder '-1', falls t1
-	 *         und t2 negative Zahlen sind
-	 */
-	public double smallestPositive(final double x, final double y) {
-		if (x <= y && x >= 0) {
-			return x;
-		} else {
-			if (y >= 0) {
-				return y;
-			}
-		}
-
-		return -1;
 	}
 
 	@Override
@@ -89,3 +73,4 @@ public class Sphere extends Geometry {
 				+ super.toString();
 	}
 }
+

@@ -67,6 +67,8 @@ public class RTPanel extends JPanel {
                 Hit hit=welt.hit(r);
                 if(hit!=null){
                     int color=convertColor(hit.geo.material.colorFor(hit, welt,new Tracer(welt, 5)));
+                	//funky
+//                	int color = convertColor(new Color(hit.n.x/2+.5, hit.n.y/2+.5, hit.n.z/2+.5));
                     image.setRGB(i, j,color);
                 }
                 else{int color = convertColor(welt.backgroundColor);
