@@ -25,7 +25,7 @@ public class SingleColorMaterial extends Material{
 	 * Erstellt ein neues SingleColorMaterial-Objekt
 	 * @param color die Farbe des geometrischen Körpers
      */
-	SingleColorMaterial(final Color color){
+	public SingleColorMaterial(final Color color){
 		
 		this.color=color;
 	}
