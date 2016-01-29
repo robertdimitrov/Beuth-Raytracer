@@ -37,34 +37,34 @@ public class Raytracer extends JPanel{
 		this.h=h;		
 		this.image = new BufferedImage(w,h,BufferedImage.TYPE_INT_RGB);		
 		this.setSize(w, h);		
-		createImage();
+//		createImage();
 	}
 	
 	/**
 	 * Jedes Pixel wird in einer geschachtelten Schleife durchlaufen und ein neuer Strahl erzeugt mit der �bergebenen kamera
 	 * @return image
 	 */
-	public BufferedImage createImage(){
-	
-		int count=0;
-		for(int i=0; i<w;i++){			
-			for(int j=0;j<h;j++){				
-				Ray r=kamera.rayFor(w, h, i, j);			
-				Hit hit=welt.hit(r);
-				if(hit!=null){
-					// Aus dem zur�ckgegeben Hit-Objekt wird die Farbe ausgelesen und konvertiert, da die Methode setRGB() von BufferedImage 
-					// einen int-Wert ben�tigt, um die Farbe zu setzen
-					int color=convertColor(hit.geo.material.colorFor(hit, welt));
-					image.setRGB(i, j,color);
-				}
-				else{int color = convertColor(welt.backgroundColor);
-					image.setRGB(i, j, color);
-				}
-			}
-		}
-		
-		return image;
-	}
+//	public BufferedImage createImage(){
+//
+//		int count=0;
+//		for(int i=0; i<w;i++){
+//			for(int j=0;j<h;j++){
+//				Ray r=kamera.rayFor(w, h, i, j);
+//				Hit hit=welt.hit(r);
+//				if(hit!=null){
+//					// Aus dem zur�ckgegeben Hit-Objekt wird die Farbe ausgelesen und konvertiert, da die Methode setRGB() von BufferedImage
+//					// einen int-Wert ben�tigt, um die Farbe zu setzen
+//					int color=convertColor(hit.geo.material.colorFor(hit, welt));
+//					image.setRGB(i, j,color);
+//				}
+//				else{int color = convertColor(welt.backgroundColor);
+//					image.setRGB(i, j, color);
+//				}
+//			}
+//		}
+//
+//		return image;
+//	}
 	
 	/**
 	 * 

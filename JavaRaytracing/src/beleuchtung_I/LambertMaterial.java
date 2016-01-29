@@ -13,7 +13,7 @@ import b_vorbereitung.Vector3;
 /**
  * @author Robert
  * 
- * Klasse repräsentiert diffus-reflektierendes Material
+ * Klasse reprï¿½sentiert diffus-reflektierendes Material
  *
  */
 public class LambertMaterial extends Material {
