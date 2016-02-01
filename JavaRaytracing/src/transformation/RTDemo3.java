@@ -30,41 +30,42 @@ public class RTDemo3 {
 
 		// Szene 1
 		Color reflective = new Color(0.5, 0.5, 0.5);
+		reflective = Color.WHITE;
 		Color ambient = new Color(0.25, 0.25, 0.25);
 		Set<Geometry> geometries = new HashSet<Geometry>();
 
 		final List<Geometry> geomList1 = new ArrayList<Geometry>();
 
 		final List<Geometry> geomList2 = new ArrayList<Geometry>();
-		final Sphere sphere = new Sphere(
-				new LambertMaterial(new Color(1, 0, 0)));
-		geomList2.add(sphere);
-		final List<Geometry> geom3 = new ArrayList<Geometry>();
-		geom3.add(sphere);
-		final Node n11 = new Node(new Transform().translation(new Vector3(2, 2,
-				2)), geom3);
-		final Node n12 = new Node(new Transform().translation(new Vector3(2, 2,
-				-2)), geom3);
-		final Node n13 = new Node(new Transform().translation(new Vector3(2,
-				-2, 2)), geom3);
-		final Node n14 = new Node(new Transform().translation(new Vector3(2,
-				-2, -2)), geom3);
-		final Node n15 = new Node(new Transform().translation(new Vector3(-2,
-				2, 2)), geom3);
-		final Node n16 = new Node(new Transform().translation(new Vector3(-2,
-				2, -2)), geom3);
-		final Node n17 = new Node(new Transform().translation(new Vector3(-2,
-				-2, 2)), geom3);
-		final Node n18 = new Node(new Transform().translation(new Vector3(-2,
-				-2, -2)), geom3);
-		geomList2.add(n11);
-		geomList2.add(n12);
-		geomList2.add(n13);
-		geomList2.add(n14);
-		geomList2.add(n15);
-		geomList2.add(n16);
-		geomList2.add(n17);
-		geomList2.add(n18);
+//		final Sphere sphere = new Sphere(
+//				new LambertMaterial(new Color(1, 0, 0)));
+//		geomList2.add(sphere);
+//		final List<Geometry> geom3 = new ArrayList<Geometry>();
+//		geom3.add(sphere);
+//		final Node n11 = new Node(new Transform().translation(new Vector3(2, 2,
+//				2)), geom3);
+//		final Node n12 = new Node(new Transform().translation(new Vector3(2, 2,
+//				-2)), geom3);
+//		final Node n13 = new Node(new Transform().translation(new Vector3(2,
+//				-2, 2)), geom3);
+//		final Node n14 = new Node(new Transform().translation(new Vector3(2,
+//				-2, -2)), geom3);
+//		final Node n15 = new Node(new Transform().translation(new Vector3(-2,
+//				2, 2)), geom3);
+//		final Node n16 = new Node(new Transform().translation(new Vector3(-2,
+//				2, -2)), geom3);
+//		final Node n17 = new Node(new Transform().translation(new Vector3(-2,
+//				-2, 2)), geom3);
+//		final Node n18 = new Node(new Transform().translation(new Vector3(-2,
+//				-2, -2)), geom3);
+//		geomList2.add(n11);
+//		geomList2.add(n12);
+//		geomList2.add(n13);
+//		geomList2.add(n14);
+//		geomList2.add(n15);
+//		geomList2.add(n16);
+//		geomList2.add(n17);
+//		geomList2.add(n18);
 		// Transform transformation2 = new Transform().translation(new
 		// Vector3(0, 1, 0));
 		Transform transformationBig = new Transform().scale(new Vector3(.2, .2,
@@ -72,8 +73,12 @@ public class RTDemo3 {
 		final Node tests = new Node(transformationBig, geomList2);
 		// geometries.add(tests);
 
-		final Sphere sphere2 = new Sphere(new PhongMaterial(Color.RED, reflective, 4));
+		final Sphere sphere2 = new Sphere(new PhongMaterial(Color.RED, reflective, 64));
 		geomList1.add(sphere2);
+
+//		final Sphere sphere2 = new Sphere(new ReflectiveMaterial(Color.RED, Color.BLACK, 4, reflective));
+//		geomList1.add(sphere2);
+
 
 		// final AxisAlignedBox aab = new AxisAlignedBox(
 		// new ReflectiveMaterial(Color.YELLOW, Color.BLACK, 64, reflective));
@@ -88,10 +93,10 @@ public class RTDemo3 {
 		// new SingleColorMaterial(Color.RED));
 
 		Transform transformation1 = new Transform();
-//		transformation1 = transformation1.scale(new Vector3(1.0, 1.0, 2.0));
+//		transformation1 = transformation1.scale(new Vector3(4.0, 4.0, 1.0));
 		 transformation1 = transformation1.rotateY(-Math.PI / 4);
 		 transformation1 = transformation1.rotateZ(-Math.PI / 4);
-			transformation1 = transformation1.scale(new Vector3( 4.0,1.0,4.0 ));
+			transformation1 = transformation1.scale(new Vector3( 4.0 ,1,4.0 ));
 //		 transformation1 = transformation1.rotateZ(-Math.PI / 2);
 		// transformation1 = transformation1.translation(new Vector3( -1, -1, 0
 		// ));
@@ -100,7 +105,7 @@ public class RTDemo3 {
 		// transformation1 = transformation1.translation(new Vector3( 0, 2, 0
 		// ));
 		// transformation1 = transformation1.rotateZ(Math.PI/2);
-		// transformation1 = transformation1.translation(new Vector3( 0, 2, 0
+		// transformation1 = transformation1.translation(new Vector3( 0, 2,
 		// ));
 
 		final Node rootNode1 = new Node(transformation1, geomList1);

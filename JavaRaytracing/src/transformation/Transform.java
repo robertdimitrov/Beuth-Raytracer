@@ -143,12 +143,11 @@ public class Transform {
 
     /**
      * Multipliziert die Inverse der Transformationsmatrix mit einer Normale
-     * @param n
+     * @param normal
      * @return
      */
-    public Normal3 mul(Normal3 n){
-        if(n==null) throw new IllegalArgumentException("n darf nicht null sein");
-        return i.transpose().mul(new Vector3(n.x, n.y, n.z).asNormal());
+    public Normal3 mul(final Normal3 normal) {
+        return (i.transpose().mul(new Vector3(normal.x, normal.y, normal.z))).normalized().asNormal();
     }
 }
 

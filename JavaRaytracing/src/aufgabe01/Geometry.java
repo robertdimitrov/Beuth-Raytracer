@@ -13,6 +13,7 @@ public abstract class Geometry {
 	 * Das Material dieser Geometrischen Gestalt
 	 */
 	public Material material;
+	public final static double EPSILON = 0.0001;
 
 	/**
 	 * Eine Geometrische Gestalt
