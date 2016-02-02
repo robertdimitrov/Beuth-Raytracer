@@ -8,6 +8,7 @@ import b_vorbereitung.Vector3;
 import transformation.Transform;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -28,38 +29,35 @@ public class RTDemo_2 {
         Color reflective = new Color(0.5, 0.5, 0.5);
         Color ambient = new Color(0.25, 0.25, 0.25);
         int exponent = 64;
-//        Plane plane = new Plane(new Point3(0,0,0), new Normal3(0,1,0),
-//                new ReflectiveMaterial(new Color(0.1, 0.1, 0.1), Color.BLACK, exponent, reflective));
-//        Sphere sphere = new Sphere(new Point3(-3, 1, 0), 1,
-//                new ReflectiveMaterial(Color.RED, Color.WHITE, exponent, reflective));
-//        Sphere sphere2 = new Sphere(new Point3(0,1,0), 1,
-//                new ReflectiveMaterial(Color.GREEN, Color.WHITE, exponent, reflective));
-//        Sphere sphere3 = new Sphere(new Point3(3,1,0), 1,
-//                new ReflectiveMaterial(Color.BLUE, Color.WHITE, exponent, reflective));
-        Sphere sphere = new Sphere(new LambertMaterial(new Color(1,1,0)));
-//        AxisAlignedBox box = new AxisAlignedBox(new LambertMaterial(Color.RED));
-        ArrayList geometries = new ArrayList();
+        ArrayList<Geometry> geometries = new ArrayList<Geometry>();
+        Plane plane = new Plane(
+                new ReflectiveMaterial(new Color(0.1, 0.1, 0.1), Color.BLACK, exponent, reflective));
+        geometries.add(plane);
+        Sphere sphere = new Sphere(new Point3(-3, 1, 0), 1,
+                new ReflectiveMaterial(Color.RED, Color.WHITE, exponent, reflective));
         geometries.add(sphere);
-//        geometries.add(plane);r
-//        geometries.add(sphere);
-//        geometries.add(sphere2);
-//        geometries.add(sphere3);
+        Sphere sphere2 = new Sphere(new Point3(0,1,0), 1,
+                new ReflectiveMaterial(Color.GREEN, Color.WHITE, exponent, reflective));
+        geometries.add(sphere2);
+        Sphere sphere3 = new Sphere(new Point3(3,1,0), 1,
+                new ReflectiveMaterial(Color.BLUE, Color.WHITE, exponent, reflective));
+        geometries.add(sphere3);
 
         Transform transform = new Transform();
-        transform.scale(new Vector3(4,4,4));
+//        transform = transform.scale(new Vector3(4,4,4));
         Node node = new Node(transform, geometries);
-//        geometries.add(node);
 
-
-
-
-        PerspectiveCamera camera = new PerspectiveCamera(new Point3(8,8,8), new Vector3(-1, -1, -1), new Vector3(0,1,0), Math.PI/4);
+        HashSet<Geometry> geos = new HashSet<Geometry>();
+        geos.add(node);
+        
         PointLight pointLight = new PointLight(Color.WHITE, new Point3(8,8,8), true);
         ArrayList<Light> lights = new ArrayList<Light>();
         lights.add(pointLight);
-        HashSet geos = new HashSet();
-        geos.add(node);
+
         World world = new World(geos, lights, Color.BLACK, ambient);
+
+        PerspectiveCamera camera = new PerspectiveCamera(new Point3(8,8,8), new Vector3(-1, -1, -1), new Vector3(0,1,0), Math.PI/4);
+        
         RTPanel panel1 = new RTPanel(camera, world);
 
         // Szene 2

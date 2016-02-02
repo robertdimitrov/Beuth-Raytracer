@@ -42,20 +42,21 @@ public class Node extends Geometry {
     	if(r==null) throw new IllegalArgumentException("r darf nicht null sein");
 		final Ray transformedRay = transform.mul(r);
 		Set<Hit> helpSet = new HashSet<Hit>();
-		Hit minT = null;
+		Hit trueHit = null;
 		for(Geometry g : geometries){
-			Hit hit = g.hit(transformedRay);
-			if(minT == null){
-				minT = hit;
+			Hit newHit = g.hit(transformedRay);
+			if(trueHit == null){
+				trueHit = newHit;
 			}
-			if(hit!=null && hit.t < minT.t && hit.t > 0){				
-				helpSet.add(hit);
+			if(newHit!=null && newHit.t < trueHit.t && newHit.t > 0){				
+				helpSet.add(newHit);
 			}
 		}
-		if(minT == null){
+		if(trueHit == null){
 			return null;
 		}
-		return new Hit(minT.t, r, transform.mul(minT.n), minT.geo);
+		final Normal3 normal = trueHit.n;
+		return new Hit(trueHit.t, r, transform.i.transpose().mul(new Vector3(normal.x, normal.y, normal.z)).normalized().asNormal(), trueHit.geo);
     }
     
  

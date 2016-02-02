@@ -1,4 +1,4 @@
-/**
+ /**
  * 
  */
 package aufgabe01;
@@ -25,18 +25,21 @@ public class Sphere extends Geometry {
 
 	/**
 	 * Ein Kreis
-	 * 
-r	 * @param c
-	 *            Der Mittelpunkt des Kreis
-	 * @param r
-	 *            Der Radius des Kreis
-	 * @param color
-	 *            Die Farbe des Kreises
+	 *
 	 */
 	public Sphere(final Material material) {
 		super(material);
 		this.center = new Point3(0, 0, 0);
 		this.radius = 1;
+	}
+	/**
+	 * Ein Kreis
+	 *
+	 */
+	public Sphere(final Point3 p, final double r, final Material material) {
+		super(material);
+		this.center = p;
+		this.radius = r;
 	}
 
 	public Hit hit(Ray r) {

@@ -5,10 +5,6 @@ import aufgabe01.Hit;
 import aufgabe01.World;
 
 /**
-<<<<<<< HEAD
-
-=======
->>>>>>> 9e601891a521688fb0a7ff691b597635bb0d1b3b
  * @author Clemens
  * 
  * Klasse repräsentiert ein Material

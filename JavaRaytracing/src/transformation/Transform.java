@@ -86,6 +86,6 @@ public class Transform {
     }
 
     public Normal3 mul(Normal3 n){
-        return i.transpose().mul(new Vector3(n.x, n.y, n.z).normalized().asNormal());
+        return i.transpose().mul(new Vector3(n.x, n.y, n.z)).normalized().asNormal();
     }
 }
