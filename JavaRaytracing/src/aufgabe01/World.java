@@ -28,13 +28,13 @@ public class World {
 	
 	/**
 	 * @param set Eine Sammlung von Geometry-Objekten
-	 * @param color Farbe für die backgroundColor
+	 * @param bgColor Farbe für die backgroundColor
 	 */
-	public World(Set<Geometry> set, ArrayList<Light>lights, Color color,Color ambientLight ){
+	public World(final Set<Geometry> set, final ArrayList<Light>lights, final Color bgColor, final Color ambientLight ){
 		
 		welt = set;	
 		this.lights=lights;
-		backgroundColor=color;
+		backgroundColor=bgColor;
 		this.ambientLight=ambientLight;
 	}
 	
@@ -58,25 +58,27 @@ public class World {
 
 		Set<Hit> helpSet = new HashSet<Hit>();
 	
-		Hit minT = null;
+		Hit trueHit = null;
 
 		for(Geometry g : welt){
-			Hit hit = g.hit(r);
-			if(hit!=null && hit.t > 0){				
-				helpSet.add(hit);
+			Hit newHit = g.hit(r);
+			if(newHit!=null && newHit.t > 0){
+//				System.out.println("w hit"+newHit.geo.getClass()+"  "+newHit.t);
+				helpSet.add(newHit);
 			}
 		}
+		if(helpSet.size()>1)System.out.println("w aaaaaa");
 		if(helpSet.size()!=0){
 			Iterator<Hit> it = helpSet.iterator();
-			minT=it.next();
+			trueHit=it.next();
 			while(it.hasNext()){
 				Hit help = it.next();
-				if(minT.t>help.t){
-					minT=help;
+				if(trueHit.t>help.t){
+					trueHit=help;
 				}
 			}	
 		}
-		return minT;						
+		return trueHit;						
 	}
 
 	@Override

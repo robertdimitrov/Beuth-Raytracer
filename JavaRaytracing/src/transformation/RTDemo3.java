@@ -49,8 +49,8 @@ public class RTDemo3 {
 //		final Node tests = new Node(transformationBig, geomList2);
 //		geometries.add(tests);
 
-		final Sphere sphere2 = new Sphere(new PhongMaterial(
-				Color.RED, Color.WHITE, 64));
+		final Sphere sphere2 = new Sphere(new ReflectiveMaterial(
+				Color.RED, Color.WHITE, 64, reflective));
 		geomList1.add(sphere2);
 
 		Transform transformation1 = new Transform();
@@ -77,26 +77,26 @@ public class RTDemo3 {
 		RTPanel panel1 = new RTPanel(camera, world);
 
 		// Szene 2
-//		Set<Geometry> geometries11 = new HashSet<Geometry>();
-//		final AxisAlignedBox aab = new AxisAlignedBox(new ReflectiveMaterial(
-//				Color.YELLOW, Color.WHITE, 64, reflective));
-//		final List<Geometry> geomList11 = new ArrayList<Geometry>(); 
-//		geomList11.add(aab);
-//		Transform transformation2 = new Transform();
-//		transformation2 = transformation2.rotateY(-Math.PI / 4);
-//		transformation2 = transformation2.rotateZ(-Math.PI / 4);
-//		transformation2 = transformation2.scale(new Vector3( 4, 1, 12 ));
-//		geometries11.add(new Node(transformation2, geomList11));
-//		ArrayList<Light> lights2 = new ArrayList<Light>();
-//		PointLight pointLight2 = new PointLight(Color.WHITE,
-//				new Point3(-6, 1, 16), false);
-//		lights2.add(pointLight2);
-//		World welt2 = new World(geometries11, lights2, Color.BLACK, ambient);
-//		RTPanel panel2 = new RTPanel(camera, welt2);
+		Set<Geometry> geometries11 = new HashSet<Geometry>();
+		final AxisAlignedBox aab = new AxisAlignedBox(new ReflectiveMaterial(
+				Color.YELLOW, Color.WHITE, 64, reflective));
+		final List<Geometry> geomList11 = new ArrayList<Geometry>(); 
+		geomList11.add(aab);
+		Transform transformation2 = new Transform();
+		transformation2 = transformation2.rotateY(-Math.PI / 4);
+		transformation2 = transformation2.rotateZ(-Math.PI / 4);
+		transformation2 = transformation2.scale(new Vector3( 4, 1, 12 ));
+		geometries11.add(new Node(transformation2, geomList11));
+		ArrayList<Light> lights2 = new ArrayList<Light>();
+		PointLight pointLight2 = new PointLight(Color.WHITE,
+				new Point3(-6, 1, 16), false);
+		lights2.add(pointLight2);
+		World welt2 = new World(geometries11, lights2, Color.BLACK, ambient);
+		RTPanel panel2 = new RTPanel(camera, welt2);
 
 		JTabbedPane pane = new JTabbedPane();
 		pane.addTab("Szene 1", panel1);
-//		pane.addTab("Szene 2", panel2);
+		pane.addTab("Szene 2", panel2);
 
 		container.add(pane);
 

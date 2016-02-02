@@ -41,7 +41,7 @@ public class Node extends Geometry {
     public Hit hit(Ray r) {
     	if(r==null) throw new IllegalArgumentException("r darf nicht null sein");
 		final Ray transformedRay = transform.mul(r);
-		Set<Hit> helpSet = new HashSet<Hit>();
+
 		Hit trueHit = null;
 		for(Geometry g : geometries){
 			Hit newHit = g.hit(transformedRay);
@@ -49,7 +49,7 @@ public class Node extends Geometry {
 				trueHit = newHit;
 			}
 			if(newHit!=null && newHit.t < trueHit.t && newHit.t > 0){				
-				helpSet.add(newHit);
+				trueHit = newHit;
 			}
 		}
 		if(trueHit == null){

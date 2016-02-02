@@ -30,9 +30,13 @@ public class RTDemo_2 {
         Color ambient = new Color(0.25, 0.25, 0.25);
         int exponent = 64;
         ArrayList<Geometry> geometries = new ArrayList<Geometry>();
+
         Plane plane = new Plane(
                 new ReflectiveMaterial(new Color(0.1, 0.1, 0.1), Color.BLACK, exponent, reflective));
         geometries.add(plane);
+        Plane plane2 = new Plane(
+                new ReflectiveMaterial(new Color(0.1, 0.1, 0.1), Color.BLACK, exponent, reflective));
+        geometries.add(plane2);
         Sphere sphere = new Sphere(new Point3(-3, 1, 0), 1,
                 new ReflectiveMaterial(Color.RED, Color.WHITE, exponent, reflective));
         geometries.add(sphere);
