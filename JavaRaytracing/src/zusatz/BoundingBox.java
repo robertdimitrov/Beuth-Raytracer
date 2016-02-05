@@ -83,7 +83,7 @@ public class BoundingBox extends Geometry {
 				run.sub(lbf).mul(.5)));
 
 		final List<Geometry> geometries = new ArrayList<Geometry>();
-		geometries.add(new AxisAlignedBox(new SingleColorMaterial(Color.RED)));
+		geometries.add(new AxisAlignedBox(null));//zumBBox sehen hier material einfügen
 
 		this.box = new Node(transform, geometries);
 
@@ -91,7 +91,7 @@ public class BoundingBox extends Geometry {
 
 	@Override
 	public Hit hit(Ray r) {
-		// return box.hit(r);
+		// return box.hit(r);//Bbox sehen
 		if (box.hit(r) != null)
 			return model.hit(r);
 		return null;
