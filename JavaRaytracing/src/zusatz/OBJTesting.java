@@ -35,8 +35,9 @@ public class OBJTesting {
         Color ambient = new Color(0.25, 0.25, 0.25);
         ArrayList<Geometry> geometries = new ArrayList<Geometry>();
 
-        final Geometry obj = new ShapeFromFile( new File("./obj-objects/teddy.obj.txt"), new LambertMaterial(new Color(.9, .8, .2)));
-        geometries.add(obj);
+        final ShapeFromFile obj = new ShapeFromFile( new File("./obj-objects/teddy.obj.txt"), new LambertMaterial(new Color(.9, .8, .2)));
+        geometries.add(new BoundingBox(obj));
+//        geometries.add(obj);
         Transform transform = new Transform();
         Node node = new Node(transform, geometries);
 
@@ -49,7 +50,7 @@ public class OBJTesting {
 
         World world = new World(geos, lights, Color.BLACK, ambient);
 
-        PerspectiveCamera camera = new PerspectiveCamera(new Point3(0,0,50), new Vector3(0, 0, -1), new Vector3(0,1,0), Math.PI/4);
+        PerspectiveCamera camera = new PerspectiveCamera(new Point3(100,100,100), new Vector3(-1, -1, -1), new Vector3(0,1,0), Math.PI/4);
         
         RTPanel panel1 = new RTPanel(camera, world);
 

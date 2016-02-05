@@ -29,7 +29,7 @@ public class ShapeFromFile extends Geometry{
 	/**
 	 * Das Triangle mesh das die Figur beschreibt
 	 */
-	private final List<Triangle> triangles = new ArrayList<Triangle>();
+	public final List<Triangle> triangles = new ArrayList<Triangle>();
 	
 	/**
 	 * Eine 3D Figur aus Dreiecken
@@ -63,8 +63,6 @@ public class ShapeFromFile extends Geometry{
 			in.close();
 		}catch(FileNotFoundException fnfe){
 			System.err.println("in Raytracer: "+fnfe.toString());
-		}catch(IOException ioe){
-			System.err.println("in Raytracer: "+ioe.toString());
 		}
 		for(int[] face: faces){
 			triangles.add(new Triangle(vertices.get(face[0]-1), vertices.get(face[1]-1), vertices.get(face[2]-1), material));
