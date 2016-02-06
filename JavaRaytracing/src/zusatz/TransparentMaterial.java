@@ -53,27 +53,32 @@ public class TransparentMaterial extends Material {
 		final Point3 p = hit.ray.at(hit.t);
 
 		final double eta1 = 1;
-		final double phi1 = hit.ray.d.mul(-1).dot(hit.n);
-		final double phi2 = Math.sqrt(1 - (eta1 / indexOfRefraction)
+		final double cosPhi1 = Math.abs(hit.ray.d.mul(-1).normalized().dot(hit.n));
+		final double cosPhi2 = (Math.sqrt(1 - (eta1 / indexOfRefraction)
 				* (eta1 / indexOfRefraction)
-				* (1 - Math.cos(phi1) * Math.cos(phi1)));
+				* (1 - cosPhi1 * cosPhi1)));
 
 		final double r0 = Math.pow((eta1 - indexOfRefraction)
 				/ (eta1 + indexOfRefraction), 2);
-		final double bigR = r0 + (1 - r0) * Math.pow((1 - Math.cos(phi1)), 5);
+		final double bigR = r0 + (1 - r0) * Math.pow((1 - cosPhi1), 5);
 		final double bigT = 1 - bigR;
+		
+//		System.out.println("traM -d "+hit.ray.d.mul(-1)+" n "+hit.n+" * "+hit.ray.d.mul(-1).dot(hit.n));
+		System.out.println("traM R "+bigR+" , T "+bigT+", r0 "+r0+", oo "+  (cosPhi1));
 
+		//Reflektion berechnen
 		final Color reflected = tracer.trace(new Ray(p, hit.ray.d
 				.add(new Vector3(hit.n.x, hit.n.y, hit.n.z).mul(2 * Math
-						.cos(phi1)))));
+						.cos(cosPhi1)))));
 		if (reflected != null) {
 			color = color.add(reflected.mul(bigR));
 		}
-
+		
+		//Transmission berechnen
 		final Color seeThrough = tracer.trace(new Ray(p, hit.ray.d.mul(
 				eta1 / indexOfRefraction).sub(
-				new Vector3(hit.n.x, hit.n.y, hit.n.z).mul(Math.cos(phi2)
-						- (eta1 / indexOfRefraction) * Math.cos(phi1)).normalized().asNormal())));
+				new Vector3(hit.n.x, hit.n.y, hit.n.z).mul(Math.cos(cosPhi2)
+						- (eta1 / indexOfRefraction) * Math.cos(cosPhi1)).normalized().asNormal())));
 		if (seeThrough != null) {
 			color = color.add(seeThrough.mul(bigT));
 		}

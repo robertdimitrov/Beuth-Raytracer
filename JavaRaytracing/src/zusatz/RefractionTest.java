@@ -126,7 +126,7 @@ public class RefractionTest {
 		Transform transform10 = new Transform();
 		transform10 = transform10.translation(new Vector3(0, .5, 3.5));
 		Node node10 = new Node(transform10, geom10);
-		geometries.add(node10);
+//		geometries.add(node10);
 		final Triangle tri = new Triangle(new Point3(.7, .5, 3), new Point3(
 				1.3, .5, 3), new Point3(.7, .5, 4), new PhongMaterial(
 				new Color(0, 1, 0), new Color(0, 1, 0), 20));
@@ -145,8 +145,8 @@ public class RefractionTest {
 		shrinkList.add(node5);
 		shrinkList.add(node6);
 		shrinkList.add(node7);
-		shrinkList.add(node8);
-		shrinkList.add(node9);
+//		shrinkList.add(node8);
+//		shrinkList.add(node9);
 		geometries.add(new Node(new Transform()// .scale(new Vector3(.5, .5,
 												// .5))
 				, shrinkList));

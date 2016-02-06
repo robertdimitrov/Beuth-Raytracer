@@ -46,7 +46,7 @@ public class Tracer {
         Hit hit = world.hit(ray);
 
         if(!(hit==null)) {
-            return hit.geo.material.colorFor(hit, world, this);
+            return hit.geo.material.colorFor(hit, world, new Tracer(world, rekursion - 1));
         }
 
         return null;
