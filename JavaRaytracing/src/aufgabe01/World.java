@@ -63,11 +63,9 @@ public class World {
 		for(Geometry g : welt){
 			Hit newHit = g.hit(r);
 			if(newHit!=null && newHit.t > 0){
-//				System.out.println("w hit"+newHit.geo.getClass()+"  "+newHit.t);
 				helpSet.add(newHit);
 			}
 		}
-		if(helpSet.size()>1)System.out.println("w aaaaaa");
 		if(helpSet.size()!=0){
 			Iterator<Hit> it = helpSet.iterator();
 			trueHit=it.next();

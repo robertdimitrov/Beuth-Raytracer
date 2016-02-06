@@ -27,7 +27,7 @@ import beleuchtung_I.ReflectiveMaterial;
 
 public class OBJTesting {
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Aufgabe 4");
+        JFrame frame = new JFrame("OBJ und BBox test");
         Container container = frame.getContentPane();
 
 
