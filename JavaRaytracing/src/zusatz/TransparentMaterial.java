@@ -27,13 +27,14 @@ public class TransparentMaterial extends Material {
 	 * unterschiedlicher Brechungsindizes wird Licht gebrochen und reflektiert.
 	 * Dabei nennt man das Medium mit dem höheren Brechungsindex das optisch
 	 * dichtere. Dies ist nicht zu verwechseln mit der „optischen Dichte“ als
-	 * Maß für die Extinktion.
-	 * Quelle: Wikipedia
+	 * Maß für die Extinktion. Quelle: Wikipedia
 	 */
 	public final double indexOfRefraction;
+
 	/**
 	 * 
-	 * @param indexOfRefraction der Brechungsindex
+	 * @param indexOfRefraction
+	 *            der Brechungsindex
 	 */
 	public TransparentMaterial(final double indexOfRefraction) {
 		this.indexOfRefraction = indexOfRefraction;
@@ -41,23 +42,42 @@ public class TransparentMaterial extends Material {
 
 	@Override
 	public Color colorFor(Hit hit, World world, Tracer tracer) {
-    	if(hit==null) throw new IllegalArgumentException("hit darf nicht null sein");
-        if(world==null) throw new IllegalArgumentException("world darf nicht null sein");
-        if(tracer==null) throw new IllegalArgumentException("tracer darf nicht null sein");
+		if (hit == null)
+			throw new IllegalArgumentException("hit darf nicht null sein");
+		if (world == null)
+			throw new IllegalArgumentException("world darf nicht null sein");
+		if (tracer == null)
+			throw new IllegalArgumentException("tracer darf nicht null sein");
 
-        Color color = Color.BLACK;
-        final Point3 p = hit.ray.at(hit.t);
+		Color color = Color.BLACK;
+		final Point3 p = hit.ray.at(hit.t);
 
-        final Color reflected = tracer.reflektion(new Ray(p, hit.ray.d.mul( -1 ).reflectedOn(hit.n)));
-        if(reflected != null){
-        	color = color.add(reflected.mul(reflected));
-        }
-        final Color seeThrough = tracer.reflektion(new Ray(p, hit.ray.d.mul( -1 ).reflectedOn(hit.n)));
-        if(seeThrough != null){
-        	color = color.add(seeThrough.mul(seeThrough));
-        }
-        
+		final double eta1 = 1;
+		final double phi1 = hit.ray.d.mul(-1).dot(hit.n);
+		final double phi2 = Math.sqrt(1 - (eta1 / indexOfRefraction)
+				* (eta1 / indexOfRefraction)
+				* (1 - Math.cos(phi1) * Math.cos(phi1)));
+
+		final double r0 = Math.pow((eta1 - indexOfRefraction)
+				/ (eta1 + indexOfRefraction), 2);
+		final double bigR = r0 + (1 - r0) * Math.pow((1 - Math.cos(phi1)), 5);
+		final double bigT = 1 - bigR;
+
+		final Color reflected = tracer.trace(new Ray(p, hit.ray.d
+				.add(new Vector3(hit.n.x, hit.n.y, hit.n.z).mul(2 * Math
+						.cos(phi1)))));
+		if (reflected != null) {
+			color = color.add(reflected.mul(bigR));
+		}
+
+		final Color seeThrough = tracer.trace(new Ray(p, hit.ray.d.mul(
+				eta1 / indexOfRefraction).sub(
+				new Vector3(hit.n.x, hit.n.y, hit.n.z).mul(Math.cos(phi2)
+						- (eta1 / indexOfRefraction) * Math.cos(phi1)).normalized().asNormal())));
+		if (seeThrough != null) {
+			color = color.add(seeThrough.mul(bigT));
+		}
+
 		return color;
 	}
-
 }

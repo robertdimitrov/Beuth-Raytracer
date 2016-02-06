@@ -72,7 +72,7 @@ public class ReflectiveMaterial extends Material {
                 color = color.add(c1.add(c2));
             }
         }
-        final Color reflected = tracer.reflektion(new Ray(p, hit.ray.d.mul( -1 ).reflectedOn(hit.n)));
+        final Color reflected = tracer.trace(new Ray(p, hit.ray.d.mul( -1 ).reflectedOn(hit.n)));
         if(reflected != null){
         	Color c3 = reflection.mul(reflected);
         	color = color.add(c3);

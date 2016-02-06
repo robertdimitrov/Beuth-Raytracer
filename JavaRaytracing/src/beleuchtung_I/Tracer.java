@@ -38,7 +38,7 @@ public class Tracer {
      * @param ray der gegebene Strahl
      * @return die Farbe
      */
-    public Color reflektion(Ray ray){
+    public Color trace(Ray ray){
         Color fehlerfarbe = Color.GREEN;
 
         if(rekursion < 1) return fehlerfarbe;
