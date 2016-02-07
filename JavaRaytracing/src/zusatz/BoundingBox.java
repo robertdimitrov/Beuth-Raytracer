@@ -79,11 +79,12 @@ public class BoundingBox extends Geometry {
 		// darstellt
 		Transform transform = new Transform();
 		transform = transform.scale(lbf.sub(run));
-		transform = transform.translation(lbf.sub(new Point3(0, 0, 0)).add(
-				run.sub(lbf).mul(.5)));
+		transform = transform.translation(
+				run.sub(lbf).mul(.5).add(lbf.sub(new Point3(0, 0, 0)))
+				);
 
 		final List<Geometry> geometries = new ArrayList<Geometry>();
-		geometries.add(new AxisAlignedBox(null));//zumBBox sehen hier material einfügen
+		geometries.add(new AxisAlignedBox(model.material));
 
 		this.box = new Node(transform, geometries);
 
@@ -91,7 +92,7 @@ public class BoundingBox extends Geometry {
 
 	@Override
 	public Hit hit(Ray r) {
-		// return box.hit(r);//Bbox sehen
+//		return box.hit(r);//Bbox sehen
 		if (box.hit(r) != null)
 			return model.hit(r);
 		return null;

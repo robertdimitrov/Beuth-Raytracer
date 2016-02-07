@@ -63,10 +63,6 @@ public class TransparentMaterial extends Material {
 		final double bigR = r0 + (1 - r0) * Math.pow((1 - cosPhi1), 5);
 		final double bigT = 1 - bigR;
 		
-		//TODO loeschen
-//		System.out.println("traM -d "+hit.ray.d.mul(-1)+" n "+hit.n+" * "+hit.ray.d.mul(-1).dot(hit.n));
-//		System.out.println("traM R "+bigR+" , T "+bigT+", r0 "+r0+", oo "+  (cosPhi1));
-
 		//Reflektion berechnen
 		final Color reflected = tracer.trace(new Ray(p, hit.ray.d.normalized()
 				.add(new Vector3(hit.n.x, hit.n.y, hit.n.z).mul(2 * Math
