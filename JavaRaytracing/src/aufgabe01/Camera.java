@@ -1,5 +1,7 @@
 package aufgabe01;
 
+import java.util.Set;
+
 import zusatz.SamplingPattern;
 import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
@@ -73,7 +75,7 @@ public abstract class Camera {
 	 * @param y y-Koordinate des Pixels
 	 * @return Der entsprechende Strahl
 	 */
-	public abstract Ray rayFor(final int w, final int h, final int x, final int y);
+	public abstract Set<Ray> rayFor(final int w, final int h, final int x, final int y);
 
 	@Override
 	public int hashCode() {

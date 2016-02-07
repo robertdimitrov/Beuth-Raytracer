@@ -4,10 +4,10 @@ package zusatz;
  * @author Kosmonaut
  *
  */
-public class SamplingPattern {
+public abstract class SamplingPattern {
 	
 	/**
-	 * 
+	 * Alle Punkte, die sich in einem SamplingPattern befinden
 	 */
 	public final Point2[] points;
 	
@@ -18,5 +18,4 @@ public class SamplingPattern {
 	public SamplingPattern(final int points) {
 		this.points = new Point2[points];
 	}
-
 }

@@ -64,16 +64,15 @@ public class OBJTesting {
         Transform transform2 = new Transform();
         Node node2 = new Node(transform2, geometries2);
 
-        ArrayList<Geometry> geometries3 = new ArrayList<Geometry>();
-        geometries3.add(new Sphere(new SingleColorMaterial(Color.BLUE)));
-        geometries3.add(obj2);
-        Transform transform3 = new Transform().scale(new Vector3(.01, .01, .01));
-        Node node3 = new Node(transform3, geometries3);
+//        ArrayList<Geometry> geometries3 = new ArrayList<Geometry>();
+//        geometries3.add(new Sphere(new SingleColorMaterial(Color.BLUE)));
+//        Transform transform3 = new Transform().scale(new Vector3(.01, .01, .01));
+//        Node node3 = new Node(transform3, geometries3);
         
         
         HashSet<Geometry> geos2 = new HashSet<Geometry>();
         geos2.add(node2);
-        geos2.add(node3);
+//        geos2.add(node3);
         
         World world2 = new World(geos2, lights, Color.BLACK, ambient);
         final double x = 0.5;

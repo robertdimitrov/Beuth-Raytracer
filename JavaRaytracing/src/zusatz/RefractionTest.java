@@ -172,7 +172,7 @@ public class RefractionTest {
 		World world = new World(geos, lights, Color.BLACK, ambient);
 
 		PerspectiveCamera camera = new PerspectiveCamera(new Point3(8, 8, 8),
-				new Vector3(-1, -1, -1), new Vector3(0, 1, 0), Math.PI / 4);
+				new Vector3(-1, -1, -1), new Vector3(0, 1, 0), Math.PI / 4, new DiagonalSamplingPattern(10));
 
 		RTPanel panel1 = new RTPanel(camera, world);
 

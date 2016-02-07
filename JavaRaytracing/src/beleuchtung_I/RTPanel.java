@@ -1,12 +1,19 @@
 package beleuchtung_I;
 
-import aufgabe01.*;
-import aufgabe01.Color;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.HashSet;
 import java.util.Set;
+
+import javax.swing.JPanel;
+
+import com.sun.xml.internal.bind.v2.WellKnownNamespace;
+
+import aufgabe01.Camera;
+import aufgabe01.Color;
+import aufgabe01.Hit;
+import aufgabe01.Ray;
+import aufgabe01.World;
 
 /**
  * Klasse zum Erzeugen eines Raytracer-Panels
@@ -63,17 +70,27 @@ public class RTPanel extends JPanel {
         int count=0;
         for(int i=0; i<w;i++){
             for(int j=0;j<h;j++){
-                Ray r=camera.rayFor(w, h, i, h-j);
-                Hit hit=welt.hit(r);
-                if(hit!=null){
-                    int color=convertColor(hit.geo.material.colorFor(hit, welt,new Tracer(welt, 10)));
-                	//funky
-//                	int color = convertColor(new Color(Math.abs((hit.n.x)/2), Math.abs((hit.n.y)/2), Math.abs((hit.n.z)/2)));
-                    image.setRGB(i, j,color);
+                final Set<Ray> rays=camera.rayFor(w, h, i, h-j);
+                final Set<Hit> hits = new HashSet<Hit>();
+                for(final Ray ray : rays){
+                	hits.add(welt.hit(ray));
                 }
-                else{int color = convertColor(welt.backgroundColor);
-                    image.setRGB(i, j, color);
+                if(hits.isEmpty()){// kein einziger Hit
+                	image.setRGB(j, j, convertColor(welt.backgroundColor));
+                	break;
                 }
+                
+                Color color = Color.BLACK;
+                for(final Hit hit : hits){
+                    if(hit != null){
+                    	color = color.add(hit.geo.material.colorFor(hit, welt,new Tracer(welt, 10)).mul((double) 1 / camera.pattern.points.length));
+//                		color = new Color(Math.abs((hit.n.x)/2), Math.abs((hit.n.y)/2), Math.abs((hit.n.z)/2)); //funky
+                    }else{
+                    	color = color.add(welt.backgroundColor.mul((double) 1 / camera.pattern.points.length));
+                    }
+                	
+                }
+                image.setRGB(i, j, convertColor(color));
             }
         }
 

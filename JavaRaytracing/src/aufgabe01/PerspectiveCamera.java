@@ -1,5 +1,10 @@
 package aufgabe01;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import zusatz.DiagonalSamplingPattern;
+import zusatz.Point2;
 import zusatz.SamplingPattern;
 import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
@@ -29,19 +34,23 @@ public class PerspectiveCamera extends Camera {
 	}
 
 	public PerspectiveCamera(final Point3 e, final Vector3 g, final Vector3 t, final double angle) {
-		this(e, g, t, angle, new SamplingPattern(1));
+		this(e, g, t, angle, new DiagonalSamplingPattern(1));
 	}
 
 	
 	@Override
-	public Ray rayFor(final int w, final int h, final int x, final int y) {
-		final Vector3 vectorX = this.u.mul(x - (((double)w-1)/2));
-		final Vector3 vectorY = this.v.mul(y - (((double)h-1)/2));
-		double tanA = Math.tan(angle/2);
-		if(tanA == 0) throw new IllegalArgumentException();
-		final Vector3 r = this.w.mul(((double)h/2)/tanA).mul(-1).add(vectorX).add(vectorY);
+	public Set<Ray> rayFor(final int w, final int h, final int x, final int y) {
+		final Set<Ray> rays = new HashSet<Ray>();
 		
-		return new Ray(e, r.normalized());
+		for(final Point2 patternPoint : pattern.points){
+			final Vector3 vectorX = this.u.mul(x + patternPoint.x - (((double)w-1)/2));
+			final Vector3 vectorY = this.v.mul(y + patternPoint.y - (((double)h-1)/2));
+			double tanA = Math.tan(angle/2);
+			if(tanA == 0) throw new IllegalArgumentException();
+			final Vector3 r = this.w.mul(((double)h/2)/tanA).mul(-1).add(vectorX).add(vectorY);
+			rays.add(new Ray(e, r.normalized()));
+		}
+		return rays;
 	}
 
 	@Override
