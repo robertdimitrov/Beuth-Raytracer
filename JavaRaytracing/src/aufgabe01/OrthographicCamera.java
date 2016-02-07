@@ -1,5 +1,6 @@
 package aufgabe01;
 
+import zusatz.SamplingPattern;
 import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
 
@@ -23,7 +24,10 @@ public class OrthographicCamera extends Camera {
 	 * @param s Der Skalierungsfaktor der Bildebene
 	 */
 	public OrthographicCamera(final Point3 e, final Vector3 g, final Vector3 t, final double s) {
-		super(e, g, t);
+		this(e, g, t, s, new SamplingPattern(1));
+	}
+	public OrthographicCamera(final Point3 e, final Vector3 g, final Vector3 t, final double s, final SamplingPattern pattern) {
+		super(e, g, t, pattern);
 		this.s = s;
 	}
 

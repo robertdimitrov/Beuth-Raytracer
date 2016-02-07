@@ -1,5 +1,6 @@
 package aufgabe01;
 
+import zusatz.SamplingPattern;
 import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
 
@@ -34,6 +35,10 @@ public abstract class Camera {
 	 * Die w-Achse der Kamera.
 	 */
 	public final Vector3 w;
+	/**
+	 * das SamplingPattern der Kamera
+	 */
+	public final SamplingPattern pattern;
 	
 	/**
 	 * Dieser Konstruktor erzeugt ein neues Camera-Objekt.
@@ -42,8 +47,9 @@ public abstract class Camera {
 	 * @param e Die Position der Kamera
 	 * @param g Die Blickrichtung der Kamera
 	 * @param t Der Up-Vektor der Kamera
+	 * @param pattern Das Samplingpattern was die Feinheit der einzelnen Strahlen der Kamera berstimmt 
 	 */
-	public Camera(final Point3 e, final Vector3 g, final Vector3 t){
+	public Camera(final Point3 e, final Vector3 g, final Vector3 t, final SamplingPattern pattern){
 		if(e==null) throw new IllegalArgumentException("Der Punkt 'e' darf nicht null sein.");
 		if(g==null) throw new IllegalArgumentException("Der Vektor 'g' darf nicht null sein.");
 		if(t==null) throw new IllegalArgumentException("Der Vektor 't' darf nicht null sein.");
@@ -54,8 +60,9 @@ public abstract class Camera {
 		
 		this.w = g.normalized().mul(-1);
 		this.u = t.x(w).normalized();
-//		this.v = w.x(u).mul(-1);
 		this.v = w.x(u);
+		
+		this.pattern = pattern;
 	}
 	
 	/**

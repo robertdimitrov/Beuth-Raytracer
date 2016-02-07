@@ -80,7 +80,7 @@ public class BoundingBox extends Geometry {
 		Transform transform = new Transform();
 		transform = transform.scale(lbf.sub(run));
 		transform = transform.translation(
-				run.sub(lbf).mul(.5).add(lbf.sub(new Point3(0, 0, 0)))
+				lbf.add(run.sub(lbf).mul(.5)).sub(new Point3(0, 0, 0))
 				);
 
 		final List<Geometry> geometries = new ArrayList<Geometry>();
@@ -92,10 +92,10 @@ public class BoundingBox extends Geometry {
 
 	@Override
 	public Hit hit(Ray r) {
-//		return box.hit(r);//Bbox sehen
-		if (box.hit(r) != null)
-			return model.hit(r);
-		return null;
+		return box.hit(r);//Bbox sehen
+//		if (box.hit(r) != null)
+//			return model.hit(r);
+//		return null;
 	}
 
 	/**

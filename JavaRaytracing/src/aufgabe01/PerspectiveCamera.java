@@ -1,5 +1,6 @@
 package aufgabe01;
 
+import zusatz.SamplingPattern;
 import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
 
@@ -22,11 +23,16 @@ public class PerspectiveCamera extends Camera {
 	 * @param t Up-Vektor der Kamera
 	 * @param angle Öffnungswinkel der Kamera
 	 */
-	public PerspectiveCamera(final Point3 e, final Vector3 g, final Vector3 t, final double angle) {
-		super(e, g, t);
+	public PerspectiveCamera(final Point3 e, final Vector3 g, final Vector3 t, final double angle, final SamplingPattern pattern) {
+		super(e, g, t, pattern);
 		this.angle = angle;
 	}
 
+	public PerspectiveCamera(final Point3 e, final Vector3 g, final Vector3 t, final double angle) {
+		this(e, g, t, angle, new SamplingPattern(1));
+	}
+
+	
 	@Override
 	public Ray rayFor(final int w, final int h, final int x, final int y) {
 		final Vector3 vectorX = this.u.mul(x - (((double)w-1)/2));

@@ -59,9 +59,8 @@ public class OBJTesting {
         ArrayList<Geometry> geometries2 = new ArrayList<Geometry>();
 
         final ShapeFromFile obj2 = new ShapeFromFile( new File("./obj-objects/Stanford_Bunny.obj"), new LambertMaterial(new Color(.9, .8, .2)));
-//TODO
-//        geometries2.add(new BoundingBox(obj2));
-        geometries2.add(obj2);
+        geometries2.add(new BoundingBox(obj2));
+//        geometries2.add(obj2);
         Transform transform2 = new Transform();
         Node node2 = new Node(transform2, geometries2);
 
