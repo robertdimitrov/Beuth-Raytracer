@@ -39,7 +39,7 @@ public class Tracer {
      * @return die Farbe
      */
     public Color trace(Ray ray){
-        Color fehlerfarbe = Color.GREEN;
+        Color fehlerfarbe = Color.RED;
 
         if(rekursion < 1) return fehlerfarbe;
 

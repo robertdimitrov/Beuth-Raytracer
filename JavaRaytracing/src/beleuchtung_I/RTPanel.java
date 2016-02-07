@@ -66,8 +66,7 @@ public class RTPanel extends JPanel {
                 Ray r=camera.rayFor(w, h, i, h-j);
                 Hit hit=welt.hit(r);
                 if(hit!=null){
-                    int color=convertColor(hit.geo.material.colorFor(hit, welt,new Tracer(welt, 5)));
-//                    System.out.println("rtp "+hit.n+"  "+hit.t);
+                    int color=convertColor(hit.geo.material.colorFor(hit, welt,new Tracer(welt, 10)));
                 	//funky
 //                	int color = convertColor(new Color(Math.abs((hit.n.x)/2), Math.abs((hit.n.y)/2), Math.abs((hit.n.z)/2)));
                     image.setRGB(i, j,color);
