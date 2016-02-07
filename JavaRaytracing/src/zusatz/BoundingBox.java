@@ -78,10 +78,9 @@ public class BoundingBox extends Geometry {
 		// Skalierung und Translation der Node der AABox, welche die BBox
 		// darstellt
 		Transform transform = new Transform();
-		transform = transform.scale(lbf.sub(run));
-		transform = transform.translation(
-				lbf.add(run.sub(lbf).mul(.5)).sub(new Point3(0, 0, 0))
-				);
+		transform = transform.translation(lbf.add(run.sub(lbf).mul(.5)).sub(
+				new Point3(0, 0, 0)));
+		transform = transform.scale(run.sub(lbf));
 
 		final List<Geometry> geometries = new ArrayList<Geometry>();
 		geometries.add(new AxisAlignedBox(model.material));
@@ -92,15 +91,16 @@ public class BoundingBox extends Geometry {
 
 	@Override
 	public Hit hit(Ray r) {
-		return box.hit(r);//Bbox sehen
-//		if (box.hit(r) != null)
-//			return model.hit(r);
-//		return null;
+//		return box.hit(r);// Bbox sehen
+		 if (box.hit(r) != null){
+			 return model.hit(r);
+		 }
+		 return null;
 	}
 
 	/**
-	 * Klasse zum redundanzlosen Mixen von Punkten/ erkennen von lbf oder run
-	 * bei einer mini BBox um ein Triangle
+	 * Klasse nach Template-Method-Pattern zum redundanzlosen Mixen von Punkten/
+	 * erkennen von lbf oder run bei einer mini BBox um ein Triangle
 	 * 
 	 * @author Kosmonaut
 	 *
@@ -111,7 +111,7 @@ public class BoundingBox extends Geometry {
 		}
 
 		public Point3 mix(final Point3 p1, final Point3 p2) {
-			return new Point3(operation(p1.x, p2.x), operation(p1.x, p2.y),
+			return new Point3(operation(p1.x, p2.x), operation(p1.y, p2.y),
 					operation(p1.z, p2.z));
 		}
 

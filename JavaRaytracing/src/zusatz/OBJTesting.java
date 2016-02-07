@@ -38,7 +38,7 @@ public class OBJTesting {
 
         final ShapeFromFile obj = new ShapeFromFile( new File("./obj-objects/teddy.obj.txt"), new LambertMaterial(new Color(.9, .8, .2)));
         geometries.add(new BoundingBox(obj));
-//        geometries.add(obj);
+        geometries.add(obj);
         Transform transform = new Transform();
         Node node = new Node(transform, geometries);
 
@@ -64,15 +64,25 @@ public class OBJTesting {
         Transform transform2 = new Transform();
         Node node2 = new Node(transform2, geometries2);
 
+        ArrayList<Geometry> geometries3 = new ArrayList<Geometry>();
+        geometries3.add(new Sphere(new SingleColorMaterial(Color.BLUE)));
+        geometries3.add(obj2);
+        Transform transform3 = new Transform().scale(new Vector3(.01, .01, .01));
+        Node node3 = new Node(transform3, geometries3);
+        
+        
         HashSet<Geometry> geos2 = new HashSet<Geometry>();
         geos2.add(node2);
+        geos2.add(node3);
         
         World world2 = new World(geos2, lights, Color.BLACK, ambient);
-        
-        RTPanel panel2 = new RTPanel(new PerspectiveCamera(new Point3(.5,.5,.5), new Vector3(-1, -1, -1), new Vector3(0,1,0), Math.PI/4), world2);
+        final double x = 0.5;
+        final double y = 0.5;
+        final double z = 0.5;
+        RTPanel panel2 = new RTPanel(new PerspectiveCamera(new Point3(x, y, z), new Vector3(-x, -y, -z).normalized(), new Vector3(0,1,0), Math.PI/4), world2);
 
         JTabbedPane pane = new JTabbedPane();
-//        pane.addTab("Szene 1", panel1);
+        pane.addTab("Szene 1", panel1);
         pane.addTab("Szene 2", panel2);
 
 
