@@ -30,15 +30,22 @@ public class DOFTest {
         Sphere sphere2 = new Sphere(new LambertMaterial(Color.GREEN));
         Sphere sphere3 = new Sphere(new LambertMaterial(Color.BLUE));
 
+        double s = 15;
 
         Transform transform1 = new Transform();
-        transform1 = transform1.translation(new Vector3(-2,0,4));
+        transform1 = transform1.translation(new Vector3(-3,0,4)).scale(new Vector3(s,s,s));
         Node node1 = new Node(transform1, new ArrayList<Geometry>(){{
             this.add(sphere1);}
         });
 
+        Transform transform2 = new Transform();
+        transform2 = transform2.scale(new Vector3(s,s,s));
+        Node node2 = new Node(transform2, new ArrayList<Geometry>(){{
+            this.add(sphere2);}
+        });
+
         Transform transform3 = new Transform();
-        transform3 = transform3.translation(new Vector3(2.5,0,-4));
+        transform3 = transform3.translation(new Vector3(4,0,-4)).scale(new Vector3(s,s,s));
         Node node3 = new Node(transform3, new ArrayList<Geometry>(){{
             this.add(sphere3);}
         });
@@ -48,7 +55,7 @@ public class DOFTest {
         HashSet<Geometry> geometries = new HashSet<Geometry>(){{
 //            add(plane);
             add(node1);
-            add(sphere2);
+            add(node2);
             add(node3);
         }
         };
@@ -62,7 +69,7 @@ public class DOFTest {
                 new Vector3(-x, -y, -z), new Vector3(0, 1, 0), Math.PI / 4);
 
         camera = new DOFCamera(new Point3(x, y, z),
-                new Vector3(-x, -y, -z), new Vector3(0, 1, 0), new DiagonalSamplingPattern(10), 1.0, 3, 4);
+                new Vector3(-x, -y, -z), new Vector3(0, 1, 0), new DiagonalSamplingPattern(10), 1.0, 15, 24);
 
         ArrayList<Light> lights = new ArrayList<Light>();
         PointLight pointLight = new PointLight(Color.WHITE,
