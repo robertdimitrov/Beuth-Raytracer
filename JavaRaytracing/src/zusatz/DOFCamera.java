@@ -19,7 +19,7 @@ public class DOFCamera extends Camera {
     final private double f;
 
 
-    public DOFCamera(Point3 e, Vector3 g, Vector3 t, SamplingPattern pattern, double lensRadius, double d, double f) {
+    public DOFCamera(Point3 e, Vector3 g, Vector3 t, double lensRadius, double d, double f, SamplingPattern pattern) {
         super(e, g, t, pattern);
         this.lensRadius = lensRadius;
         this.d = d;
