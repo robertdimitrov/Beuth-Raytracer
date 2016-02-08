@@ -39,19 +39,16 @@ public class Tracer {
      * @return die Farbe
      */
     public Color reflektion(Ray ray){
-        Color fehlerfarbe = Color.RED;
+        Color fehlerfarbe = Color.GREEN;
 
         if(rekursion < 1) return fehlerfarbe;
-
-        rekursion--;
-        Color reflected = world.backgroundColor;
 
         Hit hit = world.hit(ray);
 
         if(!(hit==null)) {
-            reflected = hit.geo.material.colorFor(hit, world, this);
+            return hit.geo.material.colorFor(hit, world, this);
         }
 
-        return reflected;
+        return null;
     }
 }
