@@ -28,7 +28,7 @@ public class FisheyeCamera extends Camera {
      * @param s       Der Skalierungsfaktor der Bildebene
      * @param psi_max Der maximale Winkel der Kamera
      */
-    public FisheyeCamera(final Point3 e, final Vector3 g, final Vector3 t, final SamplingPattern pattern, final double s, final double psi_max) {
+    public FisheyeCamera(final Point3 e, final Vector3 g, final Vector3 t, final double s, final double psi_max, final SamplingPattern pattern) {
         super(e, g, t, pattern);
         this.s = s;
         this.psi_max = psi_max;
