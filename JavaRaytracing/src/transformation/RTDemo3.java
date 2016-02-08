@@ -20,12 +20,7 @@ import aufgabe01.Sphere;
 import aufgabe01.World;
 import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
-import beleuchtung_I.LambertMaterial;
-import beleuchtung_I.Light;
-import beleuchtung_I.PhongMaterial;
-import beleuchtung_I.PointLight;
-import beleuchtung_I.RTPanel;
-import beleuchtung_I.ReflectiveMaterial;
+import beleuchtung_I.*;
 
 public class RTDemo3 {
 
@@ -74,14 +69,14 @@ public class RTDemo3 {
 		final Node tests = new Node(transformationBig, geomList2);
 		geometries.add(tests);
 
-		final Sphere sphere2 = new Sphere(new ReflectiveMaterial(
-				Color.RED, Color.BLACK, 64, reflective));
+		final Sphere sphere2 = new Sphere( new PhongMaterial(
+				Color.GREEN, Color.WHITE, 32));
 		geomList1.add(sphere2);
 
 		Transform transformation1 = new Transform();
 //		transformation1 = transformation1.rotateY(-Math.PI / 4);
 //		transformation1 = transformation1.rotateZ(-Math.PI / 4);
-		transformation1 = transformation1.scale(new Vector3( 8, 1, 8));
+//		transformation1 = transformation1.scale(new Vector3( 4, 4, 4));
 
 		final Node rootNode1 = new Node(transformation1, geomList1);
 		geometries.add(rootNode1);
@@ -94,7 +89,7 @@ public class RTDemo3 {
 
 		ArrayList<Light> lights = new ArrayList<Light>();
 		PointLight pointLight = new PointLight(Color.WHITE,
-				new Point3(0, 10, 0), false);
+				new Point3(0, 0, 20), false);
 		lights.add(pointLight);
 
 		World world = new World(geometries, lights, Color.BLACK, ambient);
@@ -103,7 +98,7 @@ public class RTDemo3 {
 		// Szene 2
 		Set<Geometry> geometries11 = new HashSet<Geometry>();
 		final AxisAlignedBox aab = new AxisAlignedBox(new ReflectiveMaterial(
-				Color.YELLOW, Color.BLACK, 64, reflective));
+				Color.YELLOW, Color.WHITE, 64, reflective));
 		final List<Geometry> geomList11 = new ArrayList<Geometry>(); 
 		geomList11.add(aab);
 		Transform transformation2 = new Transform();

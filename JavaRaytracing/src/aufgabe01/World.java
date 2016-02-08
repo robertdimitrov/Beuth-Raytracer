@@ -10,7 +10,7 @@ import beleuchtung_I.Light;
 /**
  * @author Clemens
  *
- *Diese Klasse stellt eine Welt dar. In dieser Welt können Geometry-Objekte dargestellt werden. 
+ *Diese Klasse stellt eine Welt dar. In dieser Welt kï¿½nnen Geometry-Objekte dargestellt werden. 
  */
 public class World {
 	
@@ -25,10 +25,12 @@ public class World {
 	public final Set<Geometry> welt;
 	public final ArrayList<Light> lights;
 	public final Color ambientLight;
+
+	public static double ABWEICHUNG = 0.0000001;
 	
 	/**
 	 * @param set Eine Sammlung von Geometry-Objekten
-	 * @param color Farbe für die backgroundColor
+	 * @param color Farbe fï¿½r die backgroundColor
 	 */
 	public World(Set<Geometry> set, ArrayList<Light>lights, Color color,Color ambientLight ){
 		

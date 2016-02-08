@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package aufgabe01;
 
@@ -9,7 +9,7 @@ import beleuchtung_I.Material;
 
 /**
  * Diese Klasse erstellt einen Kreis
- * 
+ *
  * @author Kosmonaut
  *
  */
@@ -25,8 +25,8 @@ public class Sphere extends Geometry {
 
 	/**
 	 * Ein Kreis
-	 * 
-r	 * @param c
+	 *
+	 r	 * @param c
 	 *            Der Mittelpunkt des Kreis
 	 * @param r
 	 *            Der Radius des Kreis
@@ -48,22 +48,30 @@ r	 * @param c
 
 		final double t1 = (-b + Math.sqrt(b * b - 4 * a * c)) / (2 * a);
 		final double t2 = (-b - Math.sqrt(b * b - 4 * a * c)) / (2 * a);
-		
+
 		if( t2 > 0.0000001 ) {
 			return new Hit( t2, r, r.at( t2 ).sub( this.center ).normalized().asNormal(), this );
 		} else if( t1 > 0.0000001 ) {
 			return new Hit( t1, r, r.at( t1 ).sub( this.center ).normalized().asNormal(), this );
 		}
-		
-		return null;
-		
-		/*final double smallestPositiveT = smallestPositive(t1, t2);
 
-		if (smallestPositiveT != -1) {
-			return new Hit(smallestPositiveT, r, r.at(smallestPositiveT).sub(center).asNormal(), this);
-		} else {
-			return null;
-		}*/
+//		if( t2 > 0.0000001 ) {
+////			return new Hit( t2, r, r.at( t2 ).sub( this.center ).normalized().asNormal(), this );
+//			return new Hit( t2, r, r.at( t2 ).sub( this.center ).mul(-1).normalized().asNormal(), this );
+//		} else if( t1 > 0.0000001 ) {
+//			return new Hit( t1, r, r.at( t1 ).sub( this.center ).mul(-1).normalized().asNormal(), this );
+//		}
+
+		return null;
+
+//		double smallestPositiveT = Math.min(t1, t2);
+//		if(smallestPositiveT < 0) smallestPositiveT = -1;
+//
+//		if (smallestPositiveT != -1) {
+//			return new Hit(smallestPositiveT, r, r.at(smallestPositiveT).sub(center).asNormal(), this);
+//		} else {
+//			return null;
+//		}
 
 	}
 
@@ -73,4 +81,3 @@ r	 * @param c
 				+ super.toString();
 	}
 }
-

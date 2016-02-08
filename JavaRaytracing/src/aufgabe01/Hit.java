@@ -43,7 +43,7 @@ public class Hit {
 	 * @param geo
 	 *            die Geometrie die vom Ray ray geschnitten wurde
 	 */
-	Hit(final double t, final Ray ray, final Normal3 n, final Geometry geo) {
+	public Hit(final double t, final Ray ray, final Normal3 n, final Geometry geo) {
 		this.t = t;
 		this.ray = ray;
 		this.n = n;

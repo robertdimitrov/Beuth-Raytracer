@@ -48,7 +48,7 @@ public class Node extends Geometry {
 			if(minT == null){
 				minT = hit;
 			}
-			if(hit!=null && hit.t < minT.t && hit.t > 0){				
+			if(hit!=null && hit.t < minT.t && hit.t > 0){
 				helpSet.add(hit);
 			}
 		}
@@ -56,6 +56,20 @@ public class Node extends Geometry {
 			return null;
 		}
 		return new Hit(minT.t, r, transform.mul(minT.n), minT.geo);
+
+//		Ray newRay = transform.mul(r);
+//
+//		double t = Double.MAX_VALUE;
+//		Hit smallestHit = null;
+//		for (Geometry geo : geometries){
+//			Hit tmp = geo.hit(newRay);
+//			if (tmp != null && tmp.t >= 0 && tmp.t < t) {
+//				smallestHit=tmp;
+//				t = tmp.t;
+//			}
+//		}
+//		if (smallestHit == null) return null;
+//		return new Hit( smallestHit.t, r, this.transform.mul( smallestHit.n), smallestHit.geo);
     }
     
  
