@@ -36,7 +36,6 @@ public class Plane extends Geometry {
 	@Override
 	public Hit hit(Ray r) {
 		final double teiler = r.d.dot(n);
-//		System.out.println(r.toString());
 		if (teiler != 0) {
 			final double t = a.sub(r.o).dot(n) / teiler;
 			if(t < 0.00001){

@@ -74,6 +74,17 @@ public class Triangle extends Geometry {
 		Vector3 ac = a.sub(c);
 		hilfsMat3 = new Mat3x3(ab.x, ac.x, 0, ab.y, ac.y, 0, ab.z, ac.z, 0);
 	}
+	
+	/**
+	 * vereinfachter Konstruktor
+	 * @param a
+	 * @param b
+	 * @param c
+	 * @param material
+	 */
+	public Triangle(Point3 a, Point3 b, Point3 c, Material material) {
+		this(a, b, c, a.sub(b).x(a.sub(c)).normalized().asNormal(), a.sub(b).x(a.sub(c)).normalized().asNormal(), a.sub(b).x(a.sub(c)).normalized().asNormal(), material);
+	}
 
 	@Override
 	public Hit hit(Ray r) {
@@ -96,7 +107,8 @@ public class Triangle extends Geometry {
 				&& groessergleich0UndKleinergleich1(gamma)
 				&& groessergleich0UndKleinergleich1(beta + gamma)) {
 			final double t = matA3.determinant / matA.determinant;
-			final Normal3 n = nA.mul(1-beta-gamma).add(nB.mul(beta)).add(nC.mul(gamma));
+			final Normal3 n = nA.mul(1 - beta - gamma).add(nB.mul(beta))
+					.add(nC.mul(gamma));
 			return new Hit(t, r, n, this);
 		}
 

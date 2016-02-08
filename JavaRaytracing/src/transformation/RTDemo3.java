@@ -20,7 +20,12 @@ import aufgabe01.Sphere;
 import aufgabe01.World;
 import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
-import beleuchtung_I.*;
+import beleuchtung_I.LambertMaterial;
+import beleuchtung_I.Light;
+import beleuchtung_I.PhongMaterial;
+import beleuchtung_I.PointLight;
+import beleuchtung_I.RTPanel;
+import beleuchtung_I.ReflectiveMaterial;
 
 public class RTDemo3 {
 
@@ -35,51 +40,27 @@ public class RTDemo3 {
 
 		final List<Geometry> geomList1 = new ArrayList<Geometry>();
 
-		final List<Geometry> geomList2 = new ArrayList<Geometry>();
-		final Sphere sphere = new Sphere(
-				new LambertMaterial(new Color(.5, .7, .7)));
-		geomList2.add(sphere);
-//		final List<Geometry> geom3 = new ArrayList<Geometry>();
-//		geom3.add(sphere);
-//		final Node n11 = new Node(new Transform().translation(new Vector3(2, 2,
-//				2)), geom3);
-//		final Node n12 = new Node(new Transform().translation(new Vector3(2, 2,
-//				-2)), geom3);
-//		final Node n13 = new Node(new Transform().translation(new Vector3(2,
-//				-2, 2)), geom3);
-//		final Node n14 = new Node(new Transform().translation(new Vector3(2,
-//				-2, -2)), geom3);
-//		final Node n15 = new Node(new Transform().translation(new Vector3(-2,
-//				2, 2)), geom3);
-//		final Node n16 = new Node(new Transform().translation(new Vector3(-2,
-//				2, -2)), geom3);
-//		final Node n17 = new Node(new Transform().translation(new Vector3(-2,
-//				-2, 2)), geom3);
-//		final Node n18 = new Node(new Transform().translation(new Vector3(-2,
-//				-2, -2)), geom3);
-//		geomList2.add(n11);
-//		geomList2.add(n12);
-//		geomList2.add(n13);
-//		geomList2.add(n14);
-//		geomList2.add(n15);
-//		geomList2.add(n16);
-//		geomList2.add(n17);
-//		geomList2.add(n18);
-		Transform transformationBig = new Transform().scale(new Vector3(1, 1, 1));
-		final Node tests = new Node(transformationBig, geomList2);
-		geometries.add(tests);
+//		final List<Geometry> geomList2 = new ArrayList<Geometry>();
+//		final Sphere sphere = new Sphere(
+//				new LambertMaterial(new Color(.5, .7, .7)));
+//		geomList2.add(sphere);
+//		testBallz(geomList2, sphere);
+//		Transform transformationBig = new Transform().scale(new Vector3(1, 1, 1));
+//		final Node tests = new Node(transformationBig, geomList2);
+//		geometries.add(tests);
 
-		final Sphere sphere2 = new Sphere( new PhongMaterial(
-				Color.GREEN, Color.WHITE, 32));
+		final Sphere sphere2 = new Sphere(new ReflectiveMaterial(
+				Color.RED, Color.WHITE, 64, reflective));
 		geomList1.add(sphere2);
 
 		Transform transformation1 = new Transform();
-//		transformation1 = transformation1.rotateY(-Math.PI / 4);
-//		transformation1 = transformation1.rotateZ(-Math.PI / 4);
-//		transformation1 = transformation1.scale(new Vector3( 4, 4, 4));
+		transformation1 = transformation1.rotateY(-Math.PI / 4);
+		transformation1 = transformation1.rotateZ(-Math.PI / 4);
+		transformation1 = transformation1.scale(new Vector3( 4, 1, 4));
 
 		final Node rootNode1 = new Node(transformation1, geomList1);
 		geometries.add(rootNode1);
+//		geometries.add(sphere2);
 
 		double x = 0;
 		double y = 0;
@@ -89,7 +70,7 @@ public class RTDemo3 {
 
 		ArrayList<Light> lights = new ArrayList<Light>();
 		PointLight pointLight = new PointLight(Color.WHITE,
-				new Point3(0, 0, 20), false);
+				new Point3(0, 0, 10), false);
 		lights.add(pointLight);
 
 		World world = new World(geometries, lights, Color.BLACK, ambient);
@@ -124,5 +105,39 @@ public class RTDemo3 {
 		frame.setResizable(false);
 		frame.setVisible(true);
 
+	}
+
+	/**
+	 * @param geomList2
+	 * @param sphere
+	 */
+	protected static void testBallz(final List<Geometry> geomList2,
+			final Sphere sphere) {
+		final List<Geometry> geom3 = new ArrayList<Geometry>();
+		geom3.add(sphere);
+		final Node n11 = new Node(new Transform().translation(new Vector3(2, 2,
+				2)), geom3);
+		final Node n12 = new Node(new Transform().translation(new Vector3(2, 2,
+				-2)), geom3);
+		final Node n13 = new Node(new Transform().translation(new Vector3(2,
+				-2, 2)), geom3);
+		final Node n14 = new Node(new Transform().translation(new Vector3(2,
+				-2, -2)), geom3);
+		final Node n15 = new Node(new Transform().translation(new Vector3(-2,
+				2, 2)), geom3);
+		final Node n16 = new Node(new Transform().translation(new Vector3(-2,
+				2, -2)), geom3);
+		final Node n17 = new Node(new Transform().translation(new Vector3(-2,
+				-2, 2)), geom3);
+		final Node n18 = new Node(new Transform().translation(new Vector3(-2,
+				-2, -2)), geom3);
+		geomList2.add(n11);
+		geomList2.add(n12);
+		geomList2.add(n13);
+		geomList2.add(n14);
+		geomList2.add(n15);
+		geomList2.add(n16);
+		geomList2.add(n17);
+		geomList2.add(n18);
 	}
 }

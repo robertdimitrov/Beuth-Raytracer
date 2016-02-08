@@ -38,15 +38,15 @@ public class Tracer {
      * @param ray der gegebene Strahl
      * @return die Farbe
      */
-    public Color reflektion(Ray ray){
-        Color fehlerfarbe = Color.GREEN;
+    public Color trace(Ray ray){
+        Color fehlerfarbe = Color.RED;
 
         if(rekursion < 1) return fehlerfarbe;
 
         Hit hit = world.hit(ray);
 
         if(!(hit==null)) {
-            return hit.geo.material.colorFor(hit, world, this);
+            return hit.geo.material.colorFor(hit, world, new Tracer(world, rekursion - 1));
         }
 
         return null;
