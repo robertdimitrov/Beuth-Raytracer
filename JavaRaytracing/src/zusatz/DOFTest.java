@@ -4,10 +4,7 @@ import aufgabe01.*;
 import aufgabe01.Color;
 import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
-import beleuchtung_I.LambertMaterial;
-import beleuchtung_I.Light;
-import beleuchtung_I.PointLight;
-import beleuchtung_I.RTPanel;
+import beleuchtung_I.*;
 import transformation.Transform;
 
 import javax.swing.*;
@@ -26,14 +23,14 @@ public class DOFTest {
         Container container = frame.getContentPane();
 
         Plane plane = new Plane(new LambertMaterial(Color.WHITE));
-        Sphere sphere1 = new Sphere(new LambertMaterial(Color.RED));
-        Sphere sphere2 = new Sphere(new LambertMaterial(Color.GREEN));
-        Sphere sphere3 = new Sphere(new LambertMaterial(Color.BLUE));
+        Sphere sphere1 = new Sphere(new PhongMaterial(Color.RED, Color.WHITE, 64));
+        Sphere sphere2 = new Sphere(new PhongMaterial(Color.GREEN, Color.WHITE, 64));
+        Sphere sphere3 = new Sphere(new PhongMaterial(Color.BLUE, Color.WHITE, 64));
 
-        double s = 15;
+        double s = 3;
 
         Transform transform1 = new Transform();
-        transform1 = transform1.translation(new Vector3(-3,0,4)).scale(new Vector3(s,s,s));
+        transform1 = transform1.translation(new Vector3(-3,0,12)).scale(new Vector3(s,s,s));
         Node node1 = new Node(transform1, new ArrayList<Geometry>(){{
             this.add(sphere1);}
         });
@@ -45,7 +42,7 @@ public class DOFTest {
         });
 
         Transform transform3 = new Transform();
-        transform3 = transform3.translation(new Vector3(4,0,-4)).scale(new Vector3(s,s,s));
+        transform3 = transform3.translation(new Vector3(15,0,-60)).scale(new Vector3(s,s,s));
         Node node3 = new Node(transform3, new ArrayList<Geometry>(){{
             this.add(sphere3);}
         });
@@ -69,14 +66,14 @@ public class DOFTest {
                 new Vector3(-x, -y, -z), new Vector3(0, 1, 0), Math.PI / 4);
 
         camera = new DOFCamera(new Point3(x, y, z),
-                new Vector3(-x, -y, -z), new Vector3(0, 1, 0), new DiagonalSamplingPattern(10), 1.0, 15, 24);
+                new Vector3(-x, -y, -z), new Vector3(0, 1, 0), 0.5, 5, 20, new DiagonalSamplingPattern(10));
 
         ArrayList<Light> lights = new ArrayList<Light>();
         PointLight pointLight = new PointLight(Color.WHITE,
-                new Point3(0, 0, 10), false);
+                new Point3(0, 0, 20), true);
         lights.add(pointLight);
 
-        World world = new World(geometries, lights, Color.BLACK, Color.WHITE);
+        World world = new World(geometries, lights, Color.BLACK, new Color(0.6, 0.6, 0.6));
         RTPanel panel1 = new RTPanel(camera, world);
 
 
