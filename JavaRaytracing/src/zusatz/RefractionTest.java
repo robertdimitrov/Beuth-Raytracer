@@ -164,13 +164,14 @@ public class RefractionTest {
 		World world = new World(geos, lights, Color.BLACK, ambient);
 
 		Camera camera = new PerspectiveCamera(new Point3(8, 8, 8),
-				new Vector3(-1, -1, -1), new Vector3(0, 1, 0), Math.PI/4, new DiagonalSamplingPattern(10));
+				new Vector3(-1, -1, -1), new Vector3(0, 1, 0), Math.PI/4, new DiagonalSamplingPattern(1));
 
 		RTPanel panel1 = new RTPanel(camera, world);
 
 		JTabbedPane pane = new JTabbedPane();
 		pane.addTab("Szene 1", panel1);
-		pane.addTab("schaerfe", new RTPanel(new DOFCamera(new Point3(8, 8, 8), new Vector3(-1, -1, -1), new Vector3(0, 1, 0), Math.PI / 4, 1.1, (new Point3(1.5,2,1.5).sub(new Point3(8, 8, 8)).magnitude), new DiagonalSamplingPattern(4)), world));
+		pane.addTab("AntiAlias", new RTPanel(new PerspectiveCamera(new Point3(8, 8, 8), new Vector3(-1, -1, -1), new Vector3(0, 1, 0), Math.PI/4, new DiagonalSamplingPattern(100)), world));
+		pane.addTab("schaerfe", new RTPanel(new DOFCamera(new Point3(8, 8, 8), new Vector3(-1, -1, -1), new Vector3(0, 1, 0), Math.PI / 4, 5, (new Point3(1.5,2,1.5).sub(new Point3(8, 8, 8)).magnitude), new DiagonalSamplingPattern(4)), world));
 
 		container.add(pane);
 

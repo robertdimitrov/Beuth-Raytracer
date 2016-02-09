@@ -91,11 +91,11 @@ public class BoundingBox extends Geometry {
 
 	@Override
 	public Hit hit(Ray r) {
-//		return box.hit(r);// Bbox sehen
-		 if (box.hit(r) != null){
-			 return model.hit(r);
-		 }
-		 return null;
+		return box.hit(r);// Bbox sehen
+//		 if (box.hit(r) != null){
+//			 return model.hit(r);
+//		 }
+//		 return null;
 	}
 
 	/**
