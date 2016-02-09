@@ -9,16 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
 
+import aufgabe01.*;
 import transformation.Transform;
-import aufgabe01.AxisAlignedBox;
-import aufgabe01.Color;
-import aufgabe01.Geometry;
-import aufgabe01.Node;
-import aufgabe01.PerspectiveCamera;
-import aufgabe01.Plane;
-import aufgabe01.Sphere;
-import aufgabe01.Triangle;
-import aufgabe01.World;
 import b_vorbereitung.Point3;
 import b_vorbereitung.Vector3;
 import beleuchtung_I.DirectionalLight;
@@ -171,8 +163,12 @@ public class RefractionTest {
 		Color ambient = new Color(0.1, 0.1, 0.1);
 		World world = new World(geos, lights, Color.BLACK, ambient);
 
-		PerspectiveCamera camera = new PerspectiveCamera(new Point3(8, 8, 8),
+		Camera camera = new PerspectiveCamera(new Point3(8, 8, 8),
 				new Vector3(-1, -1, -1), new Vector3(0, 1, 0), Math.PI / 4, new DiagonalSamplingPattern(10));
+
+//		camera = new FisheyeCamera(new Point3(8,8,8),
+//				new Vector3(-1, -1, -1), new Vector3(0, 1, 0), new DiagonalSamplingPattern(10), 15, Math.PI*2);
+
 
 		RTPanel panel1 = new RTPanel(camera, world);
 

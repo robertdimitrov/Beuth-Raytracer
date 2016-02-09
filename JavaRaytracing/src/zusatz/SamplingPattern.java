@@ -31,19 +31,19 @@ public abstract class SamplingPattern {
 			double a, r;
 			if (x > -y) {
 				if (x > y) {
-					a = x;
-					r = y / x;
+					r = x;
+					a = y / x;
 				} else {
-					a = y;
-					r = 2.0 - x / y;
+					r = y;
+					a = 2.0 - x / y;
 				}
 			} else {
 				if (x < y) {
-					a = -x;
-					r = 4 + y / x;
+					r = -x;
+					a = 4 + y / x;
 				} else {
-					a = -y;
-					r = y != 0 ? 6 - x / y : 0;
+					r = -y;
+					a = y != 0 ? 6 - x / y : 0;
 				}
 			}
 			double phi = Math.PI * a / 4.0;
