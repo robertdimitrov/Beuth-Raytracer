@@ -79,11 +79,10 @@ public class DOFCamera extends Camera {
             Point3 fp = this.e.add(this.w.mul(-f)).add(this.v.mul(fy)).add(this.u.mul(fx));
 
             for(Point2 lp : pattern.asDisc()){
-            	System.out.println(" DOFC x "+lp.x+"  y"+lp.y);
+//            	System.out.println(" DOFC x "+lp.x+"  y"+lp.y);
                 Point3 o = this.e.add(this.u.mul(lp.x*lensRadius)).add(this.v.mul(lp.y*lensRadius));
                 Vector3 dir = fp.sub(o).normalized();
                 rays.add(new Ray(o, dir));
-                break;
             }
 
 
