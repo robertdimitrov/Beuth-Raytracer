@@ -8,6 +8,7 @@ import beleuchtung_I.*;
 import transformation.Transform;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -30,8 +31,8 @@ public class FisheyeTest {
         Plane plane = new Plane(new LambertMaterial(Color.YELLOW));
 
         geometries.add(box);
-        geometries.add(sphere);
-        geometries.add(plane);
+//        geometries.add(sphere);
+//        geometries.add(plane);
 
         PointLight pointLight = new PointLight(Color.WHITE, new Point3(0,0,5), true);
         ArrayList<Light> lights = new ArrayList<Light>();
@@ -39,11 +40,18 @@ public class FisheyeTest {
 
         World world = new World(geometries, lights, Color.BLACK, new Color(0.5,0.5,0.5));
 
-        Camera camera = new FisheyeCamera(new Point3(16,16,16), new Vector3(-1, -1, -1), new Vector3(0,1,0), new DiagonalSamplingPattern(10), 3, Math.PI);
-//        Camera camera = new PerspectiveCamera(new Point3(8,8,8), new Vector3(-1, -1, -1), new Vector3(0,1,0), Math.PI/4);
+        Camera camera = new FisheyeCamera(new Point3(1.5,1.5,1.5), new Vector3(-1, -1, -1), new Vector3(0,1,0), 3, Math.PI, new DiagonalSamplingPattern(10));
         RTPanel panel = new RTPanel(camera, world);
 
-        container.add(panel);
+        Camera camera2 = new PerspectiveCamera(new Point3(1.5,1.5,1.5), new Vector3(-1, -1, -1), new Vector3(0,1,0), Math.PI/4, new DiagonalSamplingPattern(10));
+        RTPanel panel2 = new RTPanel(camera2, world);
+		
+        JTabbedPane pane = new JTabbedPane();
+		pane.addTab("Fish", panel);
+		pane.addTab("Persp", panel2);
+
+        container.add(pane);
+        
 
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
