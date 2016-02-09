@@ -67,7 +67,6 @@ public class RTPanel extends JPanel {
      */
     public BufferedImage createImage(){
 
-        int count=0;
         for(int i=0; i<w;i++){
             for(int j=0;j<h;j++){
                 final Set<Ray> rays=camera.rayFor(w, h, i, h-j);
@@ -83,7 +82,7 @@ public class RTPanel extends JPanel {
                 Color color = Color.BLACK;
                 for(final Hit hit : hits){
                     if(hit != null){
-                    	color = color.add(hit.geo.material.colorFor(hit, welt,new Tracer(welt, 10)).mul((double) 1 /camera.pattern.points.length));
+                    	color = color.add(hit.geo.material.colorFor(hit, welt,new Tracer(welt, 10)).mul((double) 1 / hits.size()));
 //                		color = new Color(Math.abs((hit.n.x)/2), Math.abs((hit.n.y)/2), Math.abs((hit.n.z)/2)); //funky
                     }else{
                     	color = color.add(welt.backgroundColor.mul((double) 1 / camera.pattern.points.length));

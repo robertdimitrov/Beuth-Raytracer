@@ -51,6 +51,39 @@ public abstract class SamplingPattern {
 			i++;
 		}
 		return discPoints;
+//		Point2[] discPoints = new Point2[points.length];
+//		for (int i = 0; i < points.length; i++) {
+//			final double x = points[i].x;
+//			final double y = points[i].y;
+//			
+//			if(x == 0 && y == 0){// would divide by 0
+//				discPoints[i] = points[i]; 
+//			}
+//			
+//			final double angle;
+//			final double quadrant;// 0 : West, 1: North, 2: East, 3 : South
+//			if (x > -y) {
+//				if (x > y) {
+//					quadrant = 0;
+//					angle = y / x;
+//				} else {
+//					quadrant = 1;
+//					angle = x / y;
+//				}
+//			} else {
+//				if (x < y) {
+//					quadrant = 2;
+//					angle = y / x;
+//				} else {
+//					quadrant = 3;
+//					angle = x / y ;
+//				}
+//			}
+//
+//			final double alpha = Math.PI / 2.0 * quadrant  + Math.atan(angle);
+//			discPoints[i] = new Point2( Math.cos(alpha), Math.sin(alpha));
+//		}
+//		return discPoints;
 	}
 
 

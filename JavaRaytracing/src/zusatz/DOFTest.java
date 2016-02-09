@@ -66,7 +66,7 @@ public class DOFTest {
                 new Vector3(-x, -y, -z), new Vector3(0, 1, 0), Math.PI / 4);
 
         camera = new DOFCamera(new Point3(x, y, z),
-                new Vector3(-x, -y, -z), new Vector3(0, 1, 0), 0.5, 5, 20, new DiagonalSamplingPattern(10));
+                new Vector3(-x, -y, -z), new Vector3(0, 1, 0), 0.5, 50, 5, new DiagonalSamplingPattern(10));
 
         ArrayList<Light> lights = new ArrayList<Light>();
         PointLight pointLight = new PointLight(Color.WHITE,

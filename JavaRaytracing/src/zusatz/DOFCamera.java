@@ -15,15 +15,14 @@ import java.util.Set;
 public class DOFCamera extends Camera {
 
     final private double lensRadius;
-    final private double d;
     final private double f;
+    final private double angle;
 
-
-    public DOFCamera(Point3 e, Vector3 g, Vector3 t, double lensRadius, double d, double f, SamplingPattern pattern) {
+    public DOFCamera(Point3 e, Vector3 g, Vector3 t, final double angle, double lensRadius, double f, SamplingPattern pattern) {
         super(e, g, t, pattern);
-        this.lensRadius = lensRadius;
-        this.d = d;
         this.f = f;
+        this.angle = angle;
+        this.lensRadius = lensRadius;
     }
 
 //    @Override
@@ -65,7 +64,7 @@ public class DOFCamera extends Camera {
     @Override
     public Set<Ray> rayFor(int w, int h, int x, int y) {
         Set<Ray> rays = new HashSet<>();
-        double d1 = h/(2*Math.tan(Math.PI/5));
+        double d1 = h/(2*Math.tan(angle/2));
         double d2 = (w-1)/2;
         double d3 = (h-1)/2;
 
@@ -80,7 +79,8 @@ public class DOFCamera extends Camera {
             Point3 fp = this.e.add(this.w.mul(-f)).add(this.v.mul(fy)).add(this.u.mul(fx));
 
             for(Point2 lp : pattern.asDisc()){
-                Point3 o = this.e.add(this.u.mul(lp.x*lensRadius/8)).add(this.v.mul(lp.y*lensRadius/8));
+            	System.out.println(" DOFC x "+lp.x+"  y"+lp.y);
+                Point3 o = this.e.add(this.u.mul(lp.x*lensRadius)).add(this.v.mul(lp.y*lensRadius));
                 Vector3 dir = fp.sub(o).normalized();
                 rays.add(new Ray(o, dir));
                 break;
